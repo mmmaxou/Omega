@@ -1,4 +1,8 @@
-:root{
-    --background-color-footer: #3c3c3c;
-    --footer-color: white;
+:root {
+	--background-color-footer: #3c3c3c;
+	--footer-color: white;
+	--font-big: 22px;
+	--font-small: 16px;
+	--color-main: #3f5fa7;
+	--color-light: #f8f8f8;
 }

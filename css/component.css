@@ -1,7 +1,7 @@
 .btn {
 	border-radius: 0px;
 	/*	border: 1px solid lightgrey;*/
-	background-color: lightgrey;
+	background-color: var(--color-light);
 	min-height: 20px;
 }
 
@@ -26,13 +26,12 @@ input:hover {
 .font-huge {
 	font-size: 10vw;
 	font-weight: 700;
-	color: #3f5fa7;
+	color: var(--color-main);
 }
 
 .font-big {
 	font-size: 3vw;
 	font-weight: 500;
-	color: white;
 	text-align: justify;
 }
 
@@ -41,7 +40,7 @@ input:hover {
 		font-size: 48px;
 	}
 	.font-big {
-		font-size: 22px;
+		font-size: var(--font-big);
 	}
 }
 

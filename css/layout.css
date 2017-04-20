@@ -9,3 +9,75 @@
 .search-bar {
 	margin: 15px 0;
 }
+
+.element {
+	border: 1px solid #e7e7e7;
+	margin-bottom: 25px;
+	background-color: var(--color-light);
+}
+
+.element-main {
+	background-color: var(--color-main);
+}
+
+.element .element-content {
+	padding: 15px;
+}
+
+
+/* Articles */
+
+.article {
+	/*	margin-bottom: 15px;*/
+}
+
+.article:last-child {
+	margin-bottom: 0;
+}
+
+.article img {
+	width: 100%;
+	max-height: 400px;
+	cursor: pointer;
+}
+
+.article .article-title {
+	font-size: var(--font-big);
+	margin-bottom: 15px;
+	transition: color 500ms ease;
+}
+
+.article .article-title:hover {
+	color: var(--color-main);
+	cursor: pointer;
+}
+
+.article .article-title:before {
+	content: '# ';
+	color: var(--color-main);
+	font-size: var(--font-small);
+}
+
+
+/* Pager */
+
+.pager {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.pager-text {
+	flex-grow: 3;
+}
+
+.pager-element {
+	padding: 15px;
+	flex-grow: 1;
+}
+
+.pager-element:hover,
+.pager-element-active {
+	background-color: lightgrey;
+	cursor: pointer;
+}

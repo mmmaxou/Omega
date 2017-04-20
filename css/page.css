@@ -10,8 +10,8 @@ banner>.container-fluid {
 	}
 }
 
-body {
-	height: 3000px
+header {
+	margin-bottom: 25px;
 }
 
 .footer-about-us {
@@ -26,7 +26,6 @@ body {
 
 .footer-copyright {
 	text-align: center;
-	color: var(--footer-color);
 }
 
 footer {

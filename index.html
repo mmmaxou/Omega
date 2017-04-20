@@ -28,7 +28,7 @@
 
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#dropdown-top" aria-expanded="false">
 <span class="sr-only">Toggle navigation</span>
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
@@ -38,7 +38,7 @@
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<div class="collapse navbar-collapse" id="dropdown-top">
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
 						<li><a href="#">Link</a></li>
@@ -80,39 +80,62 @@
 	</header>
 
 	<div class="content container">
-		<nav class="navbar navbar-default">
+		<nav class="navbar navbar-default element">
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header"><button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="#">Omega</a></div>
+				<div class="navbar-header"><button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#dropdown-content" aria-expanded="false"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="#">Omega</a></div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<div class="collapse navbar-collapse" id="dropdown-content">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-						<li><a href="#">Link</a></li>
-						<li><a href="#">Link</a></li>
+						<li class="active"><a href="#">Categorie 1<span class="sr-only">(current)</span></a></li>
+						<li><a href="#">Categorie 2</a></li>
+						<li><a href="#">Categorie 3</a></li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->
 			</div>
 			<!-- /.container-fluid -->
 		</nav>
+
+		<div id="articles">
+			<div class="article element" id="article">
+				<img src="http://lorempixel.com/400/200/" alt="image">
+				<div class="element-content">
+
+					<div class="article-title">Legam singulis te admodum.</div>
+					<div class="article-text">
+						<p>Officia ea excepteur, summis offendit id labore duis. Se e concursionibus ut eram cupidatat laboris, irure fabulas ubi labore esse in senserit summis se eiusmod tractavissent. Ut culpa quorum sint officia ut ingeniis ex nisi appellat. Amet quibusdam occaecat. Minim o ubi noster cupidatat, quo magna despicationes, excepteur quae dolor a aute do ne multos exercitation, incurreret sunt quem an veniam, excepteur amet officia qui iis pariatur et offendit si ingeniis multos eu nostrud exercitation. E minim laborum et ea sint ubi sunt.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="pager" class="element pager">
+			<div class="element-content pager-text">
+				Page x of y
+			</div>
+			<span class="pager-element pager-element-active">1</span>
+			<span class="pager-element">2</span>
+			<span class="pager-element">3</span>
+			<span class="pager-element">4</span>
+			<span class="pager-element">>></span>
+		</div>
 	</div>
+
+	<footer>
+		<div class="col-xs-12 offset-xs-12 footer-about-us">
+			<div class="title4">About us</div>
+			<div class="hr"></div>
+			<p>Hi we are Max and Alex. We are two IUT of Lens students, have fun!</p>
+		</div>
+		<div class="container-fluid footer-copyright">
+			© 2017 Copyright: Maxou & Szymu
+		</div>
+	</footer>
 
 	<script src="js/jquery-2.2.4.min.js" type="application/javascript"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
 	<script src="js/main.js" type="application/javascript"></script>
 </body>
-
-<footer>
-	<div class="col-xs-12 offset-xs-12 footer-about-us">
-		<div class="title4">About us</div>
-		<div class="hr"></div>
-		<p>Hi we are Max and Alex. We are two IUT of Lens students, have fun!</p>
-	</div>
-	<div class="container-fluid footer-copyright">
-		© 2017 Copyright: Maxou & Szymu
-	</div>
-</footer>
-
 
 </html>
