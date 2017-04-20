@@ -1,14 +1,23 @@
 .footer-about-us{
-    background-color: var(--background-color-footer);
     color: var(--footer-color);
-    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.title4{
+    font-size: 18px;
+    color: var(--footer-color);
 }
 
 .footer-copyright{
     text-align: center;
-    background-color: var(--background-color-copyright);
     color: var(--footer-color);
 }
+
+footer{
+    padding: 20px;
+    background-color: var(--background-color-footer);
+}
+
 
 
 
