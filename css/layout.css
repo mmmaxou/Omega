@@ -1,0 +1,7 @@
+.fit {
+	display: flex;
+}
+
+.fit-large {
+	flex-grow: 1;
+}
