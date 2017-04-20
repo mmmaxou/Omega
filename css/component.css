@@ -53,3 +53,11 @@ input:hover {
 	z-index: -1;
 	background: url('../images/nature.jpg') no-repeat center;
 }
+
+#btn_retour {
+	position: fixed;
+	left:90%;
+	top: 90%;
+	margin-right: 50px;
+	margin-bottom: 15px;
+}
