@@ -1,0 +1,15 @@
+banner>.container-fluid {
+	background: url("../images/nature.jpg") no-repeat center;
+	background-attachment: fixed;
+	padding: 100px 0;
+}
+
+@media (max-width:720px) {
+	banner>.container-fluid {
+		padding: 50px 0;
+	}
+}
+
+body {
+	height: 3000px
+}

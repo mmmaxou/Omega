@@ -22,3 +22,34 @@
 input:hover {
 	cursor: text;
 }
+
+.font-huge {
+	font-size: 10vw;
+	font-weight: 700;
+	color: #3f5fa7;
+}
+
+.font-big {
+	font-size: 3vw;
+	font-weight: 500;
+	color: white;
+	text-align: justify;
+}
+
+@media (max-width: 720px) {
+	.font-huge {
+		font-size: 48px;
+	}
+	.font-big {
+		font-size: 22px;
+	}
+}
+
+.fill {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	transform: translateY(-50%);
+	z-index: -1;
+	background: url('../images/nature.jpg') no-repeat center;
+}

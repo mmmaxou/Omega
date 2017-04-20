@@ -5,3 +5,7 @@
 .fit-large {
 	flex-grow: 1;
 }
+
+.search-bar {
+	margin: 15px 0;
+}
