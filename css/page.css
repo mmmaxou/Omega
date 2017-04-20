@@ -1,0 +1,14 @@
+.footer-about-us{
+    background-color: var(--background-color-footer);
+    color: var(--footer-color);
+    padding: 20px;
+}
+
+.footer-copyright{
+    text-align: center;
+    background-color: var(--background-color-copyright);
+    color: var(--footer-color);
+}
+
+
+
