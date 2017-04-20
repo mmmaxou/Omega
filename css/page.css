@@ -15,21 +15,15 @@ body {
 }
 
 .footer-about-us {
-	color: var(--footer-color);
 	margin-bottom: 20px;
-}
-
-.title4 {
-	font-size: 18px;
-	color: var(--footer-color);
 }
 
 .footer-copyright {
 	text-align: center;
-	color: var(--footer-color);
 }
 
 footer {
+	color: var(--footer-color);
 	padding: 20px;
 	background-color: var(--background-color-footer);
 }
