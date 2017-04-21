@@ -4,6 +4,7 @@ $(document).ready(function () {
 
 	var menuContent, h;
 	h = getMenuOffset()
+	getMenuFixed(h)
 	$(window).resize(function () {
 		h = getMenuOffset()
 	})
@@ -22,6 +23,12 @@ $(document).ready(function () {
 		$article.remove('#article')
 	}
 
+	$('#back-to-top').click(function () {
+		$('html, body').animate({
+			scrollTop: 0
+		}, 1000);
+	})
+
 })
 
 function getMenuOffset() {
@@ -31,9 +38,11 @@ function getMenuOffset() {
 function getMenuFixed(h) {
 	if (window.scrollY > h) {
 		$('.content .navbar').addClass('navbar-fixed-top')
+		$('#back-to-top').fadeIn()
 		$('body').css('margin-top', $('.content .navbar').height())
 	} else {
 		$('.content .navbar').removeClass('navbar-fixed-top')
+		$('#back-to-top').hide()
 		$('body').css('margin-top', 0)
 	}
 }

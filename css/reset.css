@@ -11,6 +11,23 @@ h1 {
 	margin: 0;
 }
 
+.row>div {
+	padding: 0;
+}
+
 img {
 	max-width: 100%;
+}
+
+li {
+	list-style: none;
+}
+
+a {
+	color: var(--color-main);
+}
+
+a:hover {
+	color: black;
+	text-decoration: none;
 }

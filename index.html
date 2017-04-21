@@ -58,7 +58,7 @@
 				<!--Main title and subtext-->
 				<div class="row">
 					<div class="col-xs-10 col-xs-offset-1 col-sm-offset-2 col-sm-8">
-						<h1 class="font-huge">Omega</h1>
+						<h1 class="font-huge"><span id="logo">Ω</span>mega</h1>
 					</div>
 					<div class="col-xs-12 col-sm-offset-2 col-sm-8">
 						<h2 class="font-big">The starting place of your life. We are a website dedicated to create cool stuff and neat things. Love us !</h2>
@@ -79,7 +79,7 @@
 		</banner>
 	</header>
 
-	<div class="content container">
+	<div class="content container-fluid">
 		<nav class="navbar navbar-default element">
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
@@ -97,34 +97,74 @@
 			<!-- /.container-fluid -->
 		</nav>
 
-		<div id="articles">
-			<div class="article element" id="article">
-				<img src="http://lorempixel.com/400/200/" alt="image">
-				<div class="element-content">
+		<div class="row">
 
-					<div class="article-title">Legam singulis te admodum.</div>
-					<div class="article-text">
-						<p>Officia ea excepteur, summis offendit id labore duis. Se e concursionibus ut eram cupidatat laboris, irure fabulas ubi labore esse in senserit summis se eiusmod tractavissent. Ut culpa quorum sint officia ut ingeniis ex nisi appellat. Amet quibusdam occaecat. Minim o ubi noster cupidatat, quo magna despicationes, excepteur quae dolor a aute do ne multos exercitation, incurreret sunt quem an veniam, excepteur amet officia qui iis pariatur et offendit si ingeniis multos eu nostrud exercitation. E minim laborum et ea sint ubi sunt.</p>
+			<div class="col-xs-12 col-lg-9">
+				<div id="articles" class="col-xs-12">
+					<div class="article article-small element" id="article">
+						<img src="http://lorempixel.com/400/200/" alt="image">
+						<div class="element-content">
+							<div class="article-title font-title">Legam singulis te admodum.</div>
+							<div class="article-text">
+								<p>Officia ea excepteur, summis offendit id labore duis. Se e concursionibus ut eram cupidatat laboris, irure fabulas ubi labore esse in senserit summis se eiusmod tractavissent. Ut culpa quorum sint officia ut ingeniis ex nisi appellat. Amet quibusdam occaecat. Minim o ubi noster cupidatat, quo magna despicationes, excepteur quae dolor a aute do ne multos exercitation, incurreret sunt quem an veniam, excepteur amet officia qui iis pariatur et offendit si ingeniis multos eu nostrud exercitation. E minim laborum et ea sint ubi sunt.</p>
+							</div>
+							<div class="hr"></div>
+							<div class="article-bottom">
+
+								<span><i class="fa fa-calendar" aria-hidden="true"></i> date</span>
+
+								<span><i class="fa fa-eye" aria-hidden="true"></i> views</span>
+
+								<span><i class="fa fa-folder-o" aria-hidden="true"></i> category</span>
+
+								<span><a href="#"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> Read more</a></span>
+
+
+							</div>
+						</div>
 					</div>
 				</div>
+
+				<div id="pager" class="element pager">
+					<div class="element-content pager-text">
+						Page x of y
+					</div>
+					<span class="pager-element pager-element-active">1</span>
+					<span class="pager-element">2</span>
+					<span class="pager-element">3</span>
+					<span class="pager-element">4</span>
+					<span class="pager-element">>></span>
+				</div>
+
 			</div>
+
 		</div>
 
-		<div id="pager" class="element pager">
-			<div class="element-content pager-text">
-				Page x of y
+
+
+
+		<div id="hot" class="element">
+			<div class="element-content">
+
+				<div class="font-title">Hot in this moment</div>
+				<ul>
+					<li><a href="#">Article 1</a></li>
+					<li><a href="#">Article 3</a></li>
+					<li><a href="#">Article 4</a></li>
+					<li><a href="#">Article 7</a></li>
+				</ul>
 			</div>
-			<span class="pager-element pager-element-active">1</span>
-			<span class="pager-element">2</span>
-			<span class="pager-element">3</span>
-			<span class="pager-element">4</span>
-			<span class="pager-element">>></span>
 		</div>
 	</div>
+	</div>
+
+	<button id="back-to-top" class="element btn btn-default"><i class="fa fa-arrow-up" aria-hidden="true"></i>
+
+	</button>
 
 	<footer>
 		<div class="col-xs-12 offset-xs-12 footer-about-us">
-			<div class="title4">About us</div>
+			<div class="font-big">About us</div>
 			<div class="hr"></div>
 			<p>Hi we are Max and Alex. We are two IUT of Lens students, have fun!</p>
 		</div>

@@ -5,6 +5,10 @@
 	min-height: 20px;
 }
 
+.btn-default {
+	padding: 15px;
+}
+
 .btn:focus,
 .btn:active,
 .btn:focus:active {
@@ -17,6 +21,19 @@
 
 .btn-search:after {
 	content: '';
+}
+
+
+/* bouton retout en haut */
+
+#back-to-top {
+	position: fixed;
+	bottom: 15px;
+	right: 15px;
+	z-index: 1;
+	padding: 15px 18px;
+	border-radius: 30px;
+	color: var(--color-main);
 }
 
 input:hover {
@@ -33,6 +50,23 @@ input:hover {
 	font-size: 3vw;
 	font-weight: 500;
 	text-align: justify;
+}
+
+.font-title {
+	font-size: var(--font-big);
+	margin-bottom: 15px;
+	transition: color 500ms ease;
+}
+
+.font-title:hover {
+	color: var(--color-main);
+	cursor: pointer;
+}
+
+.font-title:before {
+	content: '# ';
+	color: var(--color-main);
+	font-size: var(--font-small);
 }
 
 @media (max-width: 720px) {
@@ -57,4 +91,29 @@ input:hover {
 	position: fixed;
 	right: 20px;
 	top: 90%;
+}
+
+#logo {
+	display: inline-block;
+	animation: logo 5s infinite;
+	animation-timing-function: ease;
+	transform: rotate(10deg);
+}
+
+@keyframes logo {
+	0% {
+		transform: rotate(0deg)
+	}
+	60% {
+		transform: rotate(0deg)
+	}
+	70% {
+		transform: rotate(10deg)
+	}
+	80% {
+		transform: rotate(-10deg)
+	}
+	100% {
+		transform: rotate(360deg)
+	}
 }
