@@ -1,4 +1,4 @@
-banner>.container-fluid {
+>.container-fluid {
 	padding: 100px 15px;
 }
 
@@ -34,4 +34,17 @@ footer {
 	color: var(--footer-color);
 	padding: 20px;
 	background-color: var(--background-color-footer);
+}
+
+@media (min-width: 1200px) {
+	.row>.col1 {
+		padding-right: 15px
+	}
+	.row>.col2 {
+		padding-left: 15px
+	}
+}
+
+.col2 {
+	overflow: scroll
 }
