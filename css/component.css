@@ -97,7 +97,6 @@ input:hover {
 	display: inline-block;
 	animation: logo 5s infinite;
 	animation-timing-function: ease;
-	transform: rotate(10deg);
 }
 
 @keyframes logo {
