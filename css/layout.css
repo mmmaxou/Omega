@@ -129,3 +129,20 @@
 	color: white;
 	margin: 5px;
 }
+
+
+/* Page article */
+
+#text-article{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.mon-article{
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+.salade{
+	margin-bottom: 15px;
+}
