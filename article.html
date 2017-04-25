@@ -14,6 +14,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web:300,400,700" rel="stylesheet">
 
+    <!-- List of CSS Link-->
     <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/component.css">
@@ -26,6 +27,7 @@
 
 <body>
     <header>
+        <!--Navbar 1-->
         <nav class="navbar navbar-default" id="retour_curseur">
             <div class="container-fluid">
 
@@ -46,16 +48,16 @@
                         <li class="active"><a href="article.html">Article<span class="sr-only">(current)</span></a></li>
                         <li><a href="article.html">Best Article</a></li>
                         <li><a href="article.html">Recent Article</a></li>
-
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
             </div>
             <!-- /.container-fluid -->
         </nav>
+        <!-- / Navbar 1-->
 
+        <!-- Banner -->
         <banner class="banner">
-            <!--			<div class="fill"></div>-->
             <div class="container-fluid">
 
                 <!--Main title and subtext-->
@@ -80,8 +82,9 @@
                 </div>
             </div>
         </banner>
+        <!-- / Banner-->
     </header>
-
+    <!--Navbar 2-->
     <div class="content container-fluid">
         <!--The navbar division from bootstrap-->
         <nav class="navbar navbar-default element">
@@ -112,18 +115,21 @@
             </div>
             <!-- /.container-fluid -->
         </nav>
-        <!--End navbar-->
+        <!-- / Navbar 2 -->
 
 
+        <!-- 2 Columns -->
         <div class="row">
-
-            <!-- First Colum-->
+            <!-- Left column-->
             <div class="col-xs-12 col-lg-9 col1">
                 <div class="element">
                     <div class="row">
                         <div class="element-content">
+                            <!-- Article title -->
                             <div class="article-title font-title">Legam singulis te admodum</div>
+                            <!-- Article image -->
                             <img id="img-article" class="img-responsive img-rounded" src="http://lorempixel.com/400/200/" alt="image">
+                            <!-- Article text -->
                             <div id="text-article">
                                 <p>Officia ea excepteur, summis offendit id labore duis. Se e concursionibus ut eram cupidatat laboris, irure fabulas ubi labore esse in senserit summis se eiusmod tractavissent. Ut culpa quorum sint officia ut ingeniis ex nisi appellat. Amet quibusdam occaecat. Minim o ubi noster cupidatat, quo magna despicationes, excepteur quae dolor a aute do ne multos exercitation, incurreret sunt quem an veniam, excepteur amet officia qui iis pariatur et offendit si ingeniis multos eu nostrud exercitation. E minim laborum et ea sint ubi sunt.</p>
                                 <p>Exemple block quote display</p>
@@ -132,6 +138,7 @@
                                 </blockquote>
                                 <p>Officia ea excepteur, summis offendit id labore duis. Se e concursionibus ut eram cupidatat laboris, irure fabulas ubi labore esse in senserit summis se eiusmod tractavissent. Ut culpa quorum sint officia ut ingeniis ex nisi appellat. Amet quibusdam occaecat. Minim o ubi noster cupidatat, quo magna despicationes, excepteur quae dolor a aute do ne multos exercitation, incurreret sunt quem an veniam, excepteur amet officia qui iis pariatur et offendit si ingeniis multos eu nostrud exercitation. E minim laborum et ea sint ubi sunt.</p>
                             </div>
+                            <!-- Bottom article -->
                             <div class="article-bottom">
 
                                 <span><i class="fa fa-calendar" aria-hidden="true"></i> date</span>
@@ -141,6 +148,7 @@
                                 <span><i class="fa fa-folder-o" aria-hidden="true"></i> category</span>
 
                             </div>
+                            <!-- / Bottom article -->
                         </div>
                     </div>
                 </div>
@@ -174,10 +182,11 @@
                     </div>
                 </div>
             </div>
-            <!-- End First Colum-->
-            <!-- Second Colum-->
+            <!-- / Left column-->
+            <!-- Right column-->
             <div class="col-xs-12 col-lg-3 col2">
                 <div id="pusher"></div>
+                <!-- Hot articles -->
                 <div id="hot" class="element element-lister">
                     <div class="element-content">
 
@@ -190,6 +199,8 @@
                         </ul>
                     </div>
                 </div>
+                <!-- / Hot articles -->
+                <!-- Categories -->
                 <div id="categories" class="element">
                     <div class="element-content">
                         <div class="font-title">Categories</div>
@@ -207,21 +218,18 @@
                         </div>
                     </div>
                 </div>
+                <!-- / Categories -->
             </div>
-            <!-- End Second Colum-->
-
+            <!-- / Right column -->
+            <!-- / 2 Columns -->
         </div>
-
-
-
-
     </div>
 
-
+    <!-- Back to top button -->
     <button id="back-to-top" class="element btn btn-default"><i class="fa fa-arrow-up" aria-hidden="true"></i>
 
 </button>
-
+    <!-- Footer -->
     <footer>
         <div class="col-xs-12 offset-xs-12 footer-about-us">
             <div class="font-big">About us</div>
@@ -232,7 +240,9 @@
             © 2017 Copyright: Maxou & Szymu
         </div>
     </footer>
+    <!-- / Footer -->
 
+    <!-- JavaScript link -->
     <script src="js/jquery-2.2.4.min.js" type="application/javascript"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="js/article.js" type="application/javascript"></script>
