@@ -57,5 +57,4 @@ function ajoutComment() {
 $("#comm").submit(function(e){
     e.preventDefault();
     ajoutComment();
-    alert("pute")
 })
