@@ -83,8 +83,15 @@ function getMenuFixed(h) {
 }
 
 function resizeImg() {
+    resizeHot()
     if ($(window).width() > 1200) return
     $('.wrapper-img').each(function () {
+        $(this).css('height', $(this).width() / 2)
+    })
+}
+
+function resizeHot() {
+    $('#hot .wrapper-img').each(function () {
         $(this).css('height', $(this).width() / 2)
     })
 }

@@ -23,6 +23,20 @@
     content: '';
 }
 
+.btn-main {
+    background-color: var(--color-main);
+    color: white;
+    font-weight: 500;
+    font-size: var(--font-small);
+}
+
+.btn-main:hover,
+.btn-main:active,
+.btn-main:focus,
+.btn-main:active:focus {
+    color: lightblue;
+}
+
 
 /* bouton retout en haut */
 
@@ -184,4 +198,17 @@ input:hover {
     display: block;
     height: 0;
     clear: both;
+}
+
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    display: block;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.overlay-black {
+    background-color: rgba(0, 0, 0, 0.8);
 }

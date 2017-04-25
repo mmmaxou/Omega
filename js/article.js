@@ -21,6 +21,16 @@ $(document).ready(function () {
         }, 1000);
     })
 
+    // Image placement
+    $('.wrapper-img').each(function () {
+        src = $(this).attr('data-src')
+        $(this).css('background-image', 'url(' + src + ')')
+    })
+    resizeImg()
+    $(window).resize(function () {
+        resizeImg()
+    })
+
     // Handle Pusher
     resizePusher(h)
     $(window).scroll(function () {
@@ -77,6 +87,12 @@ function resizePusher(h) {
 
     p.css("height", height)
 
+}
+
+function resizeImg() {
+    $('.wrapper-img').each(function () {
+        $(this).css('height', $(this).width() / 2)
+    })
 }
 
 function ajoutComment() {

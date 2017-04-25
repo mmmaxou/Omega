@@ -54,18 +54,18 @@
     max-height: 400px;
 }
 
-.article .article-content {
+.article-content {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-.article .article-text {
+.article-text {
     font-size: var(--font-small);
     text-align: justify;
 }
 
-.article .article-bottom {
+.article-bottom {
     font-size: calc(var(--font-small) + 2px);
     display: flex;
     justify-content: space-around;
@@ -178,8 +178,94 @@
     margin-bottom: 20px;
 }
 
-#img-article {
+.img-article {
     margin-left: auto;
     margin-right: auto;
     width: 70%;
+    margin-bottom: 15px;
+}
+
+
+/* Comments */
+
+#comm {
+    margin-top: 25px;
+}
+
+.comment {
+    margin-bottom: 45px;
+    margin-left: 15px;
+    position: relative;
+}
+
+.comment:last-child {
+    margin-bottom: 0;
+}
+
+.comment:before {
+    content: '';
+    width: 5px;
+    height: 70%;
+    position: absolute;
+    top: -5px;
+    left: -15px;
+    border-left: 5px solid #b4b4b4;
+}
+
+.comment-infos {
+    font-size: var(--font-tiny)
+}
+
+.comment-infos .author:before {
+    content: 'By '
+}
+
+.comment-infos .date:before {
+    content: ' - The '
+}
+
+
+/*Hot*/
+
+.hot-picture {
+    cursor: pointer;
+    position: relative;
+    margin: 15px;
+}
+
+@media (min-width:998px) {
+    .hot-picture {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .hot-picture:first-child {
+        margin-top: 0;
+    }
+    .hot-picture:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.hot-caption {
+    position: absolute;
+    top: 40%;
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+    color: white;
+    z-index: 2;
+    display: none;
+}
+
+.hot-picture .overlay,
+.hot-picture .hot-caption {
+    height: 0;
+}
+
+.hot-picture:hover .overlay {
+    height: 100%;
+}
+
+.hot-picture:hover .hot-caption {
+    display: block;
 }
