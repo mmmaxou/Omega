@@ -76,7 +76,7 @@
     width: 100%;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
     .article-small {
         display: flex;
     }
@@ -121,10 +121,17 @@
 }
 
 .fit-element {
-    padding: 15px;
+    padding: 10px;
     background-color: var(--color-main);
     color: white;
     margin: 5px;
+    flex-basis: 20%;
+    text-align: center;
+    flex-grow: 1;
+}
+
+@media (min-width: 998px) {
+    .fit-element {}
 }
 
 
@@ -166,16 +173,16 @@
 
 /* Page article */
 
-#text-article{
-	margin-top: 20px;
-	margin-bottom: 20px;
+#text-article {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-.mon-article{
-	margin-top: 10px;
-	margin-bottom: 20px;
+.mon-article {
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
-.salade{
-	margin-bottom: 15px;
+.salade {
+    margin-bottom: 15px;
 }

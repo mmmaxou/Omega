@@ -83,7 +83,7 @@ function getMenuFixed(h) {
 }
 
 function resizeImg() {
-    if ($(window).width() > 992) return
+    if ($(window).width() > 1200) return
     $('.wrapper-img').each(function () {
         $(this).css('height', $(this).width() / 2)
     })
@@ -91,7 +91,7 @@ function resizeImg() {
 
 function resizePusher(h) {
     var p = $('#pusher');
-    if ($(window).width() < 1200) {
+    if ($(window).width() < 998) {
         p.css('height', 0)
         return
     }
@@ -116,7 +116,7 @@ function resizePusher(h) {
     // max size
     if (height > maxHeight) {
         height = maxHeight
-        $('.col2').css("max-height", height + $(window).height())
+        //        $('.col2').css("max-height", height + $(window).height())
     }
 
     p.css("height", height)

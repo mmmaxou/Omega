@@ -1,1 +1,23 @@
+* {
+    font-family: 'Titillium Web', sans-serif;
+}
 
+html {
+    font-size: 100%;
+}
+
+body {
+    font-size: var(--font-small);
+}
+
+@media (min-width: 800px) {
+    html {
+        font-size: 112%;
+    }
+}
+
+@media (min-width: 1200px) {
+    html {
+        font-size: 126.5%;
+    }
+}

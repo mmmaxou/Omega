@@ -1,8 +1,8 @@
 :root {
     --background-color-footer: #3c3c3c;
     --footer-color: white;
-    --font-big: 22px;
-    --font-small: 16px;
+    --font-big: 1.4em;
+    --font-small: 1em;
     --color-main: #3f5fa7;
     --color-light: #f8f8f8;
     --color-dark: rgb(51, 51, 51);
