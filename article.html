@@ -14,6 +14,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web:300,400,700" rel="stylesheet">
 
+    <!-- List of CSS Link-->
     <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/component.css">
@@ -26,6 +27,7 @@
 
 <body>
     <header>
+        <!--Navbar 1-->
         <nav class="navbar navbar-default" id="retour_curseur">
             <div class="container-fluid">
 
@@ -43,19 +45,19 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="dropdown-top">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-
+                        <li class="active"><a href="article.html">Article<span class="sr-only">(current)</span></a></li>
+                        <li><a href="article.html">Best Article</a></li>
+                        <li><a href="article.html">Recent Article</a></li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
             </div>
             <!-- /.container-fluid -->
         </nav>
+        <!-- / Navbar 1-->
 
+        <!-- Banner -->
         <banner class="banner">
-            <!--			<div class="fill"></div>-->
             <div class="container-fluid">
 
                 <!--Main title and subtext-->
@@ -80,8 +82,9 @@
                 </div>
             </div>
         </banner>
+        <!-- / Banner-->
     </header>
-
+    <!--Navbar 2-->
     <div class="content container-fluid">
         <!--The navbar division from bootstrap-->
         <nav class="navbar navbar-default element">
@@ -91,9 +94,9 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="dropdown-content">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Categorie 1<span class="sr-only">(current)</span></a></li>
-                        <li><a href="#">Categorie 2</a></li>
-                        <li><a href="#">Categorie 3</a></li>
+                        <li class="active"><a href="article.html">Life<span class="sr-only">(current)</span></a></li>
+                        <li><a href="article.html">Death</a></li>
+                        <li><a href="article.html">Politics</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -112,17 +115,19 @@
             </div>
             <!-- /.container-fluid -->
         </nav>
-        <!--End navbar-->
+        <!-- / Navbar 2 -->
 
 
+        <!-- 2 Columns -->
         <div class="row">
-
-            <!-- First Colum-->
+            <!-- Left column-->
             <div class="col-xs-12 col-lg-9 col1">
                 <div class="element">
                     <div class="row">
                         <div class="element-content">
+                            <!-- Article title -->
                             <div class="article-title font-title">Legam singulis te admodum</div>
+
                             <div id="text-article">
                                 <img class="img-responsive img-article" src="http://lorempixel.com/400/200/" alt="image">
                                 <p>Officia ea excepteur, summis offendit id labore duis. Se e concursionibus ut eram cupidatat laboris, irure fabulas ubi labore esse in senserit summis se eiusmod tractavissent. Ut culpa quorum sint officia ut ingeniis ex nisi appellat. Amet quibusdam occaecat. Minim o ubi noster cupidatat, quo magna despicationes, excepteur quae dolor a aute do ne multos exercitation, incurreret sunt quem an veniam, excepteur amet officia qui iis pariatur et offendit si ingeniis multos eu nostrud exercitation. E minim laborum et ea sint ubi sunt.</p>
@@ -143,6 +148,7 @@
                             </div>
 
                             <div class="hr"></div>
+                            <!-- Bottom article -->
                             <div class="article-bottom">
 
                                 <span class="color-on-hover"><i class="fa fa-calendar" aria-hidden="true"></i> date</span>
@@ -154,6 +160,7 @@
                                 <span class="color-on-hover"><a href="#"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> Read more</a></span>
 
                             </div>
+                            <!-- / Bottom article -->
                         </div>
                     </div>
                 </div>
@@ -225,10 +232,11 @@
                     </div>
                 </div>
             </div>
-            <!-- End First Colum-->
-            <!-- Second Colum-->
+            <!-- / Left column-->
+            <!-- Right column-->
             <div class="col-xs-12 col-lg-3 col2">
                 <div id="pusher"></div>
+                <!-- Hot articles -->
                 <div id="hot" class="element element-lister">
                     <div class="element-content container-fluid">
 
@@ -271,6 +279,8 @@
                         </div>
                     </div>
                 </div>
+                <!-- / Hot articles -->
+                <!-- Categories -->
                 <div id="categories" class="element">
                     <div class="element-content">
                         <div class="font-title">Categories</div>
@@ -288,21 +298,18 @@
                         </div>
                     </div>
                 </div>
+                <!-- / Categories -->
             </div>
-            <!-- End Second Colum-->
-
+            <!-- / Right column -->
+            <!-- / 2 Columns -->
         </div>
-
-
-
-
     </div>
 
-
+    <!-- Back to top button -->
     <button id="back-to-top" class="element btn btn-default"><i class="fa fa-arrow-up" aria-hidden="true"></i>
 
 </button>
-
+    <!-- Footer -->
     <footer>
         <div class="col-xs-12 offset-xs-12 footer-about-us">
             <div class="font-big">About us</div>
@@ -313,7 +320,9 @@
             © 2017 Copyright: Maxou & Szymu
         </div>
     </footer>
+    <!-- / Footer -->
 
+    <!-- JavaScript link -->
     <script src="js/jquery-2.2.4.min.js" type="application/javascript"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="js/article.js" type="application/javascript"></script>
