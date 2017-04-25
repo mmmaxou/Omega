@@ -1,12 +1,24 @@
 .box {
-	border: 1px solid black;
-	background: url('../images/cloth.png') repeat center;
+    border: 1px solid black;
+    background: url('../images/cloth.png') repeat center;
 }
 
 .hr {
-	height: 1px;
-	width: 100%;
-	display: block;
-	background-color: lightgrey;
-	margin-bottom: 10px;
+    height: 1px;
+    width: 100%;
+    display: block;
+    background-color: lightgrey;
+    margin-bottom: 10px;
+}
+
+.hr-vertical {
+    width: 1px;
+    height: 100%;
+    display: inline-block;
+    background-color: lightgrey;
+    margin: 0px 15px;
+}
+
+.hr-vertical-big {
+    width: 5px;
 }

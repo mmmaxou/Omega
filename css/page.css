@@ -1,50 +1,54 @@
 >.container-fluid {
-	padding: 100px 15px;
+    padding: 100px 15px;
 }
 
 header {
-	background: url("../images/nature.jpg") no-repeat center;
-	background-attachment: fixed;
-	background-size: cover;
+    background: url("../images/nature.jpg") no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 @media (max-width:720px) {
-	banner>.container-fluid {
-		padding: 50px 15px;
-	}
+    banner>.container-fluid {
+        padding: 50px 15px;
+    }
 }
 
 header {
-	margin-bottom: 25px;
+    margin-bottom: 25px;
 }
 
 #articles {
-	padding: 0;
+    padding: 0;
 }
 
 .footer-about-us {
-	margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .footer-copyright {
-	text-align: center;
+    text-align: center;
 }
 
 footer {
-	color: var(--footer-color);
-	padding: 20px;
-	background-color: var(--background-color-footer);
+    color: var(--footer-color);
+    padding: 20px;
+    background-color: var(--background-color-footer);
 }
 
 @media (min-width: 1200px) {
-	.row>.col1 {
-		padding-right: 15px
-	}
-	.row>.col2 {
-		padding-left: 15px
-	}
+    .row>.col1 {
+        padding-right: 15px
+    }
+    .row>.col2 {
+        padding-left: 15px
+    }
 }
 
 .col2 {
-	overflow: scroll
+    overflow-y: scroll
+}
+
+#results {
+    margin-top: 25px;
 }
