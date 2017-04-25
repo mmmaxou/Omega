@@ -58,12 +58,13 @@ $(document).ready(function () {
         resizeImg()
     })
 
-
-    // Handle Pusher
-    resizePusher(h)
-    $(window).scroll(function () {
+    /*
+        // Handle Pusher
         resizePusher(h)
-    })
+        $(window).scroll(function () {
+            resizePusher(h)
+        })
+        */
 })
 
 function getMenuOffset() {
@@ -96,6 +97,7 @@ function resizeHot() {
     })
 }
 
+/*
 function resizePusher(h) {
     var p = $('#pusher');
     if ($(window).width() < 998) {
@@ -129,3 +131,4 @@ function resizePusher(h) {
     p.css("height", height)
 
 }
+*/

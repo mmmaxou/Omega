@@ -43,17 +43,21 @@ footer {
     background-color: var(--background-color-footer);
 }
 
+.col2 {
+    overflow-y: scroll;
+    position: sticky;
+    top: 65px;
+    max-height: none;
+}
+
 @media (min-width: 998px) {
     .row>.col1 {
         padding-right: 15px
     }
     .row>.col2 {
-        padding-left: 15px
+        padding-left: 15px;
+        max-height: 90vh;
     }
-}
-
-.col2 {
-    overflow-y: scroll
 }
 
 #results {
