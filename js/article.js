@@ -3,57 +3,12 @@
  */
 $(document).ready(function () {
 
-    // Menu fixed
-    var menuContent, h;
-    h = getMenuOffset()
-    getMenuFixed(h)
-    $(window).resize(function () {
-        h = getMenuOffset()
-    })
-    $(window).scroll(function () {
-        getMenuFixed(h)
+    $("#comm").submit(function (e) {
+        e.preventDefault();
+        ajoutComment();
     })
 
-    //Button top
-    $('#back-to-top').click(function () {
-        $('html, body').animate({
-            scrollTop: 0
-        }, 1000);
-    })
-
-    // Image placement
-    $('.wrapper-img').each(function () {
-        src = $(this).attr('data-src')
-        $(this).css('background-image', 'url(' + src + ')')
-    })
-    resizeImg()
-    $(window).resize(function () {
-        resizeImg()
-    })
 })
-
-
-function getMenuOffset() {
-    return $('.content .navbar')[0].offsetTop;
-}
-
-function getMenuFixed(h) {
-    if (window.scrollY > h) {
-        $('.content .navbar').addClass('navbar-fixed-top')
-        $('#back-to-top').fadeIn()
-        $('body').css('margin-top', $('.content .navbar').height())
-    } else {
-        $('.content .navbar').removeClass('navbar-fixed-top')
-        $('#back-to-top').hide()
-        $('body').css('margin-top', 0)
-    }
-}
-
-function resizeImg() {
-    $('.wrapper-img').each(function () {
-        $(this).css('height', $(this).width() / 2)
-    })
-}
 
 function ajoutComment() {
     var email = document.getElementById('email').value;
@@ -69,8 +24,3 @@ function ajoutComment() {
     node.appendChild(node3); // Append the text to <li>
     document.getElementById("commentaire").appendChild(node);
 }
-
-$("#comm").submit(function (e) {
-    e.preventDefault();
-    ajoutComment();
-})
