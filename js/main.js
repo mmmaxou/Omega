@@ -58,6 +58,22 @@ $(document).ready(function () {
         resizeImg()
     })
 
+    /*
+        $(document).keypress(function (e) {
+            console.log("ok 1")
+            if (!$('.search-bar input').is(':focus')) {
+                return
+            }
+            console.log("ok 2")
+            var code = e.keyCode || e.which;
+            console.log(code)
+            if (code == 13) {
+                console.log("ok 3")
+                $('.search-bar .btn-search').click()
+            }
+
+        })
+    */
 })
 
 function getMenuOffset() {
