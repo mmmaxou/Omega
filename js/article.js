@@ -22,5 +22,5 @@ function ajoutComment() {
     node3.appendChild(textnode2); // Append the text to <li>
     node.appendChild(node2); // Append the text to <li>
     node.appendChild(node3); // Append the text to <li>
-    document.getElementById("commentaire").appendChild(node);
+    document.getElementById("comments").appendChild(node);
 }
