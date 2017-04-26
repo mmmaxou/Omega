@@ -30,12 +30,6 @@ $(document).ready(function () {
     $(window).resize(function () {
         resizeImg()
     })
-
-    // Handle Pusher
-    resizePusher(h)
-    $(window).scroll(function () {
-        resizePusher(h)
-    })
 })
 
 
@@ -53,40 +47,6 @@ function getMenuFixed(h) {
         $('#back-to-top').hide()
         $('body').css('margin-top', 0)
     }
-}
-
-function resizePusher(h) {
-    var p = $('#pusher');
-    if ($(window).width() < 998) {
-        p.css('height', 0)
-        return
-    }
-    var p = $('#pusher');
-    var height = $(window).scrollTop()
-    height -= $('.col1')[0].offsetTop
-    height += 15
-    height += $('.navbar-fixed-top').height()
-
-    var maxHeight = $('.col1').height()
-    $('.col2').children().each(function () {
-        if ($(this).attr('id') == 'pusher')
-            return
-        maxHeight -= $(this).height() + 2
-    })
-    maxHeight -= $('.navbar-fixed-top').height()
-
-    // resize col height
-    $('.col2').css("max-height", height + $(window).height() - $('.navbar-fixed-top').height())
-
-
-    // max size
-    if (height > maxHeight) {
-        height = maxHeight
-        //        $('.col2').css("max-height", height + $(window).height())
-    }
-
-    p.css("height", height)
-
 }
 
 function resizeImg() {
