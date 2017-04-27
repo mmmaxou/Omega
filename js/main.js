@@ -12,6 +12,7 @@ $(document).ready(function () {
     })
     $(window).scroll(function () {
         getMenuFixed(h)
+        getMaxHeightCol2()
     })
 
     // duplicate the articles
@@ -92,6 +93,34 @@ function getMenuFixed(h) {
     }
 }
 
+function getMaxHeightCol2() {
+    var pagerOffset = $('footer').offset().top - 100
+    var windowHeight = $(window).height()
+    var windowScroll = window.scrollY
+
+    var isAnimating = $('.col2').hasClass('animating')
+    var isUnstick = $('.col2').hasClass('unstick')
+    if (windowScroll > pagerOffset - windowHeight) {
+        if (isUnstick || isAnimating) {
+            return
+        }
+        $('.col2').addClass('animating')
+        animateScrollBottom('.col2', function () {
+            $('.col2').addClass('unstick')
+            $('.col2').removeClass('animating')
+        })
+    } else {
+        if (!isUnstick || isAnimating) {
+            return
+        }
+        $('.col2').addClass('animating')
+        $('.col2').removeClass('unstick').animate({
+            scrollTop: $(this).height()
+        }, 0)
+        $('.col2').removeClass('animating')
+    }
+}
+
 function resizeImg() {
     resizeHot()
     if ($(window).width() > 1200) return
@@ -103,5 +132,34 @@ function resizeImg() {
 function resizeHot() {
     $('#hot .wrapper-img').each(function () {
         $(this).css('height', $(this).width() / 2)
+    })
+}
+var timeout
+
+function animateScrollTop(selector, callback) {
+    $(selector).animate({
+        scrollTop: 0
+    }, {
+        duration: 600,
+        done: function () {
+            //            clearTimeout(timeout)
+            //            timeout = setTimeout(function () {
+            callback()
+            //            }, 400)
+        }
+    })
+}
+
+function animateScrollBottom(selector, callback) {
+    $(selector).animate({
+        scrollTop: $(this).height()
+    }, {
+        duration: 600,
+        done: function () {
+            //            clearTimeout(timeout)
+            //            timeout = setTimeout(function () {
+            callback()
+            //            }, 400)
+        }
     })
 }

@@ -9,7 +9,7 @@
 }
 
 @media (min-width: 998px) {
-    .container-fluid {
+    .content.container-fluid {
         padding-left: 30px;
         padding-right: 30px;
     }
@@ -57,6 +57,9 @@ footer {
     .row>.col2 {
         padding-left: 15px;
         max-height: 90vh;
+    }
+    .col2.unstick {
+        max-height: none;
     }
 }
 
