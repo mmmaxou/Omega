@@ -38,13 +38,15 @@ header {
 }
 
 footer {
-    color: var(--footer-color);
+    color: white;
     padding: 20px;
+    background-color: #3c3c3c;
     background-color: var(--background-color-footer);
 }
 
 .col2 {
     overflow-y: scroll;
+    -webkit-position: sticky;
     position: sticky;
     top: 65px;
     max-height: none;

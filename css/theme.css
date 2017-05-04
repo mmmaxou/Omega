@@ -7,6 +7,7 @@ html {
 }
 
 body {
+    font-size: 1em;
     font-size: var(--font-small);
 }
 
