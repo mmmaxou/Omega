@@ -28,6 +28,7 @@ li {
 }
 
 a {
+    color: #3f5fa7;
     color: var(--color-main);
 }
 

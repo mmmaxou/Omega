@@ -1,6 +1,7 @@
 .btn {
     border-radius: 0px;
     /*	border: 1px solid lightgrey;*/
+    background-color: #f8f8f8;
     background-color: var(--color-light);
     min-height: 20px;
 }
@@ -24,9 +25,11 @@
 }
 
 .btn-main {
+    background-color: #3f5fa7;
     background-color: var(--color-main);
     color: white;
     font-weight: 500;
+    font-size: 1em;
     font-size: var(--font-small);
 }
 
@@ -47,6 +50,7 @@
     z-index: 1;
     padding: 15px 18px;
     border-radius: 30px;
+    color: #3f5fa7;
     color: var(--color-main);
 }
 
@@ -57,6 +61,7 @@ input:hover {
 .font-huge {
     font-size: 10vw;
     font-weight: 700;
+    color: #3f5fa7;
     color: var(--color-main);
     opacity: 1;
 }
@@ -69,6 +74,7 @@ input:hover {
 }
 
 .font-title {
+    font-size: 1.4em;
     font-size: var(--font-big);
     margin-bottom: 15px;
     transition: color 500ms ease;
@@ -76,13 +82,16 @@ input:hover {
 }
 
 .font-title:hover {
+    color: #3f5fa7;
     color: var(--color-main);
     cursor: pointer;
 }
 
 .font-title:before {
     content: '# ';
+    color: #3f5fa7;
     color: var(--color-main);
+    font-size: 1em;
     font-size: var(--font-small);
 }
 
@@ -95,10 +104,12 @@ input:hover {
 }
 
 .font-small {
+    color: rgb(51, 51, 51);
     color: var(--color-dark);
 }
 
 .color-main {
+    color: #3f5fa7;
     color: var(--color-main);
 }
 
@@ -107,6 +118,7 @@ input:hover {
 }
 
 .color-on-hover:hover {
+    color: #3f5fa7;
     color: var(--color-main);
 }
 
@@ -124,6 +136,7 @@ input:hover {
     position: absolute;
     bottom: 0px;
     left: 0px;
+    background-color: #3f5fa7;
     background-color: var(--color-main);
     opacity: 0.6;
     transition: height 200ms ease;
@@ -138,6 +151,7 @@ input:hover {
         font-size: 48px;
     }
     .font-big {
+        font-size: 1.4em;
         font-size: var(--font-big);
     }
 }
