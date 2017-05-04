@@ -14,10 +14,12 @@
     border: 1px solid #e7e7e7;
     margin-bottom: 25px;
     background-color: var(--color-light);
+    background-color: #f8f8f8 ;
 }
 
 .element-main {
     background-color: var(--color-main);
+    background-color: #3f5fa7;
 }
 
 .element .element-content {
@@ -62,11 +64,13 @@
 
 .article-text {
     font-size: var(--font-small);
+    font-size: 1em;
     text-align: justify;
 }
 
 .article-bottom {
     font-size: calc(var(--font-small) + 2px);
+    font-size: calc(1em + 2px);
     display: flex;
     justify-content: space-around;
     flex-flow: wrap;
@@ -123,6 +127,7 @@
 .fit-element {
     padding: 10px;
     background-color: var(--color-main);
+    background-color: #3f5fa7;
     color: white;
     margin: 5px;
     flex-basis: 20%;
@@ -213,7 +218,8 @@
 }
 
 .comment-infos {
-    font-size: var(--font-tiny)
+    font-size: var(--font-tiny);
+    font-size: 0.7em;
 }
 
 .comment-infos .author:before {
