@@ -127,7 +127,6 @@ $(document).ready(function () {
         var content = $(this).text()
         $(this).attr('data-content', content)
     })
-
     $('[contenteditable="true"]').on('keyup keypress blur change', function () {
         var base = $(this).attr('data-content')
         var text = $(this).text()
@@ -136,6 +135,140 @@ $(document).ready(function () {
         } else {
             $(this).removeClass("modified")
         }
+    })
+
+    /*
+    http://stackoverflow.com/questions/5035547/pass-javascript-array-php
+    */
+
+    //Gather the datas
+
+    $('#menu-main .save').click(function () {
+        //console.log($(this))
+        var edit = $(this).parent().prev()
+        //console.log(edit)
+        var added = []
+        var modified = []
+        var deleted = []
+
+        edit.children(".menu-group").each(function () {
+            // TODO
+            var display = true
+            var parent_menu_id = null
+            var page_id = null
+            var create_user_id = null
+            var updated_user_id = null
+            var gallery_id = null
+
+            var main = $(this)
+                .children("p")
+                .children("span")
+            var name = main.text()
+            var id = null
+
+
+            if (main.hasClass("modified")) {
+                // Find the id
+                // Push it
+                var partial = {
+                    id: id,
+                    name: name,
+                }
+                modified.push(partial)
+            }
+            if (main.hasClass("deleted")) {
+                // Find the id
+                // Push it
+                var partial = {
+                    id: id,
+                }
+                deleted.push(partial)
+            }
+            if (main.hasClass("added")) {
+                //Create datas
+                var partial = {
+                    id: id,
+                    name: name,
+                    display: display,
+                    parent_menu_id: parent_menu_id,
+                    page_id: page_id,
+                    create_user_id: create_user_id,
+                    updated_user_id: updated_user_id,
+                    gallery_id: gallery_id,
+                }
+
+                added.push(partial)
+            }
+
+            $(this)
+                .children(".sub")
+                .children("p")
+                .each(function () {
+                    //                    console.log($(this))
+
+                    // TODO
+                    var display = true
+                    var parent_menu_id = null
+                    var page_id = null
+                    var create_user_id = null
+                    var updated_user_id = null
+                    var gallery_id = null
+
+                    var main = $(this)
+                        .children("span")
+                    var name = main.text()
+                    var id = null
+
+                    if (main.hasClass("modified")) {
+                        // Find the id
+                        // Push it
+                        var partial = {
+                            id: id,
+                            name: name,
+                        }
+                        modified.push(partial)
+                    }
+                    if (main.hasClass("deleted")) {
+                        // Find the id
+                        // Push it
+                        var partial = {
+                            id: id,
+                        }
+                        deleted.push(partial)
+                    }
+                    if (main.hasClass("added")) {
+                        //Create datas
+                        var partial = {
+                            id: id,
+                            name: name,
+                            display: display,
+                            parent_menu_id: parent_menu_id,
+                            page_id: page_id,
+                            create_user_id: create_user_id,
+                            updated_user_id: updated_user_id,
+                            gallery_id: gallery_id,
+                        }
+
+                        added.push(partial)
+                    }
+
+                })
+
+        })
+
+
+        var data = {
+            added: added,
+            modified: modified,
+            deleted: deleted,
+        }
+
+        $(this)
+            .siblings("input")
+            .val(JSON.stringify(data))
+
+        //        $(this).parent().submit()
+
     })
 
 
