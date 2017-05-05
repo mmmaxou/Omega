@@ -59,22 +59,63 @@ $(document).ready(function () {
         resizeImg()
     })
 
-    /*
-        $(document).keypress(function (e) {
-            console.log("ok 1")
-            if (!$('.search-bar input').is(':focus')) {
-                return
-            }
-            console.log("ok 2")
-            var code = e.keyCode || e.which;
-            console.log(code)
-            if (code == 13) {
-                console.log("ok 3")
-                $('.search-bar .btn-search').click()
-            }
 
-        })
-    */
+    // Ajout de menu
+    $('.menu-edit li.add a').click(function (event) {
+        addSubMenu($(this), event)
+    })
+    $('.menu-edit div.add a').click(function (event) {
+        event.preventDefault()
+
+        var menuGroup = "<div class='menu-group'>" +
+            "<p>" +
+            "<span class='modified' contenteditable='true'>New</span>" +
+            "<a href='#'>" +
+            "<i class='fa fa-trash' aria-hidden='true'></i>" +
+            "</a>" +
+            "</p>" +
+            "<ul class='sub'>" +
+            "<li class='add'>" +
+            "<a href='#'>" +
+            "<i class='fa fa-plus-circle ' aria-hidden='true '></i>" +
+            "</a>" +
+            "</li>" +
+            "</ul>" +
+            "</div>" +
+            "<div class='hr'></div>";
+
+        $(this)
+            .parent()
+            .before(menuGroup)
+
+        $(this)
+            .parents(".menu-edit")
+            .children(".menu-group:last")
+            .children("ul")
+            .children(".add")
+            .children()
+            .click(function (event) {
+                addSubMenu($(this), event)
+            })
+    })
+
+    // Content edition
+    $('[contenteditable="true"]').each(function () {
+        var content = $(this).text()
+        $(this).attr('data-content', content)
+    })
+    $('[contenteditable="true"]').on('keyup keypress blur change', function () {
+        var base = $(this).attr('data-content')
+        var text = $(this).text()
+        if (text != base) {
+            $(this).addClass("modified")
+        } else {
+            $(this).removeClass("modified")
+        }
+    })
+
+
+
 })
 
 function getMenuOffset() {
@@ -162,4 +203,20 @@ function animateScrollBottom(selector, callback) {
             //            }, 400)
         }
     })
+}
+
+function addSubMenu(elem, event) {
+    event.preventDefault()
+
+    var html = '<p>' +
+        '<span class="modified" contenteditable="true">New</span>' +
+        '<a href="#">' +
+        '<i class="fa fa-trash" aria-hidden="true"></i>' +
+        '</a>' +
+        '</p>';
+
+    elem
+        .parent()
+        .before(html)
+
 }

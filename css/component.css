@@ -28,18 +28,31 @@
     background-color: #3f5fa7;
     background-color: var(--color-main);
     color: white;
-    font-weight: 500;
+    font-weight: 700;
     font-size: 1em;
     font-size: var(--font-small);
+    transition: all 400ms ease;
 }
 
-.btn-main:hover,
 .btn-main:active,
 .btn-main:focus,
 .btn-main:active:focus {
-    color: lightblue;
+    color: white;
 }
 
+.btn-main:hover {
+    background-color: white;
+    color: #3f5fa7;
+    color: var(--color-main);
+    box-shadow: inset 0px 0px 0px 5px #3f5fa7;
+    box-shadow: inset 0px 0px 0px 5px var(--color-main);
+}
+
+
+.btn-close {
+    font-size: 1em;
+    font-size: var(--font-small);
+}
 
 /* bouton retout en haut */
 
@@ -225,4 +238,30 @@ input:hover {
 
 .overlay-black {
     background-color: rgba(0, 0, 0, 0.8);
+}
+
+[contenteditable="true"] {
+    padding-left: 5px;
+    padding-right: 5px;
+    border: 3px dashed lightgrey;
+    flex-grow: 1;
+}
+
+.modified[contenteditable="true"] {    
+    border: 3px dashed #48c143; 
+    background-color: #c9ffc7;
+}
+
+[contenteditable="true"]:hover,
+[contenteditable="true"]:active,
+[contenteditable="true"]:focus
+{
+    background-color: #efefef;
+}
+
+.modified[contenteditable="true"]:hover,
+.modified[contenteditable="true"]:active,
+.modified[contenteditable="true"]:focus
+{
+    background-color: #91ea8e;
 }
