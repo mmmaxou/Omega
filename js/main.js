@@ -61,15 +61,17 @@ $(document).ready(function () {
 
 
     // Ajout de menu
+    // PETIT
     $('.menu-edit li.add a').click(function (event) {
         addSubMenu($(this), event)
     })
+    // GROS
     $('.menu-edit div.add a').click(function (event) {
         event.preventDefault()
 
         var menuGroup = "<div class='menu-group'>" +
             "<p>" +
-            "<span class='modified' contenteditable='true'>New</span>" +
+            "<span class='added' contenteditable='true'>New</span>" +
             "<a href='#'>" +
             "<i class='fa fa-trash' aria-hidden='true'></i>" +
             "</a>" +
@@ -89,6 +91,15 @@ $(document).ready(function () {
             .before(menuGroup)
 
         $(this)
+            .parent()
+            .siblings(".menu-group:last")
+            .children("p")
+            .children("a")
+            .click(function (event) {
+                deleteBigMenu($(this), event)
+            })
+
+        $(this)
             .parents(".menu-edit")
             .children(".menu-group:last")
             .children("ul")
@@ -99,11 +110,24 @@ $(document).ready(function () {
             })
     })
 
+    // Suppression de menu
+    // PETIT
+    $('.menu-edit .sub p a').click(function (event) {
+        deleteSubMenu($(this), event)
+    })
+
+    // Suppression de menu
+    // GROS
+    $('.menu-group > p a').click(function (event) {
+        deleteBigMenu($(this), event)
+    })
+
     // Content edition
     $('[contenteditable="true"]').each(function () {
         var content = $(this).text()
         $(this).attr('data-content', content)
     })
+
     $('[contenteditable="true"]').on('keyup keypress blur change', function () {
         var base = $(this).attr('data-content')
         var text = $(this).text()
@@ -209,14 +233,96 @@ function addSubMenu(elem, event) {
     event.preventDefault()
 
     var html = '<p>' +
-        '<span class="modified" contenteditable="true">New</span>' +
+        '<span class="added" contenteditable="true">New</span>' +
         '<a href="#">' +
         '<i class="fa fa-trash" aria-hidden="true"></i>' +
         '</a>' +
         '</p>';
 
-    elem
-        .parent()
+    elem.parent()
         .before(html)
 
+    elem.parent()
+        .prev()
+        .children("a")
+        .click(function (event) {
+            deleteSubMenu($(this), event)
+        })
+
+
+}
+
+function deleteBigMenu(elem, event) {
+    event.preventDefault()
+
+    if (elem.children().hasClass("fa-trash")) {
+        elem.children()
+            .removeClass("fa-trash")
+            .addClass("fa-undo")
+            .parent()
+            .prev()
+            .removeClass("modified")
+            .addClass("deleted")
+            .attr("contenteditable", "false")
+            .parent()
+            .siblings(".sub")
+            .children(".add")
+            .fadeOut()
+            .siblings("p")
+            .each(function () {
+                $(this)
+                    .children("a")
+                    .click()
+                    .hide()
+            })
+    } else {
+        elem.children()
+            .addClass("fa-trash")
+            .removeClass("fa-undo")
+            .parent()
+            .prev()
+            .removeClass("deleted")
+            .attr("contenteditable", "true")
+            .blur()
+            .parent()
+            .siblings(".sub")
+            .children(".add")
+            .fadeIn()
+            .siblings("p")
+            .each(function () {
+                $(this)
+                    .children("a")
+                    .show()
+                    .click()
+            })
+
+    }
+}
+
+function deleteSubMenu(elem, event) {
+    event.preventDefault()
+    if (elem.children().hasClass("fa-trash")) {
+        elem.children()
+            .removeClass("fa-trash")
+            .addClass("fa-undo")
+            .parent()
+            .prev()
+            .removeClass("modified")
+            .addClass("deleted")
+            .attr("contenteditable", "false")
+    } else if (!elem
+        .parents(".sub")
+        .prev()
+        .children("span")
+        .hasClass("deleted")
+    ) {
+        elem.children()
+            .removeClass("fa-undo")
+            .addClass("fa-trash")
+            .parent()
+            .prev()
+            .removeClass("deleted")
+            .attr("contenteditable", "true")
+            .blur()
+    }
 }

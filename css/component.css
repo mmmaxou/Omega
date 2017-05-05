@@ -19,12 +19,15 @@
 .btn-search {
     min-width: 20px;
 }
-
 .btn-search:after {
     content: '';
 }
 
-.btn-main {
+.btn-main,
+.btn-main:active,
+.btn-main:focus,
+.btn-main:active:focus, 
+.btn-main:visited {
     background-color: #3f5fa7;
     background-color: var(--color-main);
     color: white;
@@ -32,12 +35,6 @@
     font-size: 1em;
     font-size: var(--font-small);
     transition: all 400ms ease;
-}
-
-.btn-main:active,
-.btn-main:focus,
-.btn-main:active:focus {
-    color: white;
 }
 
 .btn-main:hover {
@@ -240,28 +237,65 @@ input:hover {
     background-color: rgba(0, 0, 0, 0.8);
 }
 
-[contenteditable="true"] {
+/* CONTENT EDITABLE */
+
+[contenteditable] {
     padding-left: 5px;
     padding-right: 5px;
     border: 3px dashed lightgrey;
     flex-grow: 1;
 }
 
+[contenteditable]:after {
+    display: inline-block;
+    opacity: 0.6;
+    margin-left: 25px;
+    font-style: italic;    
+}
+
+.added[contenteditable="true"],
 .modified[contenteditable="true"] {    
     border: 3px dashed #48c143; 
     background-color: #c9ffc7;
+    cursor: text;
 }
 
-[contenteditable="true"]:hover,
-[contenteditable="true"]:active,
-[contenteditable="true"]:focus
+.modified[contenteditable="true"]:after {    
+    content: '( was : ' attr(data-content)  ' )';
+}
+.added[contenteditable="true"]:after {    
+    content: '( added )';
+}
+
+.deleted[contenteditable] {    
+    border: 3px dashed #e02a2a; 
+    background-color: #ffd6d6;
+    cursor: not-allowed;
+}
+.deleted[contenteditable]:after {    
+    content: '( deleted )';
+}
+
+[contenteditable]:hover,
+[contenteditable]:active,
+[contenteditable]:focus
 {
     background-color: #efefef;
 }
 
+.added[contenteditable="true"]:hover,
+.added[contenteditable="true"]:active,
+.added[contenteditable="true"]:focus,
 .modified[contenteditable="true"]:hover,
 .modified[contenteditable="true"]:active,
 .modified[contenteditable="true"]:focus
 {
     background-color: #91ea8e;
+}
+
+.deleted[contenteditable]:hover,
+.deleted[contenteditable]:active,
+.deleted[contenteditable]:focus
+{
+    background-color: #f78a8a;
 }
