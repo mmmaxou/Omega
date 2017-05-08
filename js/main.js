@@ -1,5 +1,6 @@
 DUPLICATE_ARTICLE = true;
 DUPLICATE_RESULTS = true;
+var Editor;
 
 $(document).ready(function () {
 
@@ -329,7 +330,6 @@ $(document).ready(function () {
 
     })
 
-
     $('.btn-close').click(function (e) {
         e.preventDefault()
         location.reload()
@@ -341,19 +341,14 @@ $(document).ready(function () {
         var title = $('.article-title span.modified:first-child').text()
         title = title != "" ? title : undefined;
         
+        var content = tinymce.editors[0].getContent()
+        
         var data = {
             title: title,
+            content: content,
         }
         $("#data").val(JSON.stringify(data))
-
-//        $('#form-article').submit(function (e) {
-//            e.preventDefault()
-//            console.log(e)
-//            var content
-//            e.target.childNodes.forEach(function(e){if(e.nodeName=="TEXTAREA"){content = e.value}})
-//
-//            return false
-//        })
+        console.log($('#data').val())
         
         $('#form-article').submit()
     })
