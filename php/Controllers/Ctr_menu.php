@@ -11,6 +11,8 @@ require('../Connexion.php');
 class Ctr_menu
 {
     public function menu(){
+        $pdo=new Connexion();
+        $req = $pdo->monPDO()->prepare('INSERT INTO t_page(title, content, description, keywords) VALUES(:title, :content, :description, :keywords)');
 
     }
 }

@@ -267,7 +267,7 @@ $(document).ready(function () {
             .siblings("input")
             .val(JSON.stringify(data))
 
-        //        $(this).parent().submit()
+                $(this).parent().submit()
 
     })
 
