@@ -59,13 +59,14 @@ $(document).ready(function () {
         resizeImg()
     })
 
+    /* ######### EDIT MAIN PAGE ######### */
 
-    // Ajout de menu
-    // PETIT
+    // Add Menu
+    // Little
     $('.menu-edit li.add a').click(function (event) {
         addSubMenu($(this), event)
     })
-    // GROS
+    // Big
     $('.menu-edit div.add a').click(function (event) {
         event.preventDefault()
 
@@ -110,36 +111,38 @@ $(document).ready(function () {
             })
     })
 
-    // Suppression de menu
-    // PETIT
+    // Menu Deletion
+    // Little
     $('.menu-edit .sub p a').click(function (event) {
         deleteSubMenu($(this), event)
     })
 
-    // Suppression de menu
-    // GROS
+    // Menu Deletion
+    // Big
     $('.menu-group > p a').click(function (event) {
         deleteBigMenu($(this), event)
     })
 
     // Content edition
-    $('[contenteditable="true"]').each(function () {
-        var content = $(this).text()
-        $(this).attr('data-content', content)
-    })
-    $('[contenteditable="true"]').on('keyup keypress blur change', function () {
-        var base = $(this).attr('data-content')
-        var text = $(this).text()
-        if (text != base) {
-            $(this).addClass("modified")
-        } else {
-            $(this).removeClass("modified")
-        }
-    })
+    function contenteditableActivation() {
 
-    /*
-    http://stackoverflow.com/questions/5035547/pass-javascript-array-php
-    */
+        $('[contenteditable="true"]').each(function () {
+            var content = $(this).text()
+            $(this).attr('data-content', content)
+        })
+        $('[contenteditable="true"]').on('keyup keypress blur change', function () {
+            var base = $(this).attr('data-content')
+            var text = $(this).text()
+            if (text != base) {
+                $(this).addClass("modified")
+            } else {
+                $(this).removeClass("modified")
+            }
+        })
+
+    }
+
+    contenteditableActivation()
 
     //Gather the datas
 
@@ -271,6 +274,89 @@ $(document).ready(function () {
 
     })
 
+
+
+
+    /* ######### EDIT ARTICLE ######### */
+
+    $('#edit-article').click(function (e) {
+        e.preventDefault()
+
+        //title edition
+        $(this).parent()
+            .prev()
+            .attr("contenteditable", "true")
+            .parent()
+            .addClass("editable")
+        $(this).fadeOut()
+
+
+        // Content Edition
+
+
+        var text = $("#text-article").html()
+        $("#text-article")
+            .wrap('<textarea>')
+        $('textarea').html(text)
+
+        var css = ""
+        css += 'bootstrap/css/bootstrap.css'
+        css += ',css/component.css'
+        css += ',css/layout.css'
+        css += ',css/page.css'
+        css += ',css/reset.css'
+        css += ',css/theme.css'
+        css += ',css/utils.css'
+        css += ',css/value.css'
+        css += ',css/mce.css'
+
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'code autoresize link',
+            menubar: false,
+            toolbar: 'undo redo | styleselect bold italic link | alignleft aligncenter alignright bullist numlist outdent indent code',
+            body_id: 'mce',
+            autoresize_overflow_padding: 25,
+            content_css: css,
+        });
+
+
+        // Confirmation
+
+        $('.article-bottom.changes').fadeIn()
+
+        contenteditableActivation()
+
+    })
+
+
+    $('.btn-close').click(function (e) {
+        e.preventDefault()
+        location.reload()
+    })
+
+    $('.changes .save').click(function (e) {
+        e.preventDefault()
+
+        var title = $('.article-title span.modified:first-child').text()
+        title = title != "" ? title : undefined;
+        
+        var data = {
+            title: title,
+        }
+        $("#data").val(JSON.stringify(data))
+
+//        $('#form-article').submit(function (e) {
+//            e.preventDefault()
+//            console.log(e)
+//            var content
+//            e.target.childNodes.forEach(function(e){if(e.nodeName=="TEXTAREA"){content = e.value}})
+//
+//            return false
+//        })
+        
+        $('#form-article').submit()
+    })
 
 
 })
