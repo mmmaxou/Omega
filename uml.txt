@@ -1,0 +1,59 @@
+t_menu => Table for the menu
+
+_ id
+_ name
+_ show
+_ parent_menu_id
+_ lang_code
+_ page_id
+_ create_user_id
+_ updated_user_id
+_ gallery_id
+
+______________________
+
+t_page => Table for the pages
+
+_ id
+_ title
+_ content
+_ desc
+_ keywords => separated by commas
+
+______________________
+
+t_user
+
+_ id
+_ login
+_ password => md5
+_ email
+_ activate => boolean
+
+______________________
+
+t_gallery
+
+_ id
+_ name
+_ max
+_ time_carousel
+
+______________________
+
+t_files
+
+_ id
+_ gallery_id
+_ label
+_ file_path
+
+
+One file 
+=>
+To connect to the database
+Function to the database
+
+One Class per table
+Choose a framework
+Change the database to correspond
