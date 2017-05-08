@@ -26,12 +26,6 @@
     padding: 15px;
 }
 
-@media (min-width: 992px) {
-    .element .element-content {
-        /*        max-height: 400px;*/
-    }
-}
-
 .element-lister li {
     margin-bottom: 15px;
 }
@@ -78,6 +72,14 @@
     align-self: flex-end;
     flex-direction: row;
     width: 100%;
+}
+
+.article-bottom.changes {
+    justify-content: flex-end;
+}
+
+.article-title [contenteditable] {
+    display: inline-block;
 }
 
 @media (min-width: 1200px) {

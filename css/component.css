@@ -10,6 +10,11 @@
     padding: 15px;
 }
 
+.btn-close {
+    font-size: 1em;
+    font-size: var(--font-small);
+}
+
 .btn:focus,
 .btn:active,
 .btn:focus:active {
@@ -19,6 +24,7 @@
 .btn-search {
     min-width: 20px;
 }
+
 .btn-search:after {
     content: '';
 }
@@ -26,10 +32,10 @@
 .btn-main,
 .btn-main:active,
 .btn-main:focus,
-.btn-main:active:focus, 
+.btn-main:focus:active,
 .btn-main:visited {
-    background-color: #3f5fa7;
-    background-color: var(--color-main);
+    background-color: #3f5fa7 !important;
+    background-color: var(--color-main) !important;
     color: white;
     font-weight: 700;
     font-size: 1em;
@@ -38,18 +44,19 @@
 }
 
 .btn-main:hover {
-    background-color: white;
+    background-color: white !important;
     color: #3f5fa7;
     color: var(--color-main);
     box-shadow: inset 0px 0px 0px 5px #3f5fa7;
     box-shadow: inset 0px 0px 0px 5px var(--color-main);
 }
 
-
-.btn-close {
-    font-size: 1em;
-    font-size: var(--font-small);
+.edit-button i {
+    padding: 0 15px;
+    font-size: 80%;
+    transform: translateY(-2px);
 }
+
 
 /* bouton retout en haut */
 
@@ -103,6 +110,12 @@ input:hover {
     color: var(--color-main);
     font-size: 1em;
     font-size: var(--font-small);
+}
+
+.font-title.editable:before {
+    content: '';
+    opacity: 0;
+    visibility: hidden;
 }
 
 .font-light {
@@ -237,6 +250,7 @@ input:hover {
     background-color: rgba(0, 0, 0, 0.8);
 }
 
+
 /* CONTENT EDITABLE */
 
 [contenteditable] {
@@ -244,43 +258,46 @@ input:hover {
     padding-right: 5px;
     border: 3px dashed lightgrey;
     flex-grow: 1;
+    cursor: text;
 }
 
 [contenteditable]:after {
     display: inline-block;
     opacity: 0.6;
     margin-left: 25px;
-    font-style: italic;    
+    font-style: italic;
 }
 
 .added[contenteditable="true"],
-.modified[contenteditable="true"] {    
-    border: 3px dashed #48c143; 
+.modified[contenteditable="true"] {
+    border: 3px dashed #48c143;
     background-color: #c9ffc7;
     cursor: text;
 }
 
-.modified[contenteditable="true"]:after {    
-    content: '( was : ' attr(data-content)  ' )';
+.modified[contenteditable="true"]:after {
+    content: '( was : ' attr(data-content) ' )';
 }
-.added[contenteditable="true"]:after {    
+
+.added[contenteditable="true"]:after {
     content: '( added )';
 }
 
-.deleted[contenteditable] {    
-    border: 3px dashed #e02a2a; 
+.deleted[contenteditable] {
+    border: 3px dashed #e02a2a;
     background-color: #ffd6d6;
     cursor: not-allowed;
 }
-.deleted[contenteditable]:after {    
+
+.deleted[contenteditable]:after {
     content: '( deleted )';
 }
 
 [contenteditable]:hover,
 [contenteditable]:active,
-[contenteditable]:focus
-{
+[contenteditable]:focus {
     background-color: #efefef;
+    cursor: text;
 }
 
 .added[contenteditable="true"]:hover,
@@ -288,14 +305,29 @@ input:hover {
 .added[contenteditable="true"]:focus,
 .modified[contenteditable="true"]:hover,
 .modified[contenteditable="true"]:active,
-.modified[contenteditable="true"]:focus
-{
+.modified[contenteditable="true"]:focus {
     background-color: #91ea8e;
 }
 
 .deleted[contenteditable]:hover,
 .deleted[contenteditable]:active,
-.deleted[contenteditable]:focus
-{
+.deleted[contenteditable]:focus {
     background-color: #f78a8a;
 }
+
+.long-text[contenteditable="true"]:after {
+    content: '';
+    display: none;
+}
+
+/* TEXTAREA */
+
+textarea {
+    border: 0 none white;
+    overflow: hidden;
+    padding: 0;
+    outline: none;
+    background-color: #D0D0D0;
+}
+
+

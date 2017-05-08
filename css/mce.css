@@ -1,0 +1,10 @@
+#mce[contenteditable],
+#mce[contenteditable]:hover,
+#mce[contenteditable]:active,
+#mce[contenteditable]:focus {
+    background-color: white;
+    cursor: text;
+    padding-left: 0;
+    padding-right: 0;
+    border: none;
+}
