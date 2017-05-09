@@ -54,10 +54,32 @@ class Menu
         return $reponse->fetchAll();
     }
 
-    public function getMenuNoChildren(){
+    public function getMenuNoChildren()
+    {
         $bdd = new Connexion();
         $pdo = $bdd->myPDO();
-        $reponse = $pdo->query('SELECT * FROM t_menu WHERE parent_menu_id IS NULL');
+        $reponse = $pdo->query('SELECT * FROM t_menu WHERE id not in (select parent_menu_id from t_menu WHERE parent_menu_id is not NULL) and parent_menu_id is NULL');
+        //$reponse = $pdo->query('select parent_menu_id from t_menu WHERE parent_menu_id is not NULL');
         return $reponse->fetchAll();
+
+    }
+    public function getMenuWithChildren(){
+        $myArray = array();
+        $bdd = new Connexion();
+        $pdo = $bdd->myPDO();
+        $reponse = $pdo->query('SELECT * FROM t_menu WHERE id in (select parent_menu_id from t_menu WHERE parent_menu_id is not NULL)');
+        $j=0;
+        while ($menu = $reponse->fetch()){
+            $i=1;
+            $req = $pdo->prepare('SELECT * from t_menu where parent_menu_id = ?');
+            $req->execute(array($menu['id']));
+            $myArray[$j][0]=$menu;
+            while ($under = $req->fetch()){
+                $myArray[$j][$i]=$under;
+                $i+=1;
+            }
+            $j+=1;
+        }
+        return $myArray;
     }
 }
