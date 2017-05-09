@@ -8,7 +8,7 @@
  */
 require('../Connexion.php');
 
-class Ctr_menu
+class Menu
 {
     public function menu(){
         $pdo=new Connexion();

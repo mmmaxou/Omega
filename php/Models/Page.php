@@ -9,7 +9,7 @@
 
 
 require '../Connexion.php';
-class Ctr_page{
+class Page{
     public function envoie(){
         $req = Connexion::monPDO()->prepare('INSERT INTO t_page(title, content, description, keywords) VALUES(:title, :content, :description, :keywords)');
         $req->execute(array(
