@@ -1,6 +1,9 @@
 {include file="./Head.tpl"}
 
 <body>
+   
+    {$menu|@var_dump}
+   
     {include file="./Header.tpl"}
 
 
