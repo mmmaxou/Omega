@@ -45,7 +45,7 @@ class Menu
 
     public function gatherMenuData(){
         $bdd=new Connexion();
-        $reponse = $bdd->query('SELECT * FROM t_menu');
+        $reponse = $bdd->myPDO()->query('SELECT * FROM t_menu');
         return $reponse->fetch();
     }
 }
