@@ -10,6 +10,7 @@
 
 require '../Connexion.php';
 class Page{
+    /*
     public function sendDBpage(){
         $req = Connexion::monPDO()->prepare('INSERT INTO t_page(title, content, description, keywords) VALUES(:title, :content, :description, :keywords)');
         $req->execute(array(
@@ -29,7 +30,7 @@ class Page{
             'update_user_id' => $updated_user_id
         ));
     }
-
+*/
     public function deleteBDpage($id){
         $bdd=new Connexion();
         $req = $bdd->myPDO()->prepare('DELETE FROM t_page WHERE id= :id');

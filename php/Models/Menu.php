@@ -51,6 +51,13 @@ class Menu
         $bdd = new Connexion();
         $pdo = $bdd->myPDO();
         $reponse = $pdo->query('SELECT * FROM t_menu');
-        return $reponse->fetch();
+        return $reponse->fetchAll();
+    }
+
+    public function getMenuNoChildren(){
+        $bdd = new Connexion();
+        $pdo = $bdd->myPDO();
+        $reponse = $pdo->query('SELECT * FROM t_menu WHERE parent_menu_id IS NULL');
+        return $reponse->fetchAll();
     }
 }
