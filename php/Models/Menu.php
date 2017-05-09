@@ -24,15 +24,28 @@ class Menu
         ));
     }
 
+    public function updateBDmenu($id, $name, $updated_user_id){
+        $bdd=new Connexion();
+        $req = $bdd->myPDO()->prepare('UPDATE t_menu SET name = :name, updated_user_id = :upadte_user_id WHERE id = :id');
+        $req->execute(array(
+            'id' => $id,
+            'name' => $name,
+            'update_user_id' => $updated_user_id
+        ));
+    }
+
+    public function deleteBDmenu($id){
+        $bdd=new Connexion();
+        $req = $bdd->myPDO()->prepare('DELETE FROM t_menu WHERE id= :id');
+        $req->execute(array(
+            'id' => $id,
+        ));
+    }
+
 
     public function gatherMenuData(){
         $bdd=new Connexion();
         $reponse = $bdd->query('SELECT * FROM t_menu');
         return $reponse->fetch();
     }
-
-
-
-
-
 }
