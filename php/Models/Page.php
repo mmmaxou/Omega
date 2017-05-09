@@ -10,7 +10,7 @@
 
 require '../Connexion.php';
 class Page{
-    public function envoie(){
+    public function sendDBpage(){
         $req = Connexion::monPDO()->prepare('INSERT INTO t_page(title, content, description, keywords) VALUES(:title, :content, :description, :keywords)');
         $req->execute(array(
             'title' => 'mon titre',
