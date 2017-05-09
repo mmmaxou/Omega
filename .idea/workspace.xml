@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0da827bf-3eff-4737-ae74-a759b951a051" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/php/Controllers/Ctr_menu.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/php/Controllers/Ctr_page.php" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/php/Controllers/Ctr_menu.php" afterPath="$PROJECT_DIR$/php/Models/Menu.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/php/Controllers/Ctr_page.php" afterPath="$PROJECT_DIR$/php/Models/Page.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/php/Views/View_page.php" afterPath="$PROJECT_DIR$/php/Views/View_page.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/php/Models/Menu.php" afterPath="$PROJECT_DIR$/php/Models/Menu.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -67,8 +62,8 @@
       <file leaf-file-name="log" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/log">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="18" lean-forward="false" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+            <state relative-caret-position="204">
+              <caret line="12" column="16" lean-forward="true" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -77,10 +72,17 @@
       <file leaf-file-name="Menu.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/php/Models/Menu.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="1" lean-forward="false" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+            <state relative-caret-position="421">
+              <caret line="41" column="11" lean-forward="true" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="11" />
               <folding>
-                <marker date="1494314705974" expanded="true" signature="230:337" ph="INSERT INTO t_page... " />
+                <marker date="1494320171050" expanded="true" signature="315:486" ph="INSERT INTO t_menu... " />
+                <marker date="1494320171050" expanded="true" signature="912:984" ph="UPDATE table... " />
+                <marker date="1494320171050" expanded="true" signature="912:992" ph="UPDATE t_men... " />
+                <marker date="1494320171050" expanded="true" signature="912:1431" ph="UPDATE table... " />
+                <marker date="1494320171050" expanded="true" signature="1255:1287" ph="DELETE FROM " />
+                <marker date="1494320171050" expanded="true" signature="1465:1472" ph="SELECT nom, jeux_video" />
+                <marker date="1494320171050" expanded="true" signature="1465:1485" ph="SELECT * FRO... t_menu" />
+                <marker date="1494320171050" expanded="true" signature="1465:1487" ph="SELECT * FRO... t_menu" />
               </folding>
             </state>
           </provider>
@@ -89,8 +91,8 @@
       <file leaf-file-name="Connexion.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/php/Connexion.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="90" lean-forward="false" selection-start-line="11" selection-start-column="90" selection-end-line="11" selection-end-column="100" />
+            <state relative-caret-position="51">
+              <caret line="3" column="14" lean-forward="true" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -99,10 +101,10 @@
       <file leaf-file-name="Page.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/php/Models/Page.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="14" column="0" lean-forward="false" selection-start-line="13" selection-start-column="8" selection-end-line="14" selection-end-column="0" />
+            <state relative-caret-position="136">
+              <caret line="13" column="50" lean-forward="false" selection-start-line="13" selection-start-column="50" selection-end-line="13" selection-end-column="50" />
               <folding>
-                <marker date="1494314705911" expanded="true" signature="206:313" ph="INSERT INTO t_page... " />
+                <marker date="1494315031696" expanded="true" signature="210:317" ph="INSERT INTO t_page... " />
               </folding>
             </state>
           </provider>
@@ -238,11 +240,13 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/php/Views/View_page.php" />
         <option value="$PROJECT_DIR$/php/Controllers/Ctr_menu.php" />
-        <option value="$PROJECT_DIR$/php/Connexion.php" />
         <option value="$PROJECT_DIR$/log" />
         <option value="$PROJECT_DIR$/article.html" />
         <option value="$PROJECT_DIR$/php/Views/View_menu.php" />
         <option value="$PROJECT_DIR$/php/Controllers/Menu.php" />
+        <option value="$PROJECT_DIR$/php/Models/Page.php" />
+        <option value="$PROJECT_DIR$/php/Connexion.php" />
+        <option value="$PROJECT_DIR$/php/Models/Menu.php" />
       </list>
     </option>
   </component>
@@ -254,10 +258,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="x" value="676" />
+    <option name="width" value="697" />
+    <option name="height" value="735" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -467,17 +470,18 @@
       <updated>1494230263593</updated>
       <workItem from="1494230265953" duration="9273000" />
       <workItem from="1494249702227" duration="3047000" />
-      <workItem from="1494314436217" duration="266000" />
+      <workItem from="1494314436217" duration="5167000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12586000" />
+    <option name="totallyTimeSpent" value="17487000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="676" y="0" width="697" height="735" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1954612" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.076358296" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -571,7 +575,7 @@
         <state relative-caret-position="238">
           <caret line="14" column="0" lean-forward="false" selection-start-line="13" selection-start-column="8" selection-end-line="14" selection-end-column="0" />
           <folding>
-            <marker date="1494314705911" expanded="true" signature="206:313" ph="INSERT INTO t_page... " />
+            <marker date="1494315031696" expanded="true" signature="210:317" ph="INSERT INTO t_page... " />
           </folding>
         </state>
       </provider>
@@ -615,7 +619,14 @@
         <state relative-caret-position="255">
           <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding>
-            <marker date="1494314705974" expanded="true" signature="230:337" ph="INSERT INTO t_page... " />
+            <marker date="1494320171050" expanded="true" signature="315:486" ph="INSERT INTO t_menu... " />
+            <marker date="1494320171050" expanded="true" signature="912:984" ph="UPDATE table... " />
+            <marker date="1494320171050" expanded="true" signature="912:992" ph="UPDATE t_men... " />
+            <marker date="1494320171050" expanded="true" signature="912:1431" ph="UPDATE table... " />
+            <marker date="1494320171050" expanded="true" signature="1255:1287" ph="DELETE FROM " />
+            <marker date="1494320171050" expanded="true" signature="1465:1472" ph="SELECT nom, jeux_video" />
+            <marker date="1494320171050" expanded="true" signature="1465:1485" ph="SELECT * FRO... t_menu" />
+            <marker date="1494320171050" expanded="true" signature="1465:1487" ph="SELECT * FRO... t_menu" />
           </folding>
         </state>
       </provider>
@@ -668,7 +679,14 @@
         <state relative-caret-position="255">
           <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding>
-            <marker date="1494314705974" expanded="true" signature="230:337" ph="INSERT INTO t_page... " />
+            <marker date="1494320171050" expanded="true" signature="315:486" ph="INSERT INTO t_menu... " />
+            <marker date="1494320171050" expanded="true" signature="912:984" ph="UPDATE table... " />
+            <marker date="1494320171050" expanded="true" signature="912:992" ph="UPDATE t_men... " />
+            <marker date="1494320171050" expanded="true" signature="912:1431" ph="UPDATE table... " />
+            <marker date="1494320171050" expanded="true" signature="1255:1287" ph="DELETE FROM " />
+            <marker date="1494320171050" expanded="true" signature="1465:1472" ph="SELECT nom, jeux_video" />
+            <marker date="1494320171050" expanded="true" signature="1465:1485" ph="SELECT * FRO... t_menu" />
+            <marker date="1494320171050" expanded="true" signature="1465:1487" ph="SELECT * FRO... t_menu" />
           </folding>
         </state>
       </provider>
@@ -686,7 +704,7 @@
         <state relative-caret-position="153">
           <caret line="14" column="0" lean-forward="false" selection-start-line="13" selection-start-column="8" selection-end-line="14" selection-end-column="0" />
           <folding>
-            <marker date="1494314705911" expanded="true" signature="206:313" ph="INSERT INTO t_page... " />
+            <marker date="1494315031696" expanded="true" signature="210:317" ph="INSERT INTO t_page... " />
           </folding>
         </state>
       </provider>
@@ -797,16 +815,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/Models/Page.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="13" selection-start-column="8" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <marker date="1494314705911" expanded="true" signature="206:313" ph="INSERT INTO t_page... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/article.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2448">
@@ -827,26 +835,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/log">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="18" lean-forward="false" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+        <state relative-caret-position="204">
+          <caret line="12" column="16" lean-forward="true" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/php/Connexion.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="90" lean-forward="false" selection-start-line="11" selection-start-column="90" selection-end-line="11" selection-end-column="100" />
+        <state relative-caret-position="51">
+          <caret line="3" column="14" lean-forward="true" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/Models/Page.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="13" column="50" lean-forward="false" selection-start-line="13" selection-start-column="50" selection-end-line="13" selection-end-column="50" />
+          <folding>
+            <marker date="1494315031696" expanded="true" signature="210:317" ph="INSERT INTO t_page... " />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/php/Models/Menu.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="1" lean-forward="false" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+        <state relative-caret-position="421">
+          <caret line="41" column="11" lean-forward="true" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="11" />
           <folding>
-            <marker date="1494314705974" expanded="true" signature="230:337" ph="INSERT INTO t_page... " />
+            <marker date="1494320171050" expanded="true" signature="315:486" ph="INSERT INTO t_menu... " />
+            <marker date="1494320171050" expanded="true" signature="912:984" ph="UPDATE table... " />
+            <marker date="1494320171050" expanded="true" signature="912:992" ph="UPDATE t_men... " />
+            <marker date="1494320171050" expanded="true" signature="912:1431" ph="UPDATE table... " />
+            <marker date="1494320171050" expanded="true" signature="1255:1287" ph="DELETE FROM " />
+            <marker date="1494320171050" expanded="true" signature="1465:1472" ph="SELECT nom, jeux_video" />
+            <marker date="1494320171050" expanded="true" signature="1465:1485" ph="SELECT * FRO... t_menu" />
+            <marker date="1494320171050" expanded="true" signature="1465:1487" ph="SELECT * FRO... t_menu" />
           </folding>
         </state>
       </provider>

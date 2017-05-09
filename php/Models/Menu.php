@@ -6,13 +6,46 @@
  * Date: 05/05/2017
  * Time: 15:39
  */
-require('../Connexion.php');
+require_once('../Connexion.php');
+
 
 class Menu
 {
-    public function menu(){
-        $pdo=new Connexion();
-        $req = $pdo->monPDO()->prepare('INSERT INTO t_page(title, content, description, keywords) VALUES(:title, :content, :description, :keywords)');
+    public function sendDBmenu($name, $parent_menu_id, $lang_code, $page_id, $create_user_id, $gallery_id){
+        $bdd=new Connexion();
+        $req = $bdd->myPDO()->prepare('INSERT INTO t_menu(name, parent_menu_id, lang_code, page_id, create_user_id, gallery_id) VALUES(:name, :parent_menu_id, :lang_code, :page_id, :create_user_id, :gallery_id)');
+        $req->execute(array(
+            'name' => $name,
+            'parent_menu_id' => $parent_menu_id,
+            'lang_code' => $lang_code,
+            'page_id' => $page_id,
+            'create_user_id' => $create_user_id,
+            'gallery_id' => $gallery_id
+        ));
+    }
 
+    public function updateBDmenu($id, $name, $updated_user_id){
+        $bdd=new Connexion();
+        $req = $bdd->myPDO()->prepare('UPDATE t_menu SET name = :name, updated_user_id = :upadte_user_id WHERE id = :id');
+        $req->execute(array(
+            'id' => $id,
+            'name' => $name,
+            'update_user_id' => $updated_user_id
+        ));
+    }
+
+    public function deleteBDmenu($id){
+        $bdd=new Connexion();
+        $req = $bdd->myPDO()->prepare('DELETE FROM t_menu WHERE id= :id');
+        $req->execute(array(
+            'id' => $id,
+        ));
+    }
+
+
+    public function gatherMenuData(){
+        $bdd=new Connexion();
+        $reponse = $bdd->query('SELECT * FROM t_menu');
+        return $reponse->fetch();
     }
 }
