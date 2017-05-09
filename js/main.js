@@ -160,8 +160,8 @@ $(document).ready(function () {
             //            var display = true
             var parent_menu_id = null
             //            var page_id = null
-            var create_user_id = null
-            //            var updated_user_id = null
+            var create_user_id = 1
+            var updated_user_id = 1
             //            var gallery_id = null
 
             var main = $(this)
@@ -178,6 +178,7 @@ $(document).ready(function () {
                 var partial = {
                     id: id,
                     name: name,
+                    updated_user_id: updated_user_id,
                 }
                 modified.push(partial)
             }
@@ -194,13 +195,12 @@ $(document).ready(function () {
             if (main.hasClass("added")) {
                 //Create datas
                 var partial = {
-                    id: id,
                     name: name,
                     //                    display: display,
                     parent_menu_id: parent_menu_id,
                     //                    page_id: page_id,
                     create_user_id: create_user_id,
-                    //                    updated_user_id: updated_user_id,
+//                    updated_user_id: updated_user_id,
                     //                    gallery_id: gallery_id,
                 }
 
@@ -221,13 +221,13 @@ $(document).ready(function () {
                         .parent()
                         .prev()
                         .attr('data-id')
-                    var page_id = null
-                    var create_user_id = null
-                    var updated_user_id = null
-                    var gallery_id = null
+                    //                    var page_id = null
+                    var create_user_id = 1
+                    var updated_user_id = 1
+                    //                    var gallery_id = null
 
                     var name = main.text()
-                    var id = main.attr('data-id')
+                    var id = main.parent().attr('data-id')
 
                     if (main.hasClass("modified")) {
                         // Find the id
@@ -235,6 +235,7 @@ $(document).ready(function () {
                         var partial = {
                             id: id,
                             name: name,
+                            updated_user_id: updated_user_id,
                         }
                         modified.push(partial)
                     }
@@ -251,13 +252,12 @@ $(document).ready(function () {
                     if (main.hasClass("added")) {
                         //Create datas
                         var partial = {
-                            id: id,
                             name: name,
                             //                            display: display,
                             parent_menu_id: parent_menu_id,
                             //                            page_id: page_id,
                             create_user_id: create_user_id,
-                            //                            updated_user_id: updated_user_id,
+//                            updated_user_id: updated_user_id,
                             //                            gallery_id: gallery_id,
                         }
 
@@ -309,15 +309,15 @@ $(document).ready(function () {
         $('textarea').html(text)
 
         var css = ""
-        css += 'bootstrap/css/bootstrap.css'
-        css += ',css/component.css'
-        css += ',css/layout.css'
-        css += ',css/page.css'
-        css += ',css/reset.css'
-        css += ',css/theme.css'
-        css += ',css/utils.css'
-        css += ',css/value.css'
-        css += ',css/mce.css'
+        css += '../../bootstrap/css/bootstrap.css'
+        css += ',../../css/component.css'
+        css += ',../../css/layout.css'
+        css += ',../../css/page.css'
+        css += ',../../css/reset.css'
+        css += ',../../css/theme.css'
+        css += ',../../css/utils.css'
+        css += ',../../css/value.css'
+        css += ',../../css/mce.css'
 
         tinymce.init({
             selector: 'textarea',

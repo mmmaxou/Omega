@@ -1,35 +1,29 @@
-{include file="./Head.tpl"}
-
-<body>
-   
-    {include file="./Header.tpl"}
-
-    <div class="content container-fluid">
-        {include file="./Menu.tpl"}
-
-        <!-- 2 Columns -->
-        <div class="row">
-
-            <!-- Left column -->
-            <div class="col-xs-12 col-md-9 col1">
-                {include file="./Articles.tpl"}
+<div id="articles" class="col-xs-12">
+    <div class="article article-small element" id="article">
+        <div class="wrapper-img" data-src="http://lorempixel.com/400/200/"></div>
+        <div class="element-content">
+            <!-- Article title -->
+            <a href="article.html" class="article-title font-title">Legam singulis te admodum.</a>
+            <!-- Article text -->
+            <div class="article-text">
+                <p>Officia ea excepteur, summis offendit id labore duis. Se e concursionibus ut eram cupidatat laboris, irure fabulas ubi labore esse in senserit summis se eiusmod tractavissent. Ut culpa quorum sint officia ut ingeniis ex nisi appellat. Amet quibusdam occaecat. Minim o ubi noster cupidatat, quo magna despicationes, excepteur quae dolor a aute do ne multos exercitation, incurreret sunt quem an veniam.</p>
             </div>
-            <!-- / Left column -->
-            <!-- Right column -->
-            <div class="col-xs-12 col-md-3 col2">
-                {include file="./Hot.tpl"}
-                {include file="./Categories.tpl"}
-            </div>
-            <!-- / Right column -->
+            <!-- Horizontal line -->
+            <div class="hr"></div>
 
+            <!-- Bottom article -->
+            <div class="article-bottom">
+
+                <span class="color-on-hover"><i class="fa fa-calendar" aria-hidden="true"></i> date</span>
+
+                <span class="color-on-hover"><i class="fa fa-eye" aria-hidden="true"></i> views</span>
+
+                <span class="color-on-hover"><i class="fa fa-folder-o" aria-hidden="true"></i> category</span>
+
+                <span class="color-on-hover"><a href="article.html"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> Read more</a></span>
+
+            </div>
+            <!-- / Bottom article -->
         </div>
-        <!-- / 2 Columns -->
-
-        {include file="./Pager.tpl"}
     </div>
-
-
-    {include file="./Footer.tpl"}
-    {include file="./Modales.tpl"}    
-    {include file="./Scripts.tpl"}
-</body>
+</div>
