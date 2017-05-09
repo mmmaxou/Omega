@@ -17,7 +17,7 @@
                 
                 {foreach $menuNoChildren as $menuItem}
                 
-                    <div class="menu-group">
+                <div class="menu-group">
                     <p data-id="{$menuItem.id}">
                         <span contenteditable="true">{$menuItem.name}</span>
                         <a href="#">
@@ -37,34 +37,32 @@
                 
                 {/foreach}
                 
-
-<!--
+                {foreach $menuWithChildren as $dropdown}
+                
                 <div class="menu-group">
-                    <p>
-                        <span contenteditable="true">Life</span>
-                        <a href="#">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
-                        </a>
-                    </p>
-                    <ul class="sub">
-                        <li class="add">
-                            <a href="#">
-                                <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="hr"></div>
-
-                <div class="menu-group">
-                    <p>
-                        <span contenteditable="true">Death</span>
+                   
+                   {foreach $dropdown as $menu}{if $menu@first}
+                   
+                    <p data-id="{$menu.id}">
+                        <span contenteditable="true">{$menu.name}</span>
                         <a href="#">
                             <i class="fa fa-trash" aria-hidden="true"></i>
                         </a>
                     </p>
                     <ul class="sub ">
+                      
+                       {else}
+                       
+                        <p data-id="{$menu.id}">
+                            <span contenteditable="true">{$menu.name}</span>
+                            <a href="#">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </a>
+                        </p>
+                        
+                        {/if}
+                        {/foreach}
+                        
                         <li class="add ">
                             <a href="#">
                                 <i class="fa fa-plus-circle " aria-hidden="true "></i>
@@ -72,64 +70,11 @@
                         </li>
                     </ul>
                 </div>
-
-                <div class="hr "></div>
-
-                <div class="menu-group">
-                    <p>
-                        <span contenteditable="true">Politics</span>
-                        <a href="#">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
-                        </a>
-                    </p>
-                    <ul class="sub ">
-                        <li class="add ">
-                            <a href="#">
-                                <i class="fa fa-plus-circle " aria-hidden="true "></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
+                
                 <div class="hr"></div>
-
-                <div class="menu-group">
-                    <p>
-                        <span contenteditable="true">Dropdown</span>
-                        <a href="#">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
-                        </a>
-                    </p>
-                    <ul class="sub ">
-                        <p>
-                            <span contenteditable="true">Action</span>
-                            <a href="#">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                            </a>
-                        </p>
-                        <p>
-                            <span contenteditable="true">Another</span>
-                            <a href="#">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                            </a>
-                        </p>
-                        <p>
-                            <span contenteditable="true">Something else here</span>
-                            <a href="#">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                            </a>
-                        </p>
-                        <li class="add ">
-                            <a href="#">
-                                <i class="fa fa-plus-circle " aria-hidden="true "></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="hr"></div>
--->
-
+                
+                {/foreach}
+                
                 <div class="add">
                     <a href="#" class="btn btn-main">
                         <i class="fa fa-plus-circle" aria-hidden="true"></i>

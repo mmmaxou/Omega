@@ -1,6 +1,8 @@
+<!--
 <pre>
     {$menuWithChildren|@var_dump}
 </pre>
+-->
 
 <!--Navbar 2-->
 <nav class="navbar navbar-default element">
@@ -22,40 +24,31 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="dropdown-content">
             <ul class="nav navbar-nav">
-               
+
                 {foreach $menuNoChildren as $menuItem}
-                
-                    <li><a href="Article.php?id={$menuItem.page_id}">{$menuItem.name}</a></li>
-                
-                {/foreach}
-               
-               
-               
-               
-               
-               
-               
-<!--
-                <li class="active"><a href="article.html">Life<span class="sr-only">(current)</span></a></li>
-                <li><a href="article.html">Death</a></li>
-                <li><a href="article.html">Politics</a></li>
+
+                <li><a href="Article.php?id={$menuItem.page_id}">{$menuItem.name}</a></li>
+
+                {/foreach} {foreach $menuWithChildren as $dropdown}
+
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+
+                    {foreach $dropdown as $menu} {if $menu@first}
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    {$menu.name}
+                    <span class="caret"></span>
+                    </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">One more separated link</a></li>
+
+                        {else}
+                        <li><a href="Article.php?id={$menu.page_id}">{$menu.name}</a></li>
+                        {/if} {/foreach}
+
                     </ul>
                 </li>
--->
-                
-                
-                
-                
+
+                {/foreach}
+
             </ul>
 
             <!--Admin-->
