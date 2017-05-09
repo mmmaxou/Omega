@@ -1,3 +1,9 @@
+
+
+<pre>
+    {$menu|@var_dump}
+</pre>
+
 <!--Navbar 2-->
 <nav class="navbar navbar-default element">
     <div class="container-fluid">

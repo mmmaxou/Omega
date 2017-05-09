@@ -2,10 +2,7 @@
 
 <body>
    
-    {$menu|@var_dump}
-   
     {include file="./Header.tpl"}
-
 
     <div class="content container-fluid">
         {include file="./Menu.tpl"}

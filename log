@@ -2,9 +2,9 @@
 
 BDD
 
-host=185.28.21.133
+host=mysql.hostinger.fr
 dbname= u462001126_maxel
-user=u462001126
+user=u462001126_maxel
 passwrd=tototiti
 
 
