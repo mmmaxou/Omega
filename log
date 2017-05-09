@@ -1,3 +1,5 @@
+### Hostinger
+
 BDD
 
 host=185.28.21.133
@@ -6,8 +8,25 @@ user=u462001126
 passwrd=tototiti
 
 
-Files ( hostinger )
+Files
 
 hote=185.28.21.133
 username=u462001126
 passwrd=tototiti
+
+
+### Domurat
+
+BDD
+
+host=t2.domurat.vipserv.org/ 
+dbname=domurat_t2
+user=domurat_t2
+passwrd=Omega
+
+
+Files
+
+hote=t2.domurat.vipserv.org/ 
+username=t2@domurat.vipserv.org
+passwrd=Omega
