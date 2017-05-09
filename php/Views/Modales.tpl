@@ -114,7 +114,7 @@
             </div>
 
             <!-- FOOTER -->
-            <form class="modal-footer" method="post" action="php/Views/View_menu.php">
+            <form class="modal-footer" method="post" action="Menu.php">
                 <input id="data" name="data" type="hidden">
                 <button type="button" class="btn btn-default btn-close" data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-default btn-main save" data-dismiss="modal">Save changes</button>

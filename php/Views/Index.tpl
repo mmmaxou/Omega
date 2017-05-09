@@ -17,7 +17,8 @@
             <!-- / Left column -->
             <!-- Right column -->
             <div class="col-xs-12 col-md-3 col2">
-                {include file="./Hot.tpl"} {include file="./Categories.tpl"}
+                {include file="./Hot.tpl"}
+                {include file="./Categories.tpl"}
             </div>
             <!-- / Right column -->
 

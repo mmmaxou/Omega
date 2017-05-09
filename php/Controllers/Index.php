@@ -10,11 +10,11 @@ $smarty = new Smarty;
 require('../Models/Menu.php');
 $Menu = new Menu();
 
-$menu = $Menu->gatherMenuData();
+$menuNoChildren = $Menu->getMenuNoChildren();
 
 $smarty->assign("title", "Omega", true);
 $smarty->assign("root_url", "../../", true);
-$smarty->assign("menu", $menu, true);
+$smarty->assign("menuNoChildren", $menuNoChildren, true);
 
 $smarty->display('../Views/Index.tpl');
 

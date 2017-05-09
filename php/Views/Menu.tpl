@@ -1,8 +1,8 @@
-
-
+<!--
 <pre>
-    {$menu|@var_dump}
+    {$menuNoChildren|@var_dump}
 </pre>
+-->
 
 <!--Navbar 2-->
 <nav class="navbar navbar-default element">
@@ -24,6 +24,20 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="dropdown-content">
             <ul class="nav navbar-nav">
+               
+                {foreach $menuNoChildren as $menuItem}
+                
+                    <li><a href="Article.php?id={$menuItem.page_id}">{$menuItem.name}</a></li>
+                
+                {/foreach}
+               
+               
+               
+               
+               
+               
+               
+<!--
                 <li class="active"><a href="article.html">Life<span class="sr-only">(current)</span></a></li>
                 <li><a href="article.html">Death</a></li>
                 <li><a href="article.html">Politics</a></li>
@@ -39,6 +53,11 @@
                         <li><a href="#">One more separated link</a></li>
                     </ul>
                 </li>
+-->
+                
+                
+                
+                
             </ul>
 
             <!--Admin-->
