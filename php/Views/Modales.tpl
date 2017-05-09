@@ -14,7 +14,31 @@
 
             <!-- BODY -->
             <div class="modal-body menu-edit">
+                
+                {foreach $menuNoChildren as $menuItem}
+                
+                    <div class="menu-group">
+                    <p data-id="{$menuItem.id}">
+                        <span contenteditable="true">{$menuItem.name}</span>
+                        <a href="#">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </a>
+                    </p>
+                    <ul class="sub">
+                        <li class="add">
+                            <a href="#">
+                                <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
 
+                <div class="hr"></div>
+                
+                {/foreach}
+                
+
+<!--
                 <div class="menu-group">
                     <p>
                         <span contenteditable="true">Life</span>
@@ -104,6 +128,7 @@
                 </div>
 
                 <div class="hr"></div>
+-->
 
                 <div class="add">
                     <a href="#" class="btn btn-main">

@@ -1,8 +1,6 @@
-<!--
 <pre>
-    {$menuNoChildren|@var_dump}
+    {$menuWithChildren|@var_dump}
 </pre>
--->
 
 <!--Navbar 2-->
 <nav class="navbar navbar-default element">

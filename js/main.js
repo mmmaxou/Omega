@@ -157,18 +157,19 @@ $(document).ready(function () {
 
         edit.children(".menu-group").each(function () {
             // TODO
-            var display = true
+            //            var display = true
             var parent_menu_id = null
-            var page_id = null
+            //            var page_id = null
             var create_user_id = null
-            var updated_user_id = null
-            var gallery_id = null
+            //            var updated_user_id = null
+            //            var gallery_id = null
 
             var main = $(this)
                 .children("p")
                 .children("span")
             var name = main.text()
-            var id = null
+            var id = main.parent()
+                .attr('data-id')
 
 
             if (main.hasClass("modified")) {
@@ -183,22 +184,24 @@ $(document).ready(function () {
             if (main.hasClass("deleted")) {
                 // Find the id
                 // Push it
-                var partial = {
-                    id: id,
+                if (id) {
+                    var partial = {
+                        id: id,
+                    }
+                    deleted.push(partial)
                 }
-                deleted.push(partial)
             }
             if (main.hasClass("added")) {
                 //Create datas
                 var partial = {
                     id: id,
                     name: name,
-                    display: display,
+                    //                    display: display,
                     parent_menu_id: parent_menu_id,
-                    page_id: page_id,
+                    //                    page_id: page_id,
                     create_user_id: create_user_id,
-                    updated_user_id: updated_user_id,
-                    gallery_id: gallery_id,
+                    //                    updated_user_id: updated_user_id,
+                    //                    gallery_id: gallery_id,
                 }
 
                 added.push(partial)
@@ -208,20 +211,23 @@ $(document).ready(function () {
                 .children(".sub")
                 .children("p")
                 .each(function () {
-                    //                    console.log($(this))
+
+                    var main = $(this)
+                        .children("span")
 
                     // TODO
                     var display = true
-                    var parent_menu_id = null
+                    var parent_menu_id = main.parent()
+                        .parent()
+                        .prev()
+                        .attr('data-id')
                     var page_id = null
                     var create_user_id = null
                     var updated_user_id = null
                     var gallery_id = null
 
-                    var main = $(this)
-                        .children("span")
                     var name = main.text()
-                    var id = null
+                    var id = main.attr('data-id')
 
                     if (main.hasClass("modified")) {
                         // Find the id
@@ -235,22 +241,24 @@ $(document).ready(function () {
                     if (main.hasClass("deleted")) {
                         // Find the id
                         // Push it
-                        var partial = {
-                            id: id,
+                        if (id) {
+                            var partial = {
+                                id: id,
+                            }
+                            deleted.push(partial)
                         }
-                        deleted.push(partial)
                     }
                     if (main.hasClass("added")) {
                         //Create datas
                         var partial = {
                             id: id,
                             name: name,
-                            display: display,
+                            //                            display: display,
                             parent_menu_id: parent_menu_id,
-                            page_id: page_id,
+                            //                            page_id: page_id,
                             create_user_id: create_user_id,
-                            updated_user_id: updated_user_id,
-                            gallery_id: gallery_id,
+                            //                            updated_user_id: updated_user_id,
+                            //                            gallery_id: gallery_id,
                         }
 
                         added.push(partial)
@@ -271,7 +279,7 @@ $(document).ready(function () {
             .siblings("input")
             .val(JSON.stringify(data))
 
-        $(this).parent().submit()
+        //        $(this).parent().submit()
 
     })
 
@@ -340,16 +348,16 @@ $(document).ready(function () {
 
         var title = $('.article-title span.modified:first-child').text()
         title = title != "" ? title : undefined;
-        
+
         var content = tinymce.editors[0].getContent()
-        
+
         var data = {
             title: title,
             content: content,
         }
         $("#data").val(JSON.stringify(data))
         console.log($('#data').val())
-        
+
         $('#form-article').submit()
     })
 
