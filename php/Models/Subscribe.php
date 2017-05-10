@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 /**
  * Created by PhpStorm.
  * User: alexr
@@ -22,22 +22,28 @@ class Subscribe
         }
         else{
             if(isset($password) && isset($confirm) && $password == $confirm){
-                $req = $pdo->prepare('INSERT INTO t_user(login, email, password) VALUES(:login, :email, :password)');
+                $req = $pdo->prepare('INSERT INTO t_user(login,email,password) VALUES(:login, :email, md5(:password))');
                 $req->execute(array(
-                    'login' => $login,
-                    'email' => $email,
-                    'password' => $password
+                    'login'=> $login,
+                    'email'=>$email,
+                    'password'=>$password
                 ));
 
 
-                $sql = "SELECT * FROM t_user WHERE login=?";
-                $query = $pdo-> prepare($sql);
-                $query -> execute(array($login));
-                $line = $query->fetch();
+                $req = $pdo->prepare( "SELECT * FROM t_user WHERE login= 'toto'");
+                $req->execute(array(
+                    'login' => $login
+                ));
+                $line = $req->fetch();
 
                 //rédiger les sessions id login
+
                 $_SESSION['id'] = $line['id'];
                 $_SESSION['login'] = $login;
+                echo $_SESSION['id'];
+                echo $login;
+                echo $email;
+                echo $password;
                 header('Location:Index.php');
             }
             else{

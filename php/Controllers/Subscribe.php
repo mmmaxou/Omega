@@ -4,4 +4,3 @@ $inscription = new Subscribe();
 
 
 $inscription->mySub($_POST['login'],$_POST['email'],$_POST['password'],$_POST['confirm']);
-//header('Location:Index.php');
