@@ -16,10 +16,10 @@ $passwd="h7IopQ9V";
 
 
 //connexion en local 
-$host="localhost"; 
-$db="facebook"; 
-$user="root";
-$passwd=""; 
+$host="mysql.hostinger.fr";
+$db="u462001126_maxel";
+$user="u462001126_maxel";
+$passwd="tototiti";
 
 
 try {

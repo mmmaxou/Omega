@@ -3,8 +3,9 @@
     include("../divers/connexion.php"); //on include la connexion à la BDD
     //on check si y'a déjà un cookie, si oui on le regarde
     include ("../divers/balises.php");
+    echo $_SESSION['login'];
     if(!isset($_SESSION['id']) && isset($_COOKIE['login'])){
-        $sql = "SELECT * FROM utilisateur WHERE hash=?";
+        $sql = "SELECT * FROM t_user WHERE hash=?";
         $query = $pdo->prepare($sql);
         $query -> execute(array($_COOKIE['login']));
         $line = $query-> fetch();
@@ -17,9 +18,9 @@
 
     // si le formulaire est soumis on check si le mec fait partit de la BDD
     if(isset($_POST['login'])){
-        $sql = "SELECT * FROM utilisateur WHERE login=? AND passwd=md5(?)";
+        $sql = "SELECT * FROM t_user WHERE login=? AND password=md5(?)";
         $query = $pdo -> prepare($sql);
-        $query -> execute(array($_POST['login'],$_POST['pwd']));   
+        $query -> execute(array($_POST['login'],$_POST['pwd']));
         $line = $query->fetch();
         if($line == false)
             header("Location:../affichage/login.php");
@@ -29,7 +30,7 @@
         if(isset($_POST['remember'])){
             $u = uniqid();
             setcookie('login',$u,time()+3600*24*7);
-            $sql = "UPDATE utilisateur set hash=? WHERE id=?";
+            $sql = "UPDATE t_user set hash=? WHERE id=?";
             $query = $pdo-> prepare($sql);
             $query ->execute(array($u,$line['id']));
             

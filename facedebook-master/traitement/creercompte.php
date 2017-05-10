@@ -9,7 +9,7 @@ include("../divers/balises.php");
 // Le second parametre de la requete est le mot de passe
 renderArray($_POST);
 if(isset($_POST['login'])){
-    $sql = "SELECT login FROM utilisateur WHERE login=?";
+    $sql = "SELECT login FROM t_user WHERE login=?";
     $query = $pdo->prepare($sql);
     $query ->execute(array($_POST['login']));
     if($query -> fetch() != 0){
@@ -18,12 +18,12 @@ if(isset($_POST['login'])){
     }
     else{
         if(isset($_POST['password']) && isset($_POST['passwordConfirm']) && $_POST['password'] == $_POST['passwordConfirm']){
-            $sql = "INSERT INTO utilisateur VALUES(NULL,?,md5(?),NULL)";
+            $sql = "INSERT INTO t_user VALUES(NULL,?,md5(?))";
             $query = $pdo->prepare($sql);
             $query -> execute(array($_POST['login'],$_POST['password']));
             
            
-            $sql = "SELECT * FROM utilisateur WHERE login=?";
+            $sql = "SELECT * FROM t_user WHERE login=?";
             $query = $pdo-> prepare($sql);
             $query -> execute(array($_POST['login']));
             $line = $query->fetch();
