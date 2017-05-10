@@ -36,3 +36,16 @@ a:hover {
     color: black;
     text-decoration: none;
 }
+
+.nav-pills > li > a {
+    border: none;
+    border-radius: 0;
+}
+
+.form-control {
+    height: auto;
+    font-size: inherit;
+}
+.input-group-addon {
+    font-size: inherit;
+}

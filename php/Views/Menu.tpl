@@ -22,7 +22,7 @@
 
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="dropdown-content">
+        <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
 
                 {foreach $menuNoChildren as $menuItem}

@@ -281,6 +281,10 @@
 
 /* NAVBAR */
 
+.navbar-header {
+    width: 100%;
+}
+
 .navbar-default .navbar-nav>li>a.btn-main {
     color: white;
 }

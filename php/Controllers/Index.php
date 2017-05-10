@@ -28,8 +28,6 @@ switch ($_GET["module"]) {
         break;
 }
 
-
-
 $menuNoChildren = $Menu->getMenuNoChildren();
 $menuWithChildren = $Menu->getMenuWithChildren();
 

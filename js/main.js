@@ -60,6 +60,29 @@ $(document).ready(function () {
         resizeImg()
     })
 
+    
+    
+    
+    
+    /* ######### CONNEXION ######### */
+    
+    $('#connexion-dropdown .nav li').click(function(e){
+        e.preventDefault()
+        var toggle = $(this).attr('data-toggle')
+        
+        $(this)
+            .addClass('active')
+            .siblings()
+            .removeClass('active')
+        $('#'+toggle)
+            .addClass('active')
+            .siblings('form')
+            .removeClass('active')
+    })
+    
+    
+    
+    
     /* ######### EDIT MAIN PAGE ######### */
 
     // Add Menu
