@@ -1,7 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: alexr
- * Date: 10/05/2017
- * Time: 15:58
- */
+session_destroy();
+$_SESSION = array();
+session_register_shutdown();
+header('Location:Index.php');
