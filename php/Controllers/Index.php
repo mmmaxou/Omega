@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 
 /*
 Basic controller for testing the Smarty framework
@@ -27,16 +29,29 @@ switch ($_GET["module"]) {
         $file="./Index.tpl";
         break;
 }
+$smarty->assign("file", $file);
 
-$menuNoChildren = $Menu->getMenuNoChildren();
-$menuWithChildren = $Menu->getMenuWithChildren();
 
+// Base components
 $smarty->assign("title", "Omega");
 $smarty->assign("root_url", "../../");
+
+
+// DB data
+$menuWithChildren = $Menu->getMenuWithChildren();
+$menuNoChildren = $Menu->getMenuNoChildren();
 $smarty->assign("menuNoChildren", $menuNoChildren);
 $smarty->assign("menuWithChildren", $menuWithChildren);
 
-$smarty->assign("file", $file);
+
+// Session data
+if(isset($_SESSION['id'])) {
+	// We are connected, we send data to the page
+    $smarty->assign("connected", true);
+    $smarty->assign("login", $_SESSION['login']);
+}
+
+//dump($_SESSION);
 
 $smarty->display('../Views/Controller.tpl');
 

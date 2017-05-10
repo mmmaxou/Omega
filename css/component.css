@@ -336,6 +336,10 @@ textarea {
 
 /* LOGIN */
 
+#main-navbar .navbar-header {
+    width: 100%;
+}
+
 #connexion-btn {
     overflow: hidden;
     margin: 0;

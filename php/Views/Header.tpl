@@ -6,12 +6,17 @@
 
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <a class="navbar-brand" href="Index.php">{$title}</a>
+                <a class="navbar-brand" href="Index.php">{$title} | {if $connected}Connected{else}Not connected{/if}</a>
                 <div id="connexion-btn" class="pull-right">
                     <a class="btn btn-main" data-toggle="collapse" data-target="#connexion-dropdown">
+                    {if $connected}
+                        <p>{$login}</p><!--
+                        --><i class="fa fa-times" aria-hidden="true"></i>
+                    {else}
                         <i class="fa fa-sign-in" aria-hidden="true"></i><!--
                         --><p>Log in</p><!--
                         --><i class="fa fa-times" aria-hidden="true"></i>
+                    {/if}
                     </a>
                 </div>
             </div>
@@ -23,6 +28,10 @@
     <!-- / Navbar 1-->
 
     <div class="collapse" id="connexion-dropdown">
+        
+        {if $connected}
+            <a href="Disconnect.php" style="cursor:pointer;" class="btn btn-main btn-block">Disconnect</a>
+        {else}
         <ul class="nav nav-pills nav-justified">
             <li role="presentation" data-toggle="subscribe" class="active"><a href="#">Subscribe</a></li>
             <li role="presentation" data-toggle="connect"><a href="#">Connect</a></li>
@@ -70,6 +79,7 @@
             <input class="btn btn-main btn-block" type='submit' value='Connect' style="cursor:pointer;">
 
         </form>
+        {/if}
     </div>
 
     <!-- Banner -->

@@ -1,4 +1,4 @@
-DUPLICATE_ARTICLE = true;
+DUPLICATE_ARTICLE = false;
 DUPLICATE_RESULTS = true;
 var Editor;
 

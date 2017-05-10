@@ -22,12 +22,12 @@
 
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse">
+        <div id="dropdown-content" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
 
                 {foreach $menuNoChildren as $menuItem}
 
-                <li><a href="Article.php?id={$menuItem.page_id}">{$menuItem.name}</a></li>
+                <li><a href="Index.php?module=article&id={$menuItem.page_id}">{$menuItem.name}</a></li>
 
                 {/foreach} {foreach $menuWithChildren as $dropdown}
 
@@ -41,7 +41,7 @@
                     <ul class="dropdown-menu">
 
                         {else}
-                        <li><a href="Article.php?id={$menu.page_id}">{$menu.name}</a></li>
+                        <li><a href="Index.php?module=article&id={$menu.page_id}">{$menu.name}</a></li>
                         {/if} {/foreach}
 
                     </ul>
@@ -51,6 +51,8 @@
 
             </ul>
 
+
+            {if $connected}
             <!--Admin-->
             <ul class="admin-only nav navbar-nav navbar-right">
                 <li>
@@ -60,7 +62,7 @@
                 </li>
             </ul>
             <!--Fin Admin-->
-
+            {/if}
         </div>
         <!-- /.navbar-collapse -->
     </div>
