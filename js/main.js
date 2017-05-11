@@ -2,6 +2,24 @@ DUPLICATE_ARTICLE = false;
 DUPLICATE_RESULTS = true;
 var Editor;
 
+toastr.options = {
+  "closeButton": true,
+  "debug": false,
+  "newestOnTop": true,
+  "progressBar": true,
+  "positionClass": "toast-top-full-width",
+  "preventDuplicates": true,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+
 $(document).ready(function () {
 
     // Menu fixed
@@ -369,7 +387,7 @@ $(document).ready(function () {
     $('.changes .save').click(function (e) {
         e.preventDefault()
 
-        var title = $('.article-title span.modified:first-child').text()
+        var title = $('.article-title span:first-child').text()
         title = title != "" ? title : undefined;
 
         var content = tinymce.editors[0].getContent()

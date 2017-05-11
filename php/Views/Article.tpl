@@ -4,7 +4,7 @@
         <div class="element-content">
             <!-- Article title -->
             <div class="article-title font-title">
-                <span>Legam singulis te admodum</span>
+                <span>{$title_article}</span>
 
 
                 <!-- Admin Only-->
@@ -22,20 +22,9 @@
             </div>
 
             <img class="img-responsive img-article" src="http://lorempixel.com/400/200/" alt="image">
-            <form id="form-article" method="post" action="php/Views/View_menu.php">
+            <form id="form-article" method="post" action="Page.php?id={$pageId}">
                 <div id="text-article">
-                    <p>Officia ea excepteur, summis offendit id labore duis. Se e concursionibus ut eram cupidatat laboris, irure fabulas ubi labore esse in senserit summis se eiusmod tractavissent. Ut culpa quorum sint officia ut ingeniis ex nisi appellat. Amet quibusdam occaecat. Minim o ubi noster cupidatat, quo magna despicationes, excepteur quae dolor a aute do ne multos exercitation, incurreret sunt quem an veniam, excepteur amet officia qui iis pariatur et offendit si ingeniis multos eu nostrud exercitation. E minim laborum et ea sint ubi sunt.</p>
-                    <p>Exemple block quote display</p>
-                    <blockquote>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                    </blockquote>
-                    <p>Officia ea excepteur, summis offendit id labore duis. Se e concursionibus ut eram cupidatat laboris, irure fabulas ubi labore esse in senserit summis se eiusmod tractavissent. Ut culpa quorum sint officia ut ingeniis ex nisi appellat. Amet quibusdam occaecat. Minim o ubi noster cupidatat, quo magna despicationes, excepteur quae dolor a aute do ne multos <span class="underlined">exercitation</span>, incurreret sunt quem an veniam, excepteur amet officia qui iis pariatur et offendit si ingeniis multos eu nostrud exercitation. E minim laborum et ea sint ubi sunt.</p>
-                    <p>Officia ea excepteur, summis offendit id labore duis. Se e concursionibus ut eram cupidatat laboris, irure fabulas ubi labore esse in senserit summis se eiusmod tractavissent. Ut culpa quorum sint officia ut ingeniis ex nisi appellat. Amet quibusdam occaecat. Minim o ubi noster cupidatat, quo magna despicationes, excepteur quae dolor a aute do ne multos exercitation, incurreret sunt quem an veniam, excepteur amet officia qui iis pariatur et offendit si ingeniis multos eu nostrud exercitation. E minim laborum et ea sint ubi sunt.</p>
-                    <p>Exemple block quote display</p>
-                    <blockquote>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                    </blockquote>
-                    <p>Officia ea excepteur, summis offendit id labore duis. Se e concursionibus ut eram cupidatat laboris, irure fabulas ubi labore esse in senserit summis se eiusmod tractavissent. Ut culpa quorum sint officia ut ingeniis ex nisi appellat. Amet quibusdam occaecat. Minim o ubi noster cupidatat, quo magna despicationes, excepteur quae dolor a aute do ne multos exercitation, incurreret sunt quem an veniam, excepteur amet officia qui iis pariatur et offendit si ingeniis multos eu nostrud exercitation. E minim laborum et ea sint ubi sunt.</p>
+                    {$content}
                 </div>
                 <input id="data" name="data" type="hidden">
             </form>

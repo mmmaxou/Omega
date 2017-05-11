@@ -42,4 +42,4 @@ foreach ($decoded['deleted'] as $del) {
 
 }
 
-header('Location:Index.php');
+header('Location:Index.php?success=menuCreated');

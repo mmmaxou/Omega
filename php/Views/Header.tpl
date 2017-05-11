@@ -28,9 +28,40 @@
     <!-- / Navbar 1-->
 
     <div class="collapse" id="connexion-dropdown">
-        
+
         {if $connected}
-            <a href="Disconnect.php" style="cursor:pointer;" class="btn btn-main btn-block">Disconnect</a>
+        <a href="#change" data-toggle="collapse" class="btn btn-default btn-block">Change Password</a>
+
+        <!--Form for changing password-->
+        <div id="change" class="collapse">
+            <form action="Change.php" class="active" method="post">
+
+                <div class="hr"></div>
+
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon7"><i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" placeholder="Old password" name='old' aria-describedby="basic-addon7">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon8"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                    <input type="password" class="form-control" placeholder="New password" name='password' aria-describedby="basic-addon8">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon9"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                    <input type="password" class="form-control" placeholder="Confirm New password" name='confirm' aria-describedby="basic-addon9">
+                </div>
+
+                <div class="hr"></div>
+                <input class="btn btn-main btn-block" type='submit' value='Change' style="cursor:pointer;">
+                
+                <div class="hr"></div>
+            </form>
+        </div>
+        <!--Form for changing password-->
+
+
+        <a href="Disconnect.php" style="cursor:pointer;" class="btn btn-main btn-block">Disconnect</a>
+        <!--/ Not connected-->
         {else}
         <ul class="nav nav-pills nav-justified">
             <li role="presentation" data-toggle="subscribe" class="active"><a href="#">Subscribe</a></li>
@@ -66,12 +97,12 @@
             <div class="hr"></div>
 
             <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user-o" aria-hidden="true"></i></span>
-                <input type="text" class="form-control" placeholder="Login" name='login' aria-describedby="basic-addon1">
+                <span class="input-group-addon" id="basic-addon5"><i class="fa fa-user-o" aria-hidden="true"></i></span>
+                <input type="text" class="form-control" placeholder="Login" name='login' aria-describedby="basic-addon5">
             </div>
             <div class="input-group">
-                <span class="input-group-addon" id="basic-addon3"><i class="fa fa-lock" aria-hidden="true"></i></span>
-                <input type="password" class="form-control" placeholder="Password" name='password' aria-describedby="basic-addon3">
+                <span class="input-group-addon" id="basic-addon6"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                <input type="password" class="form-control" placeholder="Password" name='password' aria-describedby="basic-addon6">
             </div>
 
 

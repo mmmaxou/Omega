@@ -1,6 +1,6 @@
 <?php
-require ('../Models/Login.php');
-$login = new Login();
+require ('../Models/Users.php');
+$users = new Users();
+$users->login($_POST['login'],$_POST['password']);
 
 
-$login->myLog($_POST['login'],$_POST['password']);

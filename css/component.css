@@ -5,6 +5,8 @@
     background-color: var(--color-light);
     min-height: 20px;
     cursor: pointer;
+    font-size: 1em;
+    font-size: var(--font-small);
 }
 
 .btn-default {
@@ -39,8 +41,6 @@
     background-color: var(--color-main) !important;
     color: white;
     font-weight: 700;
-    font-size: 1em;
-    font-size: var(--font-small);
     transition: all 400ms ease;
     cursor: pointer;
 }
