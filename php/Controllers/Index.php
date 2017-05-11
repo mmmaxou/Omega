@@ -83,8 +83,6 @@ if(isset($_SESSION['id'])) {
 
 // Display a message
 if ( isset($_GET['error'])) {
-    $smarty->assign("toastr", true);
-    $smarty->assign("toastr-type", "error");
     
     switch ($_GET["error"]) {
     case "connect":
@@ -104,20 +102,21 @@ if ( isset($_GET['error'])) {
         break;
     }
     
-    $smarty->assign("toastr-message", $msg);
-    
+    $smarty->assign("toastr", true);
+    $smarty->assign("toastr_type", "error");
+    $smarty->assign("toastr_message", $msg);
 }
 if ( isset($_GET['info'])) {
     $smarty->assign("toastr", true);
-    $smarty->assign("toastr-type", "info");
+    $smarty->assign("toastr_type", "info");    
+    $smarty->assign("toastr_message", "info");
 }
 if ( isset($_GET['warning'])) {
     $smarty->assign("toastr", true);
-    $smarty->assign("toastr-type", "warning");
+    $smarty->assign("toastr_type", "warning");    
+    $smarty->assign("toastr_message", "warning");
 }
 if ( isset($_GET['success'])) {
-    $smarty->assign("toastr", true);
-    $smarty->assign("toastr-type", "success");
     
     switch ($_GET["success"]) {
     case "passwordChanged":
@@ -131,13 +130,10 @@ if ( isset($_GET['success'])) {
         break;
     }
     
-    $smarty->assign("toastr-message", $msg);
+    $smarty->assign("toastr", true);
+    $smarty->assign("toastr_type", "success");
+    $smarty->assign("toastr_message", $msg);
 }
-
-
-
-
-
 
 //dump($_SESSION);
 

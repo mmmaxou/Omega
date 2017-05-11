@@ -9,6 +9,18 @@
 <!--Display messages to the user-->
 {if $toastr}
 <script>
-    toastr['{toastr-type}']('${toastr-message}');
+    toastr["{$toastr_type}"]("{$toastr_message}");
+    
+    var url = window.location.href;
+    if (url.search(/Index/)) {
+        history.replaceState("","","Index.php");
+    }   
+    if (url.search(/Article/)) {
+        history.replaceState("","","Article.php");
+    }   
+    if (url.search(/Research/)) {
+        history.replaceState("","","Research.php");
+    }    
+    
 </script>
 {/if}

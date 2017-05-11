@@ -3,21 +3,21 @@ DUPLICATE_RESULTS = true;
 var Editor;
 
 toastr.options = {
-  "closeButton": true,
-  "debug": false,
-  "newestOnTop": true,
-  "progressBar": true,
-  "positionClass": "toast-top-full-width",
-  "preventDuplicates": true,
-  "onclick": null,
-  "showDuration": "300",
-  "hideDuration": "1000",
-  "timeOut": "5000",
-  "extendedTimeOut": "1000",
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut"
+    "closeButton": true,
+    "debug": false,
+    "newestOnTop": true,
+    "progressBar": false,
+    "positionClass": "toast-top-full-width",
+    "preventDuplicates": true,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
 }
 
 $(document).ready(function () {
@@ -78,29 +78,29 @@ $(document).ready(function () {
         resizeImg()
     })
 
-    
-    
-    
-    
+
+
+
+
     /* ######### CONNEXION ######### */
-    
-    $('#connexion-dropdown .nav li').click(function(e){
+
+    $('#connexion-dropdown .nav li').click(function (e) {
         e.preventDefault()
         var toggle = $(this).attr('data-toggle')
-        
+
         $(this)
             .addClass('active')
             .siblings()
             .removeClass('active')
-        $('#'+toggle)
+        $('#' + toggle)
             .addClass('active')
             .siblings('form')
             .removeClass('active')
     })
-    
-    
-    
-    
+
+
+
+
     /* ######### EDIT MAIN PAGE ######### */
 
     // Add Menu
@@ -241,7 +241,7 @@ $(document).ready(function () {
                     parent_menu_id: parent_menu_id,
                     //                    page_id: page_id,
                     create_user_id: create_user_id,
-//                    updated_user_id: updated_user_id,
+                    //                    updated_user_id: updated_user_id,
                     //                    gallery_id: gallery_id,
                 }
 
@@ -298,7 +298,7 @@ $(document).ready(function () {
                             parent_menu_id: parent_menu_id,
                             //                            page_id: page_id,
                             create_user_id: create_user_id,
-//                            updated_user_id: updated_user_id,
+                            //                            updated_user_id: updated_user_id,
                             //                            gallery_id: gallery_id,
                         }
 
@@ -364,7 +364,7 @@ $(document).ready(function () {
             selector: 'textarea',
             plugins: 'code autoresize link',
             menubar: false,
-            toolbar: 'undo redo | styleselect bold italic link | alignleft aligncenter alignright bullist numlist outdent indent code',
+            toolbar: 'undo redo | styleselect bold italic link | alignleft aligncenter alignright bullist numlist outdent indent | code',
             body_id: 'mce',
             autoresize_overflow_padding: 25,
             content_css: css,
@@ -589,3 +589,41 @@ function deleteSubMenu(elem, event) {
             .blur()
     }
 }
+
+function getfile(){
+    var x = document.getElementById('hiddenfile');
+    var txt = "";
+    
+    x.click();
+    
+//    document.getElementById('selectedfile').value=document.getElementById('hiddenfile').value;
+    
+    if ('files' in x) {
+        if (x.files.length == 0) {
+            txt = "Select one or more files.";
+        } else {
+            for (var i = 0; i < x.files.length; i++) {
+                
+                var file = x.files[i];
+                txt += "<br><strong>" + (i+1) + ". " + file.type + "</strong><br>";
+                
+                if ('name' in file) {
+                    txt += "name: " + file.name + "<br>";
+                }
+                if ('size' in file) {
+                    txt += "size: " + file.size + " bytes <br>";
+                }
+            }
+        }
+    }
+    else {
+        if (x.value == "") {
+            txt += "Select one or more files.";
+        } else {
+            txt += "The files property is not supported by your browser!";
+            txt  += "<br>The path of the selected file: " + x.value; // If the browser does not support the files property, it will return the path of the selected file instead.
+        }
+    }
+    document.getElementById("demo").innerHTML = txt;
+}
+

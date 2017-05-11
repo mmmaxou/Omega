@@ -22,10 +22,13 @@
             </div>
 
             <img class="img-responsive img-article" src="http://lorempixel.com/400/200/" alt="image">
-            <form id="form-article" method="post" action="Page.php?id={$pageId}">
+            <form id="form-article" method="post" action="Page.php?id={$pageId}" enctype='multipart/form-data'>
                 <div id="text-article">
                     {$content}
                 </div>
+                <input type='file' id='hiddenfile' name='image' style='display:none' onchange='getfile()'>
+                <input type='button' value='Ajouter une image' onclick='getfile()' />
+                <p id='demo'></p>
                 <input id="data" name="data" type="hidden">
             </form>
 
