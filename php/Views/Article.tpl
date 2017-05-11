@@ -5,12 +5,20 @@
             <!-- Article title -->
             <div class="article-title font-title">
                 <span>Legam singulis te admodum</span>
+
+
+                <!-- Admin Only-->
+                {if $connected}
                 <span class="pull-right edit-button">
-                                    <span class="hr-vertical"></span>
+                <span class="hr-vertical"></span>
                 <a id="edit-article" href="" class="btn-main">
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                 </a>
                 </span>
+                {/if}
+                <!-- / Admin Only-->
+
+
             </div>
 
             <img class="img-responsive img-article" src="http://lorempixel.com/400/200/" alt="image">

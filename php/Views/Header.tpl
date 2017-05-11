@@ -1,38 +1,86 @@
 <header>
 
     <!--Navbar 1-->
-    <nav class="navbar navbar-default" id="retour_curseur">
+    <nav class="navbar navbar-default" id="main-navbar">
         <div class="container-fluid">
 
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#dropdown-top" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="Index.php">{$title}</a>
+                <a class="navbar-brand" href="Index.php">{$title} | {if $connected}Connected{else}Not connected{/if}</a>
+                <div id="connexion-btn" class="pull-right">
+                    <a class="btn btn-main" data-toggle="collapse" data-target="#connexion-dropdown">
+                    {if $connected}
+                        <p>{$login}</p><!--
+                        --><i class="fa fa-times" aria-hidden="true"></i>
+                    {else}
+                        <i class="fa fa-sign-in" aria-hidden="true"></i><!--
+                        --><p>Log in</p><!--
+                        --><i class="fa fa-times" aria-hidden="true"></i>
+                    {/if}
+                    </a>
+                </div>
             </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-
-            <!--
-            <div class="collapse navbar-collapse" id="dropdown-top">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="article.html">Article<span class="sr-only">(current)</span></a></li>
-                    <li><a href="article.html">Best Article</a></li>
-                    <li><a href="article.html">Recent Article</a></li>
-                </ul>
-            </div>
--->
-
 
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container-fluid -->
     </nav>
     <!-- / Navbar 1-->
+
+    <div class="collapse" id="connexion-dropdown">
+        
+        {if $connected}
+            <a href="Disconnect.php" style="cursor:pointer;" class="btn btn-main btn-block">Disconnect</a>
+        {else}
+        <ul class="nav nav-pills nav-justified">
+            <li role="presentation" data-toggle="subscribe" class="active"><a href="#">Subscribe</a></li>
+            <li role="presentation" data-toggle="connect"><a href="#">Connect</a></li>
+        </ul>
+        <form class="active" id="subscribe" action="Subscribe.php" method="post">
+
+            <div class="hr"></div>
+
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user-o" aria-hidden="true"></i></span>
+                <input type="text" class="form-control" placeholder="Login" name='login' aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon2"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+                <input type="text" class="form-control" placeholder="Email" name='email' aria-describedby="basic-addon2">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon3"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                <input type="password" class="form-control" placeholder="Password" name='password' aria-describedby="basic-addon3">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon4"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                <input type="password" class="form-control" placeholder="Verification" name='confirm' aria-describedby="basic-addon4">
+            </div>
+
+            <div class="hr"></div>
+            <input class="btn btn-main btn-block" type='submit' value='Subscribe' style="cursor:pointer;">
+
+        </form>
+        <form id="connect" action="Login.php" method="post">
+
+            <div class="hr"></div>
+
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user-o" aria-hidden="true"></i></span>
+                <input type="text" class="form-control" placeholder="Login" name='login' aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon3"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                <input type="password" class="form-control" placeholder="Password" name='password' aria-describedby="basic-addon3">
+            </div>
+
+
+            <div class="hr"></div>
+            <input class="btn btn-main btn-block" type='submit' value='Connect' style="cursor:pointer;">
+
+        </form>
+        {/if}
+    </div>
 
     <!-- Banner -->
     <div class="banner">
