@@ -32,6 +32,11 @@ class Page{
             'content' => $content,
             'description' => $description
         ));
+        $req1 = $bdd->myPDO()->prepare(' SELECT id from t_menu where page_id = :id ');
+        $req1->execute(array(
+            'id'=>$id
+        ));
+        return $req1->fetch();
     }
 
     public function deleteBDpage($id){
