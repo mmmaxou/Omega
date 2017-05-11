@@ -12,13 +12,14 @@ require_once('../Connexion.php');
 class Menu
 {
     
-    public function sendDBmenu($name, $parent_menu_id, $create_user_id){
+    public function sendDBmenu($name, $parent_menu_id, $page_id, $create_user_id){
         $bdd = new Connexion();
         $pdo = $bdd->myPDO();
-        $req = $pdo->prepare('INSERT INTO t_menu(name, parent_menu_id, create_user_id) VALUES(:name, :parent_menu_id, :create_user_id)');
+        $req = $pdo->prepare('INSERT INTO t_menu(name, parent_menu_id, page_id,create_user_id) VALUES(:name, :parent_menu_id, :page_id,:create_user_id)');
         $req->execute(array(
             'name' => $name,
             'parent_menu_id' => $parent_menu_id,
+            'page_id' => $page_id,
             'create_user_id' => $create_user_id
         ));
     }
@@ -32,15 +33,26 @@ class Menu
             'updated_user_id'=> $updated_user_id,
             'id'=>$id
         ));
+        $req = $pdo->prepare('SELECT * from t_page where id in ( SELECT page_id from t_menu where id = ? )');
+        $req->execute(array($id));
+        return $req->fetch();
+
     }
 
     public function deleteBDmenu($id){    
         $bdd = new Connexion();
         $pdo = $bdd->myPDO();
-        $req = $pdo->prepare('DELETE FROM t_menu WHERE id= :id');
+        $req = $pdo->prepare('SELECT page_id from t_menu where id = :id ');
         $req->execute(array(
-            'id' => $id,
+            'id'=> $id
         ));
+
+        $req1 = $pdo->prepare('DELETE FROM t_menu WHERE id= :id');
+        $req1->execute(array(
+            'id' => $id
+        ));
+
+        return $req->fetch();
     }
 
 
@@ -50,6 +62,8 @@ class Menu
         $reponse = $pdo->query('SELECT * FROM t_menu');
         return $reponse->fetchAll();
     }
+
+
 
     public function getMenuNoChildren()
     {

@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 /**
  * Created by PhpStorm.
  * User: alexr
@@ -12,33 +12,41 @@ $menu = new Menu();
 require_once ('../Models/Page.php');
 $page = new Page();
 
-$donnees_entree = json_decode($_POST["data"] ,  true );
-$donnees_entree = (array)$donnees_entree_std;
-/*
+
+
 function dump ($data) {
     echo '<pre>';
     var_dump($data);
     echo '<pre>';
 }
-dump($_POST);
-*/
+//dump($_POST);
+
 $decoded = json_decode($_POST["data"], true);
-//dump($decoded);
 
 foreach ($decoded['added'] as $add) {
+    $nl2br1 = nl2br($add['name']);
+    $nl2br2 = nl2br($add['parent_menu_id']);
+    $name = htmlspecialchars($nl2br1);
+    $parent = htmlspecialchars($nl2br2);
     $page_id = $page->sendDBpage($add['name'],null,null);
-    $menu->sendDBmenu($add['name'], $add['parent_menu_id'], $page_id , $add['create_user_id']);
+    $menu->sendDBmenu($name, $parent, $page_id[0] , $_SESSION['id']);
 }
 
 
 foreach ($decoded['modified'] as $up) {
-    $menu->updateBDmenu($up['id'], $up['name'], $up['updated_user_id'] );
-    $page->updateBDpage(,$up['name'],null);
+    $nl2br1 = nl2br($up['id']);
+    $nl2br2 = nl2br($up['name']);
+    $id = htmlspecialchars($nl2br1);
+    $name = htmlspecialchars($nl2br2);
+    $myMenu = $menu->updateBDmenu($id, $name, $_SESSION['id'] );
+    $page->updateBDpage($myMenu['id'],$name,$myMenu['content'],$myMenu['description']);
 }
 
 foreach ($decoded['deleted'] as $del) {
-    $menu->deleteBDmenu( $del['id']);
-    $page->deleteBDpage($del['id']);
+    $nl2br1 = nl2br($del['id']);
+    $id = htmlspecialchars($nl2br1);
+    $page_id = $menu->deleteBDmenu( $id);
+    $page->deleteBDpage($page_id[0]);
 
 }
 
