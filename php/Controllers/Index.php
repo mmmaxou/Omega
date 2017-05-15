@@ -39,14 +39,22 @@ $smarty->assign("title", "Omega");
 $smarty->assign("root_url", "../../");
 
 
+
+
+// Pager data
+if ( isset($_GET) ) {
+    if (!isset($_GET['module']) && isset($_GET['page'])){
+        
+    }
+}
+
+
 // DB data for the menu
 $menuWithChildren = [];
 $menuNoChildren = [];
-
 // Get raw data
 $menu = $Menu->getMenu();
 $smarty->assign("menu", $menu);
-
 // Fill $menuNoChildren variable
 foreach( $menu as $item ) {
     if ($item['parent_menu_id'] == null || $item['parent_menu_id'] == 0) {
@@ -58,8 +66,7 @@ foreach( $menu as $item ) {
         }
     }
 }
-
-// Fill $menuNoChildren variable
+// Fill $menuWithChildren variable
 for ( $i=0; $i < sizeof($menuWithChildren); $i++) {
     $menuParent = $menuWithChildren[$i];
     $id = $menuParent[0]["id"];
@@ -69,20 +76,8 @@ for ( $i=0; $i < sizeof($menuWithChildren); $i++) {
         }
     }
 }
-
-
-
-
-
 $smarty->assign("menuNoChildren", $menuNoChildren);
 $smarty->assign("menuWithChildren", $menuWithChildren);
-
-
-
-
-
-//dump($menuNoChildren);
-//dump($menuWithChildren);
 
 // Article data
 if ( isset($_GET)) {
@@ -176,7 +171,13 @@ if ( isset($_GET['success'])) {
     $smarty->assign("toastr_message", $msg);
 }
 
-//dump($_SESSION);
+
+
+
+
+
+
+
 
 $smarty->display('../Views/Controller.tpl');
 

@@ -7,8 +7,23 @@ $(document).ready(function () {
 
     $('.slick-test').slick({
         infinite: true,
+        dots: true,
+        autoplay: true,
+        autoplaySpeed: 5000,
         slidesToShow: 2,
-        slidesToScroll: 2});
+        slidesToScroll: 2,
+        speed: 300,
+        adaptiveHeight: true,
+        responsive: [
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                }
+    }
+  ]
+    });
 
     $("#comm").submit(function (e) {
         e.preventDefault();

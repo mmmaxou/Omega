@@ -37,7 +37,7 @@
                 <div id="text-article">
                     {$content}
                 </div>
-                <input type='file' id='hiddenfile' name='image' style='display:none' onchange='getfile()'>
+                <input type='file' id='hiddenfile' name='image' style='display:none' onchange='getfile()' multiple>
                 <input id="send-file" type='button' value='Add an image' onclick='getfile()' style="display:none;" class="btn btn-main btn-block"/>
                 <p id='demo'></p>
                 <input id="data" name="data" type="hidden">

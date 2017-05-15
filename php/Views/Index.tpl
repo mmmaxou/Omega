@@ -1,3 +1,8 @@
+
+
+<h2 class="font-title">Preview of all articles</h2>
+<div class="hr"></div>
+
 {foreach $menuNoChildren as $article}
 
 <div id="articles" class="col-xs-12">
