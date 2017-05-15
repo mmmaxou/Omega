@@ -129,12 +129,12 @@
             <!--Search Bar-->
             <div class="row search-bar">
                 <div class="col-xs-12 col-sm-offset-2 col-sm-8">
-                    <form action="Index.tpl?module=research" class="fit">
+                    <form action="Index.php?module=research" method="get" class="fit">
 
                         <input type="text" class="fit-large btn" placeholder="Search something to begin.">
-                        <a href="Index.tpl?module=research" class="btn btn-search">
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                        </a>
+                        <button type="submit" href="Index.php?module=research" value="" class="btn btn-search">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
 
                     </form>
                 </div>

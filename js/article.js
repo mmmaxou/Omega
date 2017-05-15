@@ -3,6 +3,13 @@
  */
 $(document).ready(function () {
 
+    /* ############ SLICK ############ */
+
+    $('.slick-test').slick({
+        infinite: true,
+        slidesToShow: 2,
+        slidesToScroll: 2});
+
     $("#comm").submit(function (e) {
         e.preventDefault();
         ajoutComment();
@@ -15,7 +22,7 @@ function ajoutComment() {
     var comment = document.getElementById('comment').value;
     var date = new Date();
     var day = date.getDate();
-    var month = date.getMonth()+1;
+    var month = date.getMonth() + 1;
     var year = date.getFullYear();
     var textnode = document.createTextNode(comment); // Create a text node
     var textnode2 = document.createTextNode(name); // Create a text node

@@ -346,7 +346,7 @@ $(document).ready(function () {
 
         var text = $("#text-article").html()
         $("#text-article")
-            .wrap('<textarea>')
+            .wrap('<textarea id="textarea">')
         $('textarea').html(text)
 
         var css = ""
@@ -361,7 +361,7 @@ $(document).ready(function () {
         css += ',../../css/mce.css'
 
         tinymce.init({
-            selector: 'textarea',
+            selector: '#textarea',
             plugins: 'code autoresize link',
             menubar: false,
             toolbar: 'undo redo | styleselect bold italic link | alignleft aligncenter alignright bullist numlist outdent indent | code',
@@ -369,14 +369,17 @@ $(document).ready(function () {
             autoresize_overflow_padding: 25,
             content_css: css,
         });
+        
+        // Form appear
 
 
         // Confirmation
 
         $('.article-bottom.changes').fadeIn()
-
+        $('.article-bottom#keywords').fadeIn()
+        $('.article-bottom#description').fadeIn()
+        $('#send-file').fadeIn()
         contenteditableActivation()
-
     })
 
     $('.btn-close').click(function (e) {
@@ -387,14 +390,19 @@ $(document).ready(function () {
     $('.changes .save').click(function (e) {
         e.preventDefault()
 
-        var title = $('.article-title span:first-child').text()
+        var title = $('#article-title span:first-child').text()
         title = title != "" ? title : undefined;
 
         var content = tinymce.editors[0].getContent()
+        
+        var keywords = $('#keywords textarea').val()
+        var description = $('#description textarea').val()
 
         var data = {
             title: title,
             content: content,
+            keywords: keywords,
+            description: description,
         }
         $("#data").val(JSON.stringify(data))
         console.log($('#data').val())

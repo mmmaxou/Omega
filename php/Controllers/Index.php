@@ -40,11 +40,49 @@ $smarty->assign("root_url", "../../");
 
 
 // DB data for the menu
-$menuWithChildren = $Menu->getMenuWithChildren();
-$menuNoChildren = $Menu->getMenuNoChildren();
+$menuWithChildren = [];
+$menuNoChildren = [];
+
+// Get raw data
+$menu = $Menu->getMenu();
+$smarty->assign("menu", $menu);
+
+// Fill $menuNoChildren variable
+foreach( $menu as $item ) {
+    if ($item['parent_menu_id'] == null || $item['parent_menu_id'] == 0) {
+        if ( $item['page_id'] != 0 ) {
+            $menuNoChildren[] = $item;
+        }
+        else {
+            $menuWithChildren[] = [$item];
+        }
+    }
+}
+
+// Fill $menuNoChildren variable
+for ( $i=0; $i < sizeof($menuWithChildren); $i++) {
+    $menuParent = $menuWithChildren[$i];
+    $id = $menuParent[0]["id"];
+    foreach($menu as $item) {
+        if ( $item["parent_menu_id"] == $id ) {
+            $menuWithChildren[$i][] = $item;
+        }
+    }
+}
+
+
+
+
+
 $smarty->assign("menuNoChildren", $menuNoChildren);
 $smarty->assign("menuWithChildren", $menuWithChildren);
 
+
+
+
+
+//dump($menuNoChildren);
+//dump($menuWithChildren);
 
 // Article data
 if ( isset($_GET)) {
@@ -60,8 +98,11 @@ if ( isset($_GET)) {
         $content = $page_data['content'];
         $content = html_entity_decode($content);
         $title_article = $page_data['title'];
+        $title_article = html_entity_decode($title_article);
         $keywords = $page_data['keywords'];
+        $keywords = html_entity_decode($keywords);
         $description = $page_data['description'];
+        $description = html_entity_decode($description);
                 
         $smarty->assign("keywords", $keywords);
         $smarty->assign("description", $description);

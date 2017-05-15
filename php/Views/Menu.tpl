@@ -29,7 +29,9 @@
 
                 <li><a href="Index.php?module=article&id={$menuItem.page_id}">{$menuItem.name}</a></li>
 
-                {/foreach} {foreach $menuWithChildren as $dropdown}
+                {/foreach}
+                <!--End first loop-->
+                {foreach $menuWithChildren as $dropdown}
 
                 <li class="dropdown">
 
@@ -48,7 +50,7 @@
                 </li>
 
                 {/foreach}
-
+                
             </ul>
 
 

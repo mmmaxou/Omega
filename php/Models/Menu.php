@@ -11,19 +11,20 @@ require_once('../Connexion.php');
 
 class Menu
 {
-    
-    public function sendDBmenu($name, $parent_menu_id, $page_id, $create_user_id){
+
+    public function sendDBmenu($name, $parent_menu_id, $page_id, $create_user_id, $gallery_id){
         $bdd = new Connexion();
         $pdo = $bdd->myPDO();
-        $req = $pdo->prepare('INSERT INTO t_menu(name, parent_menu_id, page_id,create_user_id) VALUES(:name, :parent_menu_id, :page_id,:create_user_id)');
+        $req = $pdo->prepare('INSERT INTO t_menu(name, parent_menu_id, page_id,create_user_id, gallery_id) VALUES(:name, :parent_menu_id, :page_id,:create_user_id, :gallery_id)');
         $req->execute(array(
             'name' => $name,
             'parent_menu_id' => $parent_menu_id,
             'page_id' => $page_id,
-            'create_user_id' => $create_user_id
+            'create_user_id' => $create_user_id,
+            'gallery_id' => $gallery_id
         ));
     }
-
+    
     public function updateBDmenu($id, $name, $updated_user_id){    
         $bdd = new Connexion();
         $pdo = $bdd->myPDO();
@@ -33,7 +34,7 @@ class Menu
             'updated_user_id'=> $updated_user_id,
             'id'=>$id
         ));
-        $req = $pdo->prepare('SELECT * from t_page where id in ( SELECT page_id from t_menu where id = ? )');
+        $req = $pdo->prepare('SELECT * from t_page WHERE id in ( SELECT page_id from t_menu WHERE id = ? )');
         $req->execute(array($id));
         return $req->fetch();
 
@@ -42,7 +43,7 @@ class Menu
     public function deleteBDmenu($id){    
         $bdd = new Connexion();
         $pdo = $bdd->myPDO();
-        $req = $pdo->prepare('SELECT page_id from t_menu where id = :id ');
+        $req = $pdo->prepare('SELECT page_id FROM t_menu where id = :id ');
         $req->execute(array(
             'id'=> $id
         ));
@@ -54,16 +55,16 @@ class Menu
 
         return $req->fetch();
     }
-
-
-    public function gatherMenuData(){    
+    
+    public function setMenuParent($id) {   
         $bdd = new Connexion();
         $pdo = $bdd->myPDO();
-        $reponse = $pdo->query('SELECT * FROM t_menu');
-        return $reponse->fetchAll();
+        
+        $req = $pdo->prepare('UPDATE t_menu SET page_id = NULL WHERE id = :id');
+        $req->execute(array(
+            'id'=> $id
+        ));        
     }
-
-
 
     public function getMenuNoChildren()
     {
@@ -92,5 +93,18 @@ class Menu
             $j+=1;
         }
         return $myArray;
+    }
+    
+    
+    public function getMenu()
+    {
+        $bdd = new Connexion();
+        $pdo = $bdd->myPDO();
+        
+        
+        $reponse = $pdo->query('SELECT * FROM t_menu');
+        //$reponse = $pdo->query('select parent_menu_id from t_menu WHERE parent_menu_id is not NULL');
+        return $reponse->fetchAll();
+
     }
 }

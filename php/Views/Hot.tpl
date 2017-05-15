@@ -5,7 +5,7 @@
         <div class="row">
 
             <div class="col-xs-12 col-sm-6 col-md-12">
-                <a href="article.html">
+                <a href="Index.php?module=article">
                     <div class="hot-picture wrapper-img" data-src="http://lorempixel.com/400/200/">
 
                         <div class="overlay overlay-black"></div>
@@ -15,7 +15,7 @@
                 </a>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-12">
-                <a href="article.html">
+                <a href="Index.php?module=article">
                     <div class="hot-picture wrapper-img" data-src="http://lorempixel.com/400/200/">
 
                         <div class="overlay overlay-black"></div>
@@ -25,7 +25,7 @@
                 </a>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-12">
-                <a href="article.html">
+                <a href="Index.php?module=article">
                     <div class="hot-picture wrapper-img" data-src="http://lorempixel.com/400/200/">
 
                         <div class="overlay overlay-black"></div>
@@ -35,7 +35,7 @@
                 </a>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-12">
-                <a href="article.html">
+                <a href="Index.php?module=article">
                     <div class="hot-picture wrapper-img" data-src="http://lorempixel.com/400/200/">
 
                         <div class="overlay overlay-black"></div>

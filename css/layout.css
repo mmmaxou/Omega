@@ -82,6 +82,12 @@
     display: inline-block;
 }
 
+.textarea-form {
+    width: 100%;
+    min-height: 200px;
+    padding: 25px;
+}
+
 @media (min-width: 1200px) {
     .article-small {
         display: flex;

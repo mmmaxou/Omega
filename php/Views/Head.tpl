@@ -26,13 +26,18 @@
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web:300,400,700" rel="stylesheet">
 
     <!-- List of CSS Link-->
+    <link rel="stylesheet" type="text/css" href="{$root_url}css/reset.css">
     <link rel="stylesheet" type="text/css" href="{$root_url}css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{$root_url}lib/toastr/build/toastr.min.css">
-    <link rel="stylesheet" type="text/css" href="{$root_url}css/reset.css">
+    <link rel="stylesheet" type="text/css" href="{$root_url}lib/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="{$root_url}lib/slick/slick-theme.css"/>
+    
+    <!--My css-->
     <link rel="stylesheet" type="text/css" href="{$root_url}css/component.css">
     <link rel="stylesheet" type="text/css" href="{$root_url}css/layout.css">
     <link rel="stylesheet" type="text/css" href="{$root_url}css/page.css">
     <link rel="stylesheet" type="text/css" href="{$root_url}css/theme.css">
     <link rel="stylesheet" type="text/css" href="{$root_url}css/utils.css">
     <link rel="stylesheet" type="text/css" href="{$root_url}css/value.css">
+    
 </head>

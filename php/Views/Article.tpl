@@ -3,7 +3,7 @@
     <div class="row">
         <div class="element-content">
             <!-- Article title -->
-            <div class="article-title font-title">
+            <div class="article-title font-title" id="article-title">
                 <span>{$title_article}</span>
 
 
@@ -22,26 +22,63 @@
             </div>
 
             <img class="img-responsive img-article" src="http://lorempixel.com/400/200/" alt="image">
+
+
+
+            <div class="slick-test">
+                <div><img src="http://lorempixel.com/400/200/" alt="image"></div>
+                <div><img src="http://lorempixel.com/400/200/" alt="image"></div>
+                <div><img src="http://lorempixel.com/400/200/" alt="image"></div>
+            </div>
+
+            <!-- Admin Only-->
+            {if $connected}
             <form id="form-article" method="post" action="Page.php?id={$pageId}" enctype='multipart/form-data'>
                 <div id="text-article">
                     {$content}
                 </div>
                 <input type='file' id='hiddenfile' name='image' style='display:none' onchange='getfile()'>
-                <input type='button' value='Ajouter une image' onclick='getfile()' />
+                <input id="send-file" type='button' value='Add an image' onclick='getfile()' style="display:none;" class="btn btn-main btn-block"/>
                 <p id='demo'></p>
                 <input id="data" name="data" type="hidden">
             </form>
+            {/if}
+            <!-- Bottom article -->
+            <div class="article-bottom" id="keywords" style="display:none;">
+                <div class="hr"></div>
+                <!-- Article title -->
+                <div class="article-title font-title">
+                    <span>Add Keywords</span>
+                </div>
+                <textarea class="textarea-form" placeholder="Enter the keywords here">
+                    {$keywords}
+                </textarea>
+                <div class="help-block">Separate your differents keywords with commas. (e.g : "Awesome,Special,Rare,Interesting, ... "</div>
+            </div>
+            <!-- / Bottom article -->
+            
+            <!-- Bottom article -->
+            <div class="article-bottom" id="description" style="display:none;">
+                <div class="hr"></div>
+                <!-- Article title -->
+                <div class="article-title font-title">
+                    <span>Change Description</span>
+                </div>
+                <textarea class="textarea-form" placeholder="Enter the description here">
+                    {$description}
+                </textarea>
+            </div>
+            <!-- / Bottom article -->
 
-            <div class="hr"></div>
             <!-- Bottom article -->
             <div class="article-bottom">
-
+                <div class="hr"></div>
                 <span class="color-on-hover"><i class="fa fa-calendar" aria-hidden="true"></i> date</span>
                 <span class="color-on-hover"><i class="fa fa-eye" aria-hidden="true"></i> views</span>
                 <span class="color-on-hover"><i class="fa fa-folder-o" aria-hidden="true"></i> category</span>
-
             </div>
             <!-- / Bottom article -->
+
 
             <!-- Bottom article -->
             <div class="article-bottom changes" style="display:none;">
