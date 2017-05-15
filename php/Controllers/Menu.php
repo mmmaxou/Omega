@@ -12,6 +12,8 @@ $menu = new Menu();
 require_once ('../Models/Page.php');
 $page = new Page();
 
+require_once ('../Models/Gallery.php');
+$gallery = new Gallery();
 
 
 function dump ($data) {
@@ -25,11 +27,14 @@ $decoded = json_decode($_POST["data"], true);
 
 foreach ($decoded['added'] as $add) {
     $nl2br1 = nl2br($add['name']);
-    $nl2br2 = nl2br($add['parent_menu_id']);
     $name = htmlspecialchars($nl2br1);
-    $parent = htmlspecialchars($nl2br2);
     $page_id = $page->sendDBpage($add['name'],null,null);
-    $menu->sendDBmenu($name, $parent, $page_id[0] , $_SESSION['id']);
+    $gallery_id = $gallery->addGallery($add['name']);
+    $menu->sendDBmenu($name, $add['parent_menu_id'], $page_id[0] , $_SESSION['id'],$gallery_id[0]);
+    
+    if ($add['parent_menu_id'] != null) {
+        $menu->setMenuParent($add['parent_menu_id']);
+    }
 }
 
 
@@ -50,4 +55,4 @@ foreach ($decoded['deleted'] as $del) {
 
 }
 
-header('Location:Index.php?success=menuCreated');
+header('Location:Index.php');

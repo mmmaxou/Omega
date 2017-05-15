@@ -5,6 +5,6 @@
  * Date: 05/05/2017
  * Time: 15:54
  */
-require '../Models/Page.php';
-Page::envoie();
+require '../Controllers/Ctr_page.php';
+Ctr_page::envoie();
 echo 'succed';

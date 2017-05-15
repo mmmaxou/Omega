@@ -19,6 +19,16 @@ function dump ($data) {
     echo '<pre>';
 }
 
+dump($_POST);
+
+$decoded = json_decode($_POST["data"], true);
+dump($decoded);
+
+$nl2br = nl2br($decoded["content"]);
+dump($nl2br);
+
+$escaped = htmlspecialchars($nl2br);
+dump($escaped);
 
 
 
@@ -33,16 +43,4 @@ dump($donnees_entree);
 dump( $donnees_entree['modified'][0]["name"]);
 $deleted = $donnees_entree['deleted'];
 */
-dump($_POST);
-
-$decoded = json_decode($_POST["data"], true);
-dump($decoded);
-
-$nl2br = nl2br($decoded["content"]);
-dump($nl2br);
-
-$escaped = htmlspecialchars($nl2br);
-dump($escaped);
-
-
 
