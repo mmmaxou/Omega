@@ -12,7 +12,8 @@ require_once('../Connexion.php');
 class Menu
 {
 
-    public function sendDBmenu($name, $parent_menu_id, $page_id, $create_user_id, $gallery_id){
+
+    public function sendDBmenu($name, $parent_menu_id, $page_id, $create_user_id,$gallery_id){
         $bdd = new Connexion();
         $pdo = $bdd->myPDO();
         $req = $pdo->prepare('INSERT INTO t_menu(name, parent_menu_id, page_id,create_user_id, gallery_id) VALUES(:name, :parent_menu_id, :page_id,:create_user_id, :gallery_id)');
@@ -107,4 +108,18 @@ class Menu
         return $reponse->fetchAll();
 
     }
+<<<<<<< HEAD
+=======
+
+    public function getGallery($my_menu_id){
+        $bdd = new Connexion();
+        $pdo=$bdd->myPDO();
+        $req = $pdo->prepare('SELECT gallery_id from t_menu where id = :id');
+        $req->execute(array(
+            'id' => $my_menu_id[0]
+        ));
+        return $req->fetch();
+    }
+
+>>>>>>> d411de9f244bbe72b918588cdb12293316ef86a9
 }
