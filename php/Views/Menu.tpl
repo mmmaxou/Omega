@@ -50,21 +50,23 @@
                 </li>
 
                 {/foreach}
-                
+
             </ul>
 
 
-            {if $connected}
-            <!--Admin-->
-            <ul class="admin-only nav navbar-nav navbar-right">
-                <li>
-                    <a href="" class="btn-main" data-toggle="modal" data-target="#menu-main">
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                    </a>
-                </li>
-            </ul>
-            <!--Fin Admin-->
-            {/if}
+
+            <!-- Admin Only-->
+            <div class="connected" {if !$connected} style="display:none;" {/if}>
+                <ul class="admin-only nav navbar-nav navbar-right">
+                    <li>
+                        <a href="" class="btn-main" data-toggle="modal" data-target="#menu-main">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- / Admin Only-->
+
         </div>
         <!-- /.navbar-collapse -->
     </div>

@@ -11,9 +11,9 @@ $(document).ready(function () {
         autoplay: true,
         autoplaySpeed: 5000,
         slidesToShow: 2,
-        slidesToScroll: 2,
-        speed: 300,
         adaptiveHeight: true,
+        centerMode: true,
+        centerPadding: '0px',
         responsive: [
             {
                 breakpoint: 600,

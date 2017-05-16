@@ -6,6 +6,7 @@ session_start();
  * Date: 09/05/2017
  * Time: 12:10
  */
+
 require_once ('../Models/Menu.php');
 $menu = new Menu();
 
@@ -16,15 +17,9 @@ require_once ('../Models/Gallery.php');
 $gallery = new Gallery();
 
 
-function dump ($data) {
-    echo '<pre>';
-    var_dump($data);
-    echo '<pre>';
-}
-//dump($_POST);
-
 $decoded = json_decode($_POST["data"], true);
 
+$url = "";
 foreach ($decoded['added'] as $add) {
     $nl2br1 = nl2br($add['name']);
     $name = htmlspecialchars($nl2br1);
@@ -35,6 +30,7 @@ foreach ($decoded['added'] as $add) {
     if ($add['parent_menu_id'] != null) {
         $menu->setMenuParent($add['parent_menu_id']);
     }
+    $url = "module=article&id=$page_id[0]";
 }
 
 
@@ -54,5 +50,9 @@ foreach ($decoded['deleted'] as $del) {
     $page->deleteBDpage($page_id[0]);
 
 }
-
+if ( $url != "") {
+header('Location:Index.php?'.$url);
+}
+else {
 header('Location:Index.php');
+}

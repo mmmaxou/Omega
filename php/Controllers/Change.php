@@ -8,18 +8,38 @@ $old_password = $Users->getPassword($_SESSION['id']);
 
 if ( $old_password['password'] != md5($_POST['old'])) {
     // handle error
-    
-    dump($old_password);
-    dump(md5($_POST['old']));
-    dump($_POST['old']);    
-    
 //    header('Location:Index.php?error=oldPasswordWrong');
+        $res = array(
+            'toastr' => array (
+                "type" => "error",
+                "message" => "The password is incorrect.",
+            ),
+            'success'=> false,
+        );
+        echo json_encode( $res );
 } else {    
     if ($_POST['password'] != $_POST['confirm']) {
-        header('Location:Index.php?error=passwordNoMatch');
+        $res = 
+//        header('Location:Index.php?error=passwordNoMatch');        
+        $res = array(
+            'toastr' => array (
+                "type" => "error",
+                "message" => "The password and the confirmation given don't match.",
+            ),
+            'success'=> false,
+        );
+        echo json_encode( $res );
     } else {
         $Users->change($_SESSION['id'],$_POST['password']);
-        header('Location:Index.php?success=passwordChanged');
+//        header('Location:Index.php?success=passwordChanged');      
+        $res = array(
+            'toastr' => array (
+                "type" => "success",
+                "message" => "Password successfully changed.",
+            ),
+            'success'=> true,
+        );
+        echo json_encode( $res );
     }
 }
 

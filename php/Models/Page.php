@@ -23,14 +23,15 @@ class Page{
         return $req1->fetch();
     }
 
-    public function updateBDpage($id, $title, $content, $description){
+    public function updateBDpage($id, $title, $content, $description, $keywords){
         $bdd=new Connexion();
-        $req = $bdd->myPDO()->prepare('UPDATE t_page SET title = :title, content = :content, description = :description WHERE id = :id');
+        $req = $bdd->myPDO()->prepare('UPDATE t_page SET title = :title, content = :content, description = :description, keywords = :keywords WHERE id = :id');
         $req->execute(array(
             'id' => $id,
             'title' => $title,
             'content' => $content,
-            'description' => $description
+            'description' => $description,
+            'keywords' => $keywords,
         ));
         $req1 = $bdd->myPDO()->prepare(' SELECT id from t_menu where page_id = :id ');
         $req1->execute(array(

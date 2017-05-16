@@ -108,9 +108,6 @@ class Menu
         return $reponse->fetchAll();
 
     }
-<<<<<<< HEAD
-=======
-
     public function getGallery($my_menu_id){
         $bdd = new Connexion();
         $pdo=$bdd->myPDO();
@@ -121,5 +118,4 @@ class Menu
         return $req->fetch();
     }
 
->>>>>>> d411de9f244bbe72b918588cdb12293316ef86a9
 }

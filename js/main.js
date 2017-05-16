@@ -7,7 +7,7 @@ toastr.options = {
     "debug": false,
     "newestOnTop": true,
     "progressBar": false,
-    "positionClass": "toast-top-full-width",
+    "positionClass": "toast-top-right",
     "preventDuplicates": true,
     "onclick": null,
     "showDuration": "300",
@@ -88,15 +88,143 @@ $(document).ready(function () {
         e.preventDefault()
         var toggle = $(this).attr('data-toggle')
 
+        // OPPOSITE FOR USER INTERFACE
         $(this)
-            .addClass('active')
-            .siblings()
             .removeClass('active')
+            .siblings()
+            .addClass('active')
         $('#' + toggle)
             .addClass('active')
             .siblings('form')
             .removeClass('active')
     })
+
+    /* ######################## */
+    /* ######### AJAX ######### */
+    /* ######################## */
+
+    // Connection
+    $('#connect').submit(function (e) {
+        e.preventDefault()
+        var data = $(this).serialize()
+        $.ajax({
+            url: 'Login.php',
+            type: 'POST',
+            data: data,
+            dataType: 'text',
+            success: function (res, statut) {
+                res = JSON.parse(res)
+                if (res.toastr) {
+                    showToastr(res.toastr)
+                }
+                if (res.success) {
+                    // We are now connected
+                    connect(res.username)
+                }
+            },
+        })
+
+    })    
+    $('#disconnect').click(function (e) {
+        e.preventDefault()
+        var data = null;
+        $.ajax({
+            url: 'Disconnect.php',
+            type: 'POST',
+            data: data,
+            dataType: 'text',
+            success: function (res, statut) {
+                res = JSON.parse(res)
+                if (res.toastr) {
+                    showToastr(res.toastr)
+                }
+                if (res.success) {
+                    disconnect()
+                }
+            },
+        })
+
+    })
+    $('#subscribe').submit(function (e) {
+        e.preventDefault()
+        var data = $(this).serialize()
+        $.ajax({
+            url: 'Subscribe.php',
+            type: 'POST',
+            data: data,
+            dataType: 'text',
+            success: function (res, statut) {
+                res = JSON.parse(res)
+                if (res.toastr) {
+                    showToastr(res.toastr)
+                }
+                if (res.success) {
+                    connect(res.username)
+                }
+            },
+        })
+
+    })
+    $('#change > form').submit(function (e) {
+        e.preventDefault()
+        var data = $(this).serialize()
+        $.ajax({
+            url: 'Change.php',
+            type: 'POST',
+            data: data,
+            dataType: 'text',
+            success: function (res, statut) {
+                res = JSON.parse(res)
+                if (res.toastr) {
+                    showToastr(res.toastr)
+                }
+                
+                if(res.success) {
+                $('#change').prev().click()
+                }
+            },
+        })
+
+    })
+    function connect(username) {
+        $(".connected").fadeIn()
+        $(".disconnected").hide()
+        $("#username").text(username)        
+    }
+    function disconnect () {
+        $(".connected").hide()
+        $(".disconnected").fadeIn()
+    }
+
+    // Change the partial
+    
+    $('#dropdown-content a').click(function(e){
+        e.preventDefault()
+        console.log($(this))
+        var href = $(this).attr("href")
+        if (!href) {
+            return
+        }
+        href = href.replace("Index.php?","")
+        var data = href+"&partial=1"
+        console.log(data)
+        
+        $.ajax({
+            url: 'Index.php',
+            type: 'GET',
+            data: data,
+            dataType: 'text',
+            success: function (res, statut) {
+                console.log(res)
+                $("#partial").empty().append(res);
+            },
+        })
+        
+    })
+    
+    
+    
+    
 
 
 
@@ -333,8 +461,7 @@ $(document).ready(function () {
         e.preventDefault()
 
         //title edition
-        $(this).parent()
-            .prev()
+        $("#article-title > span:first-child")
             .attr("contenteditable", "true")
             .parent()
             .addClass("editable")
@@ -369,15 +496,23 @@ $(document).ready(function () {
             autoresize_overflow_padding: 25,
             content_css: css,
         });
-        
+
         // Form appear
 
 
         // Confirmation
 
         $('.article-bottom.changes').fadeIn()
-        $('.article-bottom#keywords').fadeIn()
-        $('.article-bottom#description').fadeIn()
+        $('.article-bottom#keywords')
+            .fadeIn()
+        $('.article-bottom#description')
+            .fadeIn()
+
+        $(".textarea-form").each(function (e) {
+            $(this).val($(this).attr("data-content"))
+        })
+
+
         $('#send-file').fadeIn()
         contenteditableActivation()
     })
@@ -390,11 +525,11 @@ $(document).ready(function () {
     $('.changes .save').click(function (e) {
         e.preventDefault()
 
-        var title = $('#article-title span:first-child').text()
+        var title = $('#article-title > span:first-child').text().replace(/\n/g,'')
         title = title != "" ? title : undefined;
 
         var content = tinymce.editors[0].getContent()
-        
+
         var keywords = $('#keywords textarea').val()
         var description = $('#description textarea').val()
 
@@ -409,6 +544,9 @@ $(document).ready(function () {
 
         $('#form-article').submit()
     })
+    
+    
+    
 
 
 })
@@ -598,23 +736,23 @@ function deleteSubMenu(elem, event) {
     }
 }
 
-function getfile(){
+// Handle image upload
+function getfile() {
     var x = document.getElementById('hiddenfile');
     var txt = "";
-    
+
     x.click();
-    
-//    document.getElementById('selectedfile').value=document.getElementById('hiddenfile').value;
-    
+
+    // Display
     if ('files' in x) {
         if (x.files.length == 0) {
             txt = "Select one or more files.";
         } else {
             for (var i = 0; i < x.files.length; i++) {
-                
+
                 var file = x.files[i];
-                txt += "<br><strong>" + (i+1) + ". " + file.type + "</strong><br>";
-                
+                txt += "<br><strong>" + (i + 1) + ". " + file.type + "</strong><br>";
+
                 if ('name' in file) {
                     txt += "name: " + file.name + "<br>";
                 }
@@ -623,15 +761,17 @@ function getfile(){
                 }
             }
         }
-    }
-    else {
+    } else {
         if (x.value == "") {
             txt += "Select one or more files.";
         } else {
             txt += "The files property is not supported by your browser!";
-            txt  += "<br>The path of the selected file: " + x.value; // If the browser does not support the files property, it will return the path of the selected file instead.
+            txt += "<br>The path of the selected file: " + x.value; // If the browser does not support the files property, it will return the path of the selected file instead.
         }
     }
     document.getElementById("demo").innerHTML = txt;
 }
 
+function showToastr(options) {
+    toastr[options.type](options.message);
+}

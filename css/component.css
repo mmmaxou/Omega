@@ -356,6 +356,7 @@ textarea {
     -webkit-box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.7);
     -moz-box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.7);
     box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.7);
+    width: 70%;
 }
 
 @media (max-width: 720px) {
@@ -448,15 +449,22 @@ textarea {
 .input-group-addon .fa {
     width: 2em;
 }
+.nav > li > a:hover {
+    background-color: inherit;
+}
+
 
 .nav-pills>li>a {
     color: #3f5fa7;
     color: var(--color-main);
 }
 
-.nav-pills>li.active>a,
-.nav-pills>li.active>a:focus,
-.nav-pills>li.active>a:hover {
+.nav-pills>li.active>a{
     background-color: #3f5fa7;
     background-color: var(--color-main);
+}
+.nav-pills>li.active>a:focus,
+.nav-pills>li.active>a:hover {
+    background-color: #324f91;
+    background-color: var(--color-main-darker);
 }

@@ -7,15 +7,17 @@
                 <span>{$title_article}</span>
 
 
-                <!-- Admin Only-->
-                {if $connected}
+                <!-- Admin Only-->                
+                <div class="connected" {if !$connected} style="display:none;" {/if}>
+                
                 <span class="pull-right edit-button">
                 <span class="hr-vertical"></span>
                 <a id="edit-article" href="" class="btn-main">
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                 </a>
                 </span>
-                {/if}
+                
+                </div>
                 <!-- / Admin Only-->
 
 
@@ -26,13 +28,13 @@
 
 
             <div class="slick-test">
-                <div><img src="http://lorempixel.com/400/200/" alt="image"></div>
-                <div><img src="http://lorempixel.com/400/200/" alt="image"></div>
-                <div><img src="http://lorempixel.com/400/200/" alt="image"></div>
+                {foreach $images as $image}
+                <div><img src="{$root_url}uploads/{$image.label}" alt="image"></div>
+                {/foreach}
             </div>
 
             <!-- Admin Only-->
-            {if $connected}
+            <div class="connected" {if !$connected} style="display:none;" {/if}>
             <form id="form-article" method="post" action="Page.php?id={$pageId}" enctype='multipart/form-data'>
                 <div id="text-article">
                     {$content}
@@ -42,7 +44,10 @@
                 <p id='demo'></p>
                 <input id="data" name="data" type="hidden">
             </form>
-            {/if}
+            </div>
+            <!-- / Admin Only-->
+            
+            
             <!-- Bottom article -->
             <div class="article-bottom" id="keywords" style="display:none;">
                 <div class="hr"></div>
@@ -50,9 +55,7 @@
                 <div class="article-title font-title">
                     <span>Add Keywords</span>
                 </div>
-                <textarea class="textarea-form" placeholder="Enter the keywords here">
-                    {$keywords}
-                </textarea>
+                <textarea class="textarea-form" placeholder="Enter the keywords here" name="keywords" data-content="{$keywords}"></textarea>
                 <div class="help-block">Separate your differents keywords with commas. (e.g : "Awesome,Special,Rare,Interesting, ... "</div>
             </div>
             <!-- / Bottom article -->
@@ -64,9 +67,7 @@
                 <div class="article-title font-title">
                     <span>Change Description</span>
                 </div>
-                <textarea class="textarea-form" placeholder="Enter the description here">
-                    {$description}
-                </textarea>
+                <textarea class="textarea-form" placeholder="Enter the description here" name="description" data-content="{$description}"></textarea>
             </div>
             <!-- / Bottom article -->
 

@@ -18,7 +18,15 @@ class Users
         $query = $pdo->prepare($sql);
         $query->execute(array($login,$email));
         if($query -> fetch() != 0){
-            header('Location:Index.php?error=connect');
+//            header('Location:Index.php?error=connect');
+            $res = array(
+                    'toastr' => array (
+                        "type" => "error",
+                        "message" => "Login or Mail already taken.",
+                    ),
+                    "success" => false,
+                );
+            return $res;
         }
         else{
             if(isset($password) && isset($confirm) && $password == $confirm){
@@ -40,14 +48,27 @@ class Users
 
                 $_SESSION['id'] = $line['id'];
                 $_SESSION['login'] = $login;
-                echo $_SESSION['id'];
-                echo $login;
-                echo $email;
-                echo $password;
-                header('Location:Index.php');
+//                header('Location:Index.php');
+                $res = array(
+                    'toastr' => array (
+                        "type" => "success",
+                        "message" => "Subscribed and connected",
+                    ),
+                    "username" => $_SESSION['login'],
+                    "success" => true,
+                );
+                return $res;                
             }
             else{
-                header('Location:Index.php?error=passwordNoMatch');
+//                header('Location:Index.php?error=passwordNoMatch');
+            $res = array(
+                    'toastr' => array (
+                        "type" => "error",
+                        "message" => "The password and the confirmation given don't match.",
+                    ),
+                    "success" => false,
+                );
+            return $res;
             }
         }
     }
@@ -77,13 +98,38 @@ class Users
                 session_start();
                 $_SESSION['id'] = $line['id'];
                 $_SESSION['login'] = $line['login'];
-                header('Location:Index.php');
+//                header('Location:Index.php');
+                $res = array(
+                    'toastr' => array (
+                        "type" => "success",
+                        "message" => "Connected",
+                    ),
+                    "username" => $_SESSION['login'],
+                    "success" => true,
+                );
+                return $res;
             } else {
-                header('Location:Index.php?error=passlog');
+//                header('Location:Index.php?error=passlog');
+                $res = array(
+                    'toastr' => array (
+                        "type" => "error",
+                        "message" => "The password is incorrect.",
+                    ),
+                    "success" => false,
+                );
+                return $res;
             }
         }
         else {
-            header('Location:Index.php?error=login');
+//            header('Location:Index.php?error=login');
+            $res = array(
+                    'toastr' => array (
+                        "type" => "error",
+                        "message" => "This login doesn't exist.",
+                    ),
+                    "success" => false,
+                );
+            return $res;
         }
     }
     
