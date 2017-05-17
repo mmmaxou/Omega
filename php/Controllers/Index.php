@@ -196,6 +196,22 @@ if ($_GET['module'] == "index" || !isset($_GET['module'])) {
         $smarty->display('../Views/Index.tpl');
     }
 }
+if ($_GET['module'] == "research" && isset($_GET['query'])) {
+    $q = $_GET['query'];
+    
+    $results = $Page->searchQuery($q);
+    for ($i=0; $i < sizeof($results); $i++) {
+        $results[$i]['content'] = html_entity_decode($results[$i]['content']);
+        $results[$i]['content'] = str_replace($q, "<span class='underlined'>".$q."</span>", $results[$i]['content']);
+        $results[$i]['title'] = str_replace($q, "<span class='underlined'>".$q."</span>", $results[$i]['title']);
+    }
+    
+    $smarty->assign("query", $q);
+    $smarty->assign("results", $results);
+//    if ($_GET['partial'] == "1") {
+//        $smarty->display('../Views/Research.tpl');
+//    }
+}
 
 if (empty($_GET['partial'])) {
     $smarty->display('../Views/Controller.tpl');

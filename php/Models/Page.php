@@ -68,7 +68,6 @@ class Page{
     }
     
     function incrementView($id) {
-        
         $bdd = new Connexion();
         $pdo = $bdd->myPDO();
         $query = $pdo->prepare('UPDATE t_page SET view = view + 1 WHERE id = :id');
@@ -76,6 +75,18 @@ class Page{
             'id' => $id,
         ));
         
+    }
+    
+    public function searchQuery($q) {
+        $bdd = new Connexion();
+        $pdo = $bdd->myPDO();
+        
+        $query = $pdo->prepare("SELECT DISTINCT t_page.* FROM t_page INNER JOIN t_menu ON t_page.id = t_menu.page_id WHERE (title LIKE :q OR content LIKE :q OR description LIKE :q OR keywords LIKE :q) AND t_menu.display = 1");
+        $query->execute(array(
+            'q' => "%".$q."%",
+        ));
+        
+        return $query->fetchAll();        
     }
 }
 

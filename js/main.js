@@ -1,5 +1,5 @@
 DUPLICATE_ARTICLE = false;
-DUPLICATE_RESULTS = true;
+DUPLICATE_RESULTS = false;
 var Editor;
 
 toastr.options = {

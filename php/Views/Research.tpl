@@ -2,21 +2,32 @@
 <div class="element">
     <div class="element-content">
         <div class="font-title">Research results</div>
-        <div class="font-light">You searched for : <span id="query" class="font-small color-main">this</span></div>
+        <div class="font-light">You searched for : <span id="query" class="font-small color-main">{$query}</span></div>
 
         <div id="results">
-            <div id="result" class="result">
+            
+            <!--If data found-->
+            {if $results|@count == 0}
+            <!--Nothing-->
+            No results found.            
+            <!--Else : show the data-->
+            {else} {foreach $results as $res}
+
+            <div class="result">
                 <!-- Article title -->
-                <div class="font-title"><span class="underlined">This</span> is a title</div>
+                <a class="font-title" href="Index.php?module=article&id={$res.id}">{$res.title}</a>
                 <div class="result-content clearfix">
-                    <div class="wrapper-img" style="height:250px;" data-src="http://lorempixel.com/400/200/"></div>
+                    <a class="wrapper-img" href="Index.php?module=article&id={$res.id}" style="height:250px;" data-src="../../uploads/{$res.image}"></a>
                     <!-- Article text -->
-                    <p class="result-excerpt">
-                        Cillum voluptate eiusmod. Eiusmod minim aliqua a anim, malis admodum voluptate ab de irure aute tamen <span class="underlined">this</span> quo e magna voluptatibus, excepteur enim quibusdam offendit a id illum ab eram si eram an iudicem ut quae hic cupidatat noster admodum eiusmod.
-                    </p>
+                    <div class="result-excerpt">
+                        {$res.content}
+                    </div>
                 </div>
 
             </div>
+
+            {/foreach} {/if}
+
         </div>
     </div>
 </div>
