@@ -11,13 +11,14 @@
 //require_once ('../Connexion.php');
 class Page{
 
-    public function sendDBpage($title,$content,$description){
+    public function sendDBpage($title,$content,$description,$keywords){
         $bdd=new Connexion();
-        $req = $bdd->myPDO()->prepare('INSERT INTO t_page(title, content, description) VALUES(:title, :content, :description)');
+        $req = $bdd->myPDO()->prepare('INSERT INTO t_page(title, content, description, keywords) VALUES(:title, :content, :description, :keywords)');
         $req->execute(array(
             'title' => $title,
             'content' => $content,
-            'description' => $description
+            'description' => $description,
+            'keywords' => $keywords
         ));
         $req1 = $bdd->myPDO()->query('SELECT max(id) FROM t_page');
         return $req1->fetch();
@@ -58,11 +59,10 @@ class Page{
         return $reponse->fetch();
     }
 
-
     public function gatherPageData(){
         $bdd=new Connexion();
         $reponse = $bdd->myPDO()->query('SELECT * FROM t_page');
-        return $reponse->fetch();
+        return $reponse->fetchAll();
     }
 }
 

@@ -44,7 +44,7 @@ class Menu
     public function deleteBDmenu($id){    
         $bdd = new Connexion();
         $pdo = $bdd->myPDO();
-        $req = $pdo->prepare('SELECT page_id FROM t_menu where id = :id ');
+        $req = $pdo->prepare('SELECT * FROM t_menu where id = :id ');
         $req->execute(array(
             'id'=> $id
         ));
@@ -116,6 +116,44 @@ class Menu
             'id' => $my_menu_id[0]
         ));
         return $req->fetch();
+    }
+
+
+
+    public function getNbMenuPere($id){
+        $bdd = new Connexion();
+        $pdo = $bdd->myPDO();
+        $req = $pdo->prepare('SELECT count(*) from t_menu where parent_menu_id  = ?');
+        $req->execute(array($id));
+        return $req->fetchAll();
+    }
+
+
+    public function getMenuID($id){
+        $bdd = new Connexion();
+        $pdo = $bdd->myPDO();
+        $req = $pdo->prepare('SELECT * from t_menu where id  = ?');
+        $req->execute(array($id));
+        return $req->fetchAll();
+    }
+
+
+    public function setDisplay($id,$nb){
+        $bdd = new Connexion();
+        $pdo = $bdd->myPDO();
+        $req = $pdo->prepare('UPDATE t_menu SET display = :nb WHERE id = :id');
+        $req->execute(array(
+            'nb'=> $nb,
+            'id'=> $id
+        ));
+    }
+
+    public function getFather($id){
+        $bdd = new Connexion();
+        $pdo = $bdd->myPDO();
+        $req = $pdo->prepare('SELECT parent_menu_id from t_menu where id  = ?');
+        $req->execute(array($id));
+        return $req->fetchAll();
     }
 
 }

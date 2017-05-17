@@ -18,6 +18,14 @@ class Gallery
         return $req1->fetch();
     }
 
+    public function deleteGallery($id){
+        $bdd=new Connexion();
+        $pdo=$bdd->myPDO();
+        $req1 = $pdo->prepare('DELETE FROM t_gallery WHERE id= :id');
+        $req1->execute(array(
+            'id' => $id
+        ));
+    }
 
 
 

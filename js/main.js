@@ -35,6 +35,14 @@ $(document).ready(load)
 
 function load_general() {
 
+    // Image placement
+    $('.wrapper-img').each(function () {
+        src = $(this).attr('data-src')
+        if ( src == "../../uploads/") {
+            src = "../../uploads/default.jpeg"
+        }
+        $(this).css('background-image', 'url(' + src + ')')
+    })
     resizeImg()
 
     // Change the partial    
@@ -113,12 +121,6 @@ function load_layout() {
 
 
     }
-
-    // Image placement
-    $('.wrapper-img').each(function () {
-        src = $(this).attr('data-src')
-        $(this).css('background-image', 'url(' + src + ')')
-    })
 
     $(window).resize(function () {
         resizeImg()
@@ -573,10 +575,9 @@ function load_article() {
         dots: true,
         autoplay: true,
         autoplaySpeed: 5000,
-        slidesToShow: 2,
-        adaptiveHeight: true,
+        slidesToShow: 3,
         centerMode: true,
-        centerPadding: '0px',
+        variableWidth: true,
         responsive: [
             {
                 breakpoint: 600,
@@ -654,10 +655,10 @@ function getMaxHeightCol2() {
             return
         }
         $('.col2').addClass('animating')
-        animateScrollBottom('.col2', function () {
-            $('.col2').addClass('unstick')
-            $('.col2').removeClass('animating')
-        })
+//        animateScrollBottom('.col2', function () {
+//            $('.col2').addClass('unstick')
+//            $('.col2').removeClass('animating')
+//        })
     } else {
         if (!isUnstick || isAnimating) {
             return

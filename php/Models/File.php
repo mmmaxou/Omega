@@ -8,6 +8,7 @@
  */
 
 
+
 class File
 {
     public function addFile($gallery_id, $label){
@@ -19,23 +20,31 @@ class File
         ));
     }
 
-    public function getOneImage($id){
-        /*$page = new Page();
-        $menu = new Menu();
-        $myMenu = $page['']*/
-    }
-
     public function getAllImages($id){
         $bdd = new Connexion();
         $pdo = $bdd->myPDO();
-        $req = $pdo->prepare('SELECT label FROM t_file JOIN t_menu JOIN t_gallery WHERE t_gallery.id = t_menu.gallery_id AND t_menu.page_id = :id AND t_file.gallery_id = t_gallery.id');
+        $req = $pdo->prepare('SELECT label FROM t_file join t_menu join t_gallery where t_gallery.id = t_menu.gallery_id and t_menu.page_id = :id  and t_file.gallery_id = t_gallery.id');
         $req->execute(array(
             'id'=> $id
         ));
         return $req->fetchAll();
     }
 
+    public function deleteFileGallery($id){
+        $bdd=new Connexion();
+        $pdo=$bdd->myPDO();
+        $req1 = $pdo->prepare('DELETE FROM t_file WHERE gallery_id= :id');
+        $req1->execute(array(
+            'id' => $id
+        ));;
+    }
 
 
+    public function getOneImage(){
+        $bdd = new Connexion();
+        $pdo = $bdd->myPDO();
+        $req = $pdo->query('SELECT label, gallery_id FROM t_file GROUP BY gallery_id');
+        return $req->fetchAll();
+    }
 
 }

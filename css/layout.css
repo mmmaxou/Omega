@@ -24,6 +24,9 @@
 
 .element .element-content {
     padding: 15px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 .element-lister li {
@@ -57,9 +60,11 @@
 }
 
 .article-text {
-    font-size: var(--font-small);
-    font-size: 1em;
+    font-size: var(--font-tiny);
+    font-size: 0.7em;
     text-align: justify;
+    max-height: 250px;
+    overflow: hidden;
 }
 
 .article-bottom {

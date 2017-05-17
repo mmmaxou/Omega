@@ -73,9 +73,10 @@ for ( $i=0; $i < sizeof($menuWithChildren); $i++) {
         }
     }
 }
-// Link images with the menu for convenience
+
 $smarty->assign("menuNoChildren", $menuNoChildren);
 $smarty->assign("menuWithChildren", $menuWithChildren);
+
 // Session data
 if(isset($_SESSION['id'])) {
 	// We are connected, we send data to the page
@@ -118,6 +119,56 @@ if ($_GET['module'] == "article" && isset($_GET['id'])) {
     }
 }
 if ($_GET['module'] == "index" || !isset($_GET['module'])) {
+    
+    $images = $File->getOneImage();
+    $pages = $Page->gatherPageData();
+    
+    // Gather all data for each excerpt
+    for ( $i=0; $i < sizeof($menuNoChildren); $i++) {
+        $gallery_id = $menuNoChildren[$i]['gallery_id'];
+        $page_id = $menuNoChildren[$i]['page_id'];
+        foreach($images as $image) {
+            if ($image['gallery_id'] == $gallery_id) {
+                $menuNoChildren[$i]['image'] = $image['label'];
+            }
+        }
+        foreach($pages as $page){
+            if ($page['id'] == $page_id) {
+                $excerpt = $page['content'];
+                $excerpt = html_entity_decode($excerpt);
+                $menuNoChildren[$i]['excerpt'] = $excerpt;
+            }
+        }
+    }
+    // Gather all data for each excerpt
+    for ( $i=0; $i < sizeof($menuWithChildren); $i++) {
+        for ($j=0; $j < sizeof($menuWithChildren[$i]); $j++) {
+             if ( $menuWithChildren[$i][$j]['display'] == 1) {
+                $gallery_id = $menuWithChildren[$i][$j]['gallery_id'];
+                $page_id = $menuWithChildren[$i][$j]['page_id'];
+                foreach($images as $image) {
+                    if ($image['gallery_id'] == $gallery_id) {
+                        $menuWithChildren[$i][$j]['image'] = $image['label'];
+                    }
+                }
+                foreach($pages as $page){
+                    if ($page['id'] == $page_id) {
+                        $excerpt = $page['content'];
+                        $excerpt = html_entity_decode($excerpt);
+                        $menuWithChildren[$i][$j]['excerpt'] = $excerpt;
+                    }
+                }
+            }
+        }
+        
+    }
+    
+    
+    
+    // Link images with the menu for convenience
+    $smarty->assign("menuNoChildren", $menuNoChildren);
+    $smarty->assign("menuWithChildren", $menuWithChildren);
+    
     if ($_GET['partial'] == "1") {
         $smarty->display('../Views/Index.tpl');
     }
@@ -126,4 +177,3 @@ if ($_GET['module'] == "index" || !isset($_GET['module'])) {
 if (empty($_GET['partial'])) {
     $smarty->display('../Views/Controller.tpl');
 }
-
