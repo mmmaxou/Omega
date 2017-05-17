@@ -23,8 +23,15 @@ $url = "";
 foreach ($decoded['added'] as $add) {
     $nl2br1 = nl2br($add['name']);
     $name = htmlspecialchars($nl2br1);
-    $page_id = $page->sendDBpage($add['name'],null,null);
+    // date
+    date_default_timezone_set('UTC');
+    $date = date("Y-m-d H:i:s");    
+    
+    $page_id = $page->sendDBpage($add['name'],null,null,null,$date);
     $gallery_id = $gallery->addGallery($add['name']);
+    
+
+    
     $menu->sendDBmenu($name, $add['parent_menu_id'], $page_id[0] , $_SESSION['id'],$gallery_id[0]);
     
     if ($add['parent_menu_id'] != null) {
@@ -32,7 +39,6 @@ foreach ($decoded['added'] as $add) {
     }
     $url = "module=article&id=$page_id[0]";
 }
-
 
 foreach ($decoded['modified'] as $up) {
     $nl2br1 = nl2br($up['id']);

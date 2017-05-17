@@ -20,8 +20,8 @@
 
             <!-- Bottom article -->
             <div class="article-bottom">
-                <span class="color-on-hover"><i class="fa fa-calendar" aria-hidden="true"></i> date</span>
-                <span class="color-on-hover"><i class="fa fa-eye" aria-hidden="true"></i> views</span>
+                <span class="color-on-hover"><i class="fa fa-calendar" aria-hidden="true"></i> {$article.date}</span>
+                <span class="color-on-hover"><i class="fa fa-eye" aria-hidden="true"></i> {$article.view}</span>
                 <span class="color-on-hover"><i class="fa fa-folder-o" aria-hidden="true"></i> category</span>
                 <span class="color-on-hover"><a href="Index.php?module=article&id={$article.page_id}"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> Read more</a></span>
             </div>
@@ -55,8 +55,8 @@
 
             <!-- Bottom article -->
             <div class="article-bottom">
-                <span class="color-on-hover"><i class="fa fa-calendar" aria-hidden="true"></i> date</span>
-                <span class="color-on-hover"><i class="fa fa-eye" aria-hidden="true"></i> views</span>
+                <span class="color-on-hover"><i class="fa fa-calendar" aria-hidden="true"></i> {$article.date}</span>
+                <span class="color-on-hover"><i class="fa fa-eye" aria-hidden="true"></i> {$article.view}</span>
                 <span class="color-on-hover"><i class="fa fa-folder-o" aria-hidden="true"></i> category</span>
                 <span class="color-on-hover"><a href="Index.php?module=article&id={$article.page_id}"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> Read more</a></span>
             </div>

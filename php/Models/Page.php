@@ -11,14 +11,15 @@
 //require_once ('../Connexion.php');
 class Page{
 
-    public function sendDBpage($title,$content,$description,$keywords){
+    public function sendDBpage($title,$content,$description,$keywords,$date){
         $bdd=new Connexion();
-        $req = $bdd->myPDO()->prepare('INSERT INTO t_page(title, content, description, keywords) VALUES(:title, :content, :description, :keywords)');
+        $req = $bdd->myPDO()->prepare('INSERT INTO t_page(title, content, description, keywords, date) VALUES(:title, :content, :description, :keywords, :date)');
         $req->execute(array(
             'title' => $title,
             'content' => $content,
             'description' => $description,
-            'keywords' => $keywords
+            'keywords' => $keywords,
+            'date' => $date,
         ));
         $req1 = $bdd->myPDO()->query('SELECT max(id) FROM t_page');
         return $req1->fetch();
@@ -52,6 +53,7 @@ class Page{
     public function gatherPageDataId($id){
         $bdd = new Connexion();
         $pdo = $bdd->myPDO();
+             
         $reponse = $pdo->prepare('SELECT * FROM t_page WHERE id= :id');
         $reponse->execute(array(
             'id' => $id,
@@ -63,6 +65,17 @@ class Page{
         $bdd=new Connexion();
         $reponse = $bdd->myPDO()->query('SELECT * FROM t_page');
         return $reponse->fetchAll();
+    }
+    
+    function incrementView($id) {
+        
+        $bdd = new Connexion();
+        $pdo = $bdd->myPDO();
+        $query = $pdo->prepare('UPDATE t_page SET view = view + 1 WHERE id = :id');
+        $query->execute(array(
+            'id' => $id,
+        ));
+        
     }
 }
 

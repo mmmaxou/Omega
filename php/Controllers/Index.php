@@ -103,7 +103,15 @@ if ($_GET['module'] == "article" && isset($_GET['id'])) {
     $keywords = decode($keywords);
     $description = $page_data['description'];
     $description = decode($description);
-        
+    $view = $page_data['view'];
+    $date = new DateTime($page_data['date']);
+    $date = $date->format('d M Y G:i');
+    
+    if (!isset($_GET['partial'])) {
+        $Page->incrementView($id);
+        $view++;
+    }
+    
     // Gather all images
     $images = $File->getAllImages($id);
         
@@ -113,6 +121,9 @@ if ($_GET['module'] == "article" && isset($_GET['id'])) {
     $smarty->assign("content", $content);
     $smarty->assign("pageId", $id);
     $smarty->assign("images", $images);
+    $smarty->assign("view",$view);
+    $smarty->assign("date",$date);
+    
     
     if ($_GET['partial'] == "1") {
         $smarty->display('../Views/Article.tpl');
@@ -136,7 +147,13 @@ if ($_GET['module'] == "index" || !isset($_GET['module'])) {
             if ($page['id'] == $page_id) {
                 $excerpt = $page['content'];
                 $excerpt = html_entity_decode($excerpt);
+                $view = $page['view'];                
+                $date = new DateTime($page['date']);
+                $date = $date->format('d/n/y');
+                
                 $menuNoChildren[$i]['excerpt'] = $excerpt;
+                $menuNoChildren[$i]['view'] = $view;
+                $menuNoChildren[$i]['date'] = $date;
             }
         }
     }
@@ -155,7 +172,13 @@ if ($_GET['module'] == "index" || !isset($_GET['module'])) {
                     if ($page['id'] == $page_id) {
                         $excerpt = $page['content'];
                         $excerpt = html_entity_decode($excerpt);
+                        $view = $page['view'];   
+                        $date = new DateTime($page['date']);
+                        $date = $date->format('d/n/y');
+                        
                         $menuWithChildren[$i][$j]['excerpt'] = $excerpt;
+                        $menuWithChildren[$i][$j]['view'] = $view;
+                        $menuWithChildren[$i][$j]['date'] = $date;
                     }
                 }
             }

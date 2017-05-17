@@ -73,8 +73,8 @@
             <!-- Bottom article -->
             <div class="article-bottom">
                 <div class="hr"></div>
-                <span class="color-on-hover"><i class="fa fa-calendar" aria-hidden="true"></i> date</span>
-                <span class="color-on-hover"><i class="fa fa-eye" aria-hidden="true"></i> views</span>
+                <span class="color-on-hover"><i class="fa fa-calendar" aria-hidden="true"></i> {$date}</span>
+                <span class="color-on-hover"><i class="fa fa-eye" aria-hidden="true"></i> {$view}</span>
                 <span class="color-on-hover"><i class="fa fa-folder-o" aria-hidden="true"></i> category</span>
             </div>
             <!-- / Bottom article -->
