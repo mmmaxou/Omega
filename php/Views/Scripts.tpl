@@ -5,7 +5,6 @@
 <script src="{$root_url}lib/tinymce.min.js" type="text/javascript"></script>
 <script src="{$root_url}lib/slick/slick.min.js" type="text/javascript"></script>
 <script src="{$root_url}js/main.js" type="text/javascript"></script>
-<script src="{$root_url}js/article.js" type="text/javascript"></script>
 
 <!--Display messages to the user-->
 {if $toastr}

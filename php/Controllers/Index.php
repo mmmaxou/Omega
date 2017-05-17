@@ -117,6 +117,11 @@ if ($_GET['module'] == "article" && isset($_GET['id'])) {
         $smarty->display('../Views/Article.tpl');
     }
 }
+if ($_GET['module'] == "index" || !isset($_GET['module'])) {
+    if ($_GET['partial'] == "1") {
+        $smarty->display('../Views/Index.tpl');
+    }
+}
 
 if (empty($_GET['partial'])) {
     $smarty->display('../Views/Controller.tpl');

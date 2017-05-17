@@ -11,8 +11,7 @@
                 <div class="connected" {if !$connected} style="display:none;" {/if}>
                 
                 <span class="pull-right edit-button">
-                <span class="hr-vertical"></span>
-                <a id="edit-article" href="" class="btn-main">
+                <a id="edit-article" class="btn-main">
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                 </a>
                 </span>
@@ -22,10 +21,6 @@
 
 
             </div>
-
-            <img class="img-responsive img-article" src="http://lorempixel.com/400/200/" alt="image">
-
-
 
             <div class="slick-test">
                 {foreach $images as $image}
@@ -84,7 +79,8 @@
             <!-- Bottom article -->
             <div class="article-bottom changes" style="display:none;">
                 <div class="hr"></div>
-                <button type="button" class="btn btn-default btn-close" data-dismiss="modal">Cancel</button>
+<!--                <button type="button" class="btn btn-default btn-close" data-dismiss="modal">Cancel</button>-->
+                <a class="btn btn-default btn-close" href="Index.php?module=article&id={$pageId}">Cancel</a>
                 <button type="button" class="btn btn-default btn-main save" data-dismiss="modal">Save changes</button>
             </div>
             <!-- / Bottom article -->

@@ -58,6 +58,9 @@
     font-size: 80%;
     transform: translateY(-2px);
 }
+#edit-article {
+    display: block;
+}
 
 
 /* bouton retout en haut */
@@ -337,12 +340,9 @@ textarea {
 /* SLICK */
 
 .slick-test {
-    padding: 15px;
-    background-color: #3f5fa7;
-    background-color: var(--color-main);
-    -webkit-box-shadow: inset 0px 0px 5px 5px rgba(0, 0, 0, 0.5);
-    -moz-box-shadow: inset 0px 0px 5px 5px rgba(0, 0, 0, 0.5);
-    box-shadow: inset 0px 0px 5px 5px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: inset 0px 0px 5px 5px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 0px 0px 5px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0px 0px 5px 5px rgba(0, 0, 0, 0.2);
     cursor: grab;
 }
 
@@ -353,9 +353,9 @@ textarea {
 }
 
 .slick-slide img {
-    -webkit-box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.7);
-    -moz-box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.7);
-    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.7);
+    -webkit-box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.4);
     width: 70%;
 }
 

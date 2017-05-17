@@ -20,7 +20,62 @@ toastr.options = {
     "hideMethod": "fadeOut"
 }
 
-$(document).ready(function () {
+function load() {
+
+    load_layout()
+
+    load_general()
+
+    load_article()
+
+}
+$(document).ready(load)
+
+
+
+function load_general() {
+
+    resizeImg()
+
+    // Change the partial    
+    $('a[href]').click(function (e) {
+        e.preventDefault()
+        //        console.log($(this))
+        var href = $(this).attr("href")
+        if (!href || href == "") {
+            return
+        }
+        href = href.replace("Index.php", "").replace("?", "")
+        var data = href + "&partial=1"
+        //        console.log(data)
+
+        $.ajax({
+            url: 'Index.php',
+            type: 'GET',
+            data: data,
+            dataType: 'text',
+            success: function (res, statut) {
+                //                console.log(res)
+                $("#partial").empty().append(res);
+                window.history.replaceState({
+                    "html": res,
+                    "pageTitle": "Omega"
+                }, "", "Index.php?" + href)
+                
+                $(document).ready(function(){
+                load_general()
+                load_article()
+                })
+            },
+        })
+
+    })
+}
+
+function load_layout() {
+    /* ########################## */
+    /* ######### LAYOUT ######### */
+    /* ########################## */
 
     // Menu fixed
     var menuContent, h;
@@ -59,6 +114,16 @@ $(document).ready(function () {
 
     }
 
+    // Image placement
+    $('.wrapper-img').each(function () {
+        src = $(this).attr('data-src')
+        $(this).css('background-image', 'url(' + src + ')')
+    })
+
+    $(window).resize(function () {
+        resizeImg()
+    })
+
 
     //Button top
     $('#back-to-top').click(function () {
@@ -68,22 +133,7 @@ $(document).ready(function () {
     })
 
 
-    // Image placement
-    $('.wrapper-img').each(function () {
-        src = $(this).attr('data-src')
-        $(this).css('background-image', 'url(' + src + ')')
-    })
-    resizeImg()
-    $(window).resize(function () {
-        resizeImg()
-    })
-
-
-
-
-
-    /* ######### CONNEXION ######### */
-
+    // Connexion
     $('#connexion-dropdown .nav li').click(function (e) {
         e.preventDefault()
         var toggle = $(this).attr('data-toggle')
@@ -124,7 +174,7 @@ $(document).ready(function () {
             },
         })
 
-    })    
+    })
     $('#disconnect').click(function (e) {
         e.preventDefault()
         var data = null;
@@ -178,58 +228,29 @@ $(document).ready(function () {
                 if (res.toastr) {
                     showToastr(res.toastr)
                 }
-                
-                if(res.success) {
-                $('#change').prev().click()
+
+                if (res.success) {
+                    $('#change').prev().click()
                 }
             },
         })
 
     })
+
     function connect(username) {
         $(".connected").fadeIn()
         $(".disconnected").hide()
-        $("#username").text(username)        
+        $("#username").text(username)
     }
-    function disconnect () {
+
+    function disconnect() {
         $(".connected").hide()
         $(".disconnected").fadeIn()
     }
 
-    // Change the partial
-    
-    $('#dropdown-content a').click(function(e){
-        e.preventDefault()
-        console.log($(this))
-        var href = $(this).attr("href")
-        if (!href) {
-            return
-        }
-        href = href.replace("Index.php?","")
-        var data = href+"&partial=1"
-        console.log(data)
-        
-        $.ajax({
-            url: 'Index.php',
-            type: 'GET',
-            data: data,
-            dataType: 'text',
-            success: function (res, statut) {
-                console.log(res)
-                $("#partial").empty().append(res);
-            },
-        })
-        
-    })
-    
-    
-    
-    
 
 
-
-
-    /* ######### EDIT MAIN PAGE ######### */
+    /* ######### EDIT MENU ######### */
 
     // Add Menu
     // Little
@@ -452,9 +473,9 @@ $(document).ready(function () {
 
     })
 
+}
 
-
-
+function load_article() {
     /* ######### EDIT ARTICLE ######### */
 
     $('#edit-article').click(function (e) {
@@ -525,7 +546,7 @@ $(document).ready(function () {
     $('.changes .save').click(function (e) {
         e.preventDefault()
 
-        var title = $('#article-title > span:first-child').text().replace(/\n/g,'')
+        var title = $('#article-title > span:first-child').text().replace(/\n/g, '')
         title = title != "" ? title : undefined;
 
         var content = tinymce.editors[0].getContent()
@@ -545,11 +566,65 @@ $(document).ready(function () {
         $('#form-article').submit()
     })
     
-    
-    
+    /* ############ SLICK ############ */
 
+    $('.slick-test').slick({
+        infinite: true,
+        dots: true,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        slidesToShow: 2,
+        adaptiveHeight: true,
+        centerMode: true,
+        centerPadding: '0px',
+        responsive: [
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                }
+    }
+  ]
+    });
 
-})
+    $("#comm").submit(function (e) {
+        e.preventDefault();
+        ajoutComment();
+    })
+}
+
+function ajoutComment() {
+    var name = document.getElementById('name').value;
+    var comment = document.getElementById('comment').value;
+    var date = new Date();
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
+    var textnode = document.createTextNode(comment); // Create a text node
+    var textnode2 = document.createTextNode(name); // Create a text node
+    var textnode3 = document.createTextNode(day + '/' + month + '/' + year); // Create a text node
+    var node = document.createElement("DIV"); // Create a <li> node
+    var node4 = document.createElement("SPAN"); // Create a <li> node
+    var node5 = document.createElement("SPAN"); // Create a <li> node
+    var node2 = document.createElement("P"); // Create a <li> node
+    var node3 = document.createElement("DIV"); // Create a <li> node
+    node4.classList.add("author");
+    node4.appendChild(textnode2);
+    node5.classList.add("date");
+    node5.appendChild(textnode3);
+    node3.appendChild(node4); // Append the text to <li>
+    node3.appendChild(node5); // Append the text to <li>
+    node2.classList.add("comment-body")
+    node2.appendChild(textnode);
+    node3.classList.add("comment-infos");
+    node3.appendChild(node4);
+    node3.appendChild(node5);
+    node.classList.add("comment");
+    node.appendChild(node2); // Append the text to <li>
+    node.appendChild(node3); // Append the text to <li>
+    document.getElementById("comments").appendChild(node);
+}
 
 function getMenuOffset() {
     return $('.content .navbar')[0].offsetTop;
