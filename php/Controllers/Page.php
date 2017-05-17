@@ -67,6 +67,10 @@ $content = transform($decoded['content']);
 $keywords = transform($decoded['keywords']);
 $description = transform($decoded['description']);
 $id_menu = $Page->updateBDpage($_GET['id'],$title,$content,$description,$keywords);
+$deleted_images = $decoded['deleted_images'];
+foreach($deleted_images as $id) {
+    $File->deleteId($id);
+}
 
 
 
@@ -86,4 +90,4 @@ if(isset($_FILES['image'])){
 //echo $title;
 //echo $_SESSION['id'];
 $menu->updateBDmenu($id_menu[0],$title,$_SESSION['id']);
-//header('Location:Index.php?module=article&id='.$_GET['id']);
+header('Location:Index.php?module=article&id='.$_GET['id']);

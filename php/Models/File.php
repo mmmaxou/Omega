@@ -23,7 +23,7 @@ class File
     public function getAllImages($id){
         $bdd = new Connexion();
         $pdo = $bdd->myPDO();
-        $req = $pdo->prepare('SELECT label FROM t_file join t_menu join t_gallery where t_gallery.id = t_menu.gallery_id and t_menu.page_id = :id  and t_file.gallery_id = t_gallery.id');
+        $req = $pdo->prepare('SELECT label,t_file.id FROM t_file join t_menu join t_gallery where t_gallery.id = t_menu.gallery_id and t_menu.page_id = :id  and t_file.gallery_id = t_gallery.id');
         $req->execute(array(
             'id'=> $id
         ));
@@ -33,10 +33,14 @@ class File
     public function deleteFileGallery($id){
         $bdd=new Connexion();
         $pdo=$bdd->myPDO();
-        $req1 = $pdo->prepare('DELETE FROM t_file WHERE gallery_id= :id');
+        $req1 = $pdo->prepare('select id FROM t_file WHERE gallery_id= :id');
         $req1->execute(array(
             'id' => $id
-        ));;
+        ));
+        while ($idFile = $req1->fetch())
+        {
+            $this->deleteId($idFile);
+        }
     }
 
 
@@ -47,4 +51,31 @@ class File
         return $req->fetchAll();
     }
 
+    public function deleteId($id){
+        $bdd = new Connexion();
+        $pdo = $bdd->myPDO();
+        $req = $pdo->prepare('SELECT label FROM t_file WHERE id = :id');
+        $req->execute(array(
+            'id' => $id
+        ));
+        $label = $req->fetch();
+        $label = $label['label'];
+        var_dump($label);
+        $this->delete('uploads', $label);
+        $req1 = $pdo->prepare('DELETE FROM t_file WHERE id= :id');
+        $req1->execute(array(
+            'id' => $id
+        ));
+
+    }
+
+
+    function delete($folder , $file){
+        $path = "../../".$folder."/".$file;
+        $dir = getcwd();
+        if($file!="." AND $file!=".." AND !is_dir($file))
+        {
+            unlink($path);
+        }
+    }
 }

@@ -24,7 +24,10 @@
 
             <div class="slick-test">
                 {foreach $images as $image}
-                <div><img src="{$root_url}uploads/{$image.label}" alt="image"></div>
+                <div>
+                <img src="{$root_url}uploads/{$image.label}" alt="image" data-id="{$image.id}">
+                <span class="delete"><i class="fa fa-trash" aria-hidden="true"></i></span>
+                </div>
                 {/foreach}
             </div>
 

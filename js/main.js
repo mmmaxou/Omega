@@ -38,7 +38,7 @@ function load_general() {
     // Image placement
     $('.wrapper-img').each(function () {
         src = $(this).attr('data-src')
-        if ( src == "../../uploads/") {
+        if (src == "../../uploads/") {
             src = "../../uploads/default.jpeg"
         }
         $(this).css('background-image', 'url(' + src + ')')
@@ -69,10 +69,10 @@ function load_general() {
                     "html": res,
                     "pageTitle": "Omega"
                 }, "", "Index.php?" + href)
-                
-                $(document).ready(function(){
-                load_general()
-                load_article()
+
+                $(document).ready(function () {
+                    load_general()
+                    load_article()
                 })
             },
         })
@@ -316,24 +316,6 @@ function load_layout() {
         deleteBigMenu($(this), event)
     })
 
-    // Content edition
-    function contenteditableActivation() {
-
-        $('[contenteditable="true"]').each(function () {
-            var content = $(this).text()
-            $(this).attr('data-content', content)
-        })
-        $('[contenteditable="true"]').on('keyup keypress blur change', function () {
-            var base = $(this).attr('data-content')
-            var text = $(this).text()
-            if (text != base) {
-                $(this).addClass("modified")
-            } else {
-                $(this).removeClass("modified")
-            }
-        })
-
-    }
 
     contenteditableActivation()
 
@@ -526,10 +508,9 @@ function load_article() {
         // Confirmation
 
         $('.article-bottom.changes').fadeIn()
-        $('.article-bottom#keywords')
-            .fadeIn()
-        $('.article-bottom#description')
-            .fadeIn()
+        $('.article-bottom#keywords').fadeIn()
+        $('.article-bottom#description').fadeIn()
+        $('.slick-slide .delete').fadeIn()
 
         $(".textarea-form").each(function (e) {
             $(this).val($(this).attr("data-content"))
@@ -555,19 +536,47 @@ function load_article() {
 
         var keywords = $('#keywords textarea').val()
         var description = $('#description textarea').val()
+        
+        var deleted_images = [];
+        $('.slick-slide .deleted').each(function(){
+            var id = $(this).attr('data-id');
+            var id_exist = deleted_images.some(function(elt){
+                return elt == id
+            })
+            if (!id_exist){
+                deleted_images.push(id)
+            }
+        })
 
         var data = {
             title: title,
             content: content,
             keywords: keywords,
             description: description,
+            deleted_images: deleted_images,
         }
         $("#data").val(JSON.stringify(data))
         console.log($('#data').val())
 
         $('#form-article').submit()
     })
-    
+
+    $('.delete').click(function (e) {        
+        var id = $(this).prev().attr("data-id")
+        
+        $(this).parent().parent().children().each(function(){
+            if ($(this).children("img").attr("data-id") == id) {
+                $(this)
+                    .children("img")
+                    .toggleClass('deleted')
+                    .next()
+                    .children()
+                    .toggleClass("fa-trash")
+                    .toggleClass("fa-undo")
+            }
+        })
+    })
+
     /* ############ SLICK ############ */
 
     $('.slick-test').slick({
@@ -575,7 +584,8 @@ function load_article() {
         dots: true,
         autoplay: true,
         autoplaySpeed: 5000,
-        slidesToShow: 3,
+        slidesToShow: 1,
+        slidesToScroll: 3,
         centerMode: true,
         variableWidth: true,
         responsive: [
@@ -655,10 +665,10 @@ function getMaxHeightCol2() {
             return
         }
         $('.col2').addClass('animating')
-//        animateScrollBottom('.col2', function () {
-//            $('.col2').addClass('unstick')
-//            $('.col2').removeClass('animating')
-//        })
+        //        animateScrollBottom('.col2', function () {
+        //            $('.col2').addClass('unstick')
+        //            $('.col2').removeClass('animating')
+        //        })
     } else {
         if (!isUnstick || isAnimating) {
             return
@@ -810,6 +820,25 @@ function deleteSubMenu(elem, event) {
             .attr("contenteditable", "true")
             .blur()
     }
+}
+// Content edition
+
+function contenteditableActivation() {
+
+    $('[contenteditable="true"]').each(function () {
+        var content = $(this).text()
+        $(this).attr('data-content', content)
+    })
+    $('[contenteditable="true"]').on('keyup keypress blur change', function () {
+        var base = $(this).attr('data-content')
+        var text = $(this).text()
+        if (text != base) {
+            $(this).addClass("modified")
+        } else {
+            $(this).removeClass("modified")
+        }
+    })
+
 }
 
 // Handle image upload
