@@ -7,15 +7,15 @@
                 <span>{$title_article}</span>
 
 
-                <!-- Admin Only-->                
+                <!-- Admin Only-->
                 <div class="connected" {if !$connected} style="display:none;" {/if}>
-                
-                <span class="pull-right edit-button">
+
+                    <span class="pull-right edit-button">
                 <a id="edit-article" class="btn-main">
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                 </a>
                 </span>
-                
+
                 </div>
                 <!-- / Admin Only-->
 
@@ -25,27 +25,28 @@
             <div class="slick-test">
                 {foreach $images as $image}
                 <div>
-                <img src="{$root_url}uploads/{$image.label}" alt="image" data-id="{$image.id}">
-                <span class="delete"><i class="fa fa-trash" aria-hidden="true"></i></span>
+                    <img src="{$root_url}uploads/{$image.label}" alt="image" data-id="{$image.id}">
+                    <span class="delete"><i class="fa fa-trash" aria-hidden="true"></i></span>
                 </div>
                 {/foreach}
             </div>
+            <div id="uploader" style="display:none;"></div>
+            <div class="hr"></div>
+
 
             <!-- Admin Only-->
             <div class="connected" {if !$connected} style="display:none;" {/if}>
-            <form id="form-article" method="post" action="Page.php?id={$pageId}" enctype='multipart/form-data'>
-                <div id="text-article">
-                    {$content}
-                </div>
-                <input type='file' id='hiddenfile' name='image' style='display:none' onchange='getfile()' multiple>
-                <input id="send-file" type='button' value='Add an image' onclick='getfile()' style="display:none;" class="btn btn-main btn-block"/>
-                <p id='demo'></p>
-                <input id="data" name="data" type="hidden">
-            </form>
+                <form id="form-article" method="post" action="Page.php?id={$pageId}" enctype='multipart/form-data'>
+                    <div id="text-article">
+                        {$content}
+                    </div>
+                    <p id='demo'></p>
+                    <input id="data" name="data" type="hidden">
+                </form>
             </div>
             <!-- / Admin Only-->
-            
-            
+
+
             <!-- Bottom article -->
             <div class="article-bottom" id="keywords" style="display:none;">
                 <div class="hr"></div>
@@ -57,7 +58,7 @@
                 <div class="help-block">Separate your differents keywords with commas. (e.g : "Awesome,Special,Rare,Interesting, ... "</div>
             </div>
             <!-- / Bottom article -->
-            
+
             <!-- Bottom article -->
             <div class="article-bottom" id="description" style="display:none;">
                 <div class="hr"></div>
@@ -82,7 +83,7 @@
             <!-- Bottom article -->
             <div class="article-bottom changes" style="display:none;">
                 <div class="hr"></div>
-<!--                <button type="button" class="btn btn-default btn-close" data-dismiss="modal">Cancel</button>-->
+                <!--                <button type="button" class="btn btn-default btn-close" data-dismiss="modal">Cancel</button>-->
                 <a class="btn btn-default btn-close" href="Index.php?module=article&id={$pageId}">Cancel</a>
                 <button type="button" class="btn btn-default btn-main save" data-dismiss="modal">Save changes</button>
             </div>

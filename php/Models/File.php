@@ -60,7 +60,6 @@ class File
         ));
         $label = $req->fetch();
         $label = $label['label'];
-        var_dump($label);
         $this->delete('uploads', $label);
         $req1 = $pdo->prepare('DELETE FROM t_file WHERE id= :id');
         $req1->execute(array(

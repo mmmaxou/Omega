@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-xs-12">
         <div id="pager" class="element pager">
-            <div class="element-content pager-text">
+            <div class="pager-text">
                 Page x of y
             </div>
             <span class="pager-element pager-element-active">1</span>

@@ -50,7 +50,7 @@ function load_general() {
         e.preventDefault()
         //        console.log($(this))
         var href = $(this).attr("href")
-        if (!href || href == "") {
+        if (!href || href == "" || href == "#") {
             return
         }
         href = href.replace("Index.php", "").replace("?", "")
@@ -65,15 +65,14 @@ function load_general() {
             success: function (res, statut) {
                 //                console.log(res)
                 $("#partial").empty().append(res);
-                window.history.replaceState({
+                window.history.pushState({
                     "html": res,
                     "pageTitle": "Omega"
                 }, "", "Index.php?" + href)
 
-                $(document).ready(function () {
-                    load_general()
-                    load_article()
-                })
+                load_general()
+                load_article()
+
             },
         })
 
@@ -511,6 +510,7 @@ function load_article() {
         $('.article-bottom#keywords').fadeIn()
         $('.article-bottom#description').fadeIn()
         $('.slick-slide .delete').fadeIn()
+        $('#uploader').fadeIn()
 
         $(".textarea-form").each(function (e) {
             $(this).val($(this).attr("data-content"))
@@ -536,14 +536,19 @@ function load_article() {
 
         var keywords = $('#keywords textarea').val()
         var description = $('#description textarea').val()
-        
+
+        var added_images = $('#uploader').attr("data-upload")
+        if ( added_images ) {
+            added_images = added_images.slice(0, -1).split(",")
+        }
+
         var deleted_images = [];
-        $('.slick-slide .deleted').each(function(){
+        $('.slick-slide .deleted').each(function () {
             var id = $(this).attr('data-id');
-            var id_exist = deleted_images.some(function(elt){
+            var id_exist = deleted_images.some(function (elt) {
                 return elt == id
             })
-            if (!id_exist){
+            if (!id_exist) {
                 deleted_images.push(id)
             }
         })
@@ -553,6 +558,7 @@ function load_article() {
             content: content,
             keywords: keywords,
             description: description,
+            added_images: added_images,
             deleted_images: deleted_images,
         }
         $("#data").val(JSON.stringify(data))
@@ -561,10 +567,10 @@ function load_article() {
         $('#form-article').submit()
     })
 
-    $('.delete').click(function (e) {        
+    function delete_image(e) {
         var id = $(this).prev().attr("data-id")
-        
-        $(this).parent().parent().children().each(function(){
+
+        $(this).parent().parent().children().each(function () {
             if ($(this).children("img").attr("data-id") == id) {
                 $(this)
                     .children("img")
@@ -575,10 +581,10 @@ function load_article() {
                     .toggleClass("fa-undo")
             }
         })
-    })
+    }
+    $('.delete').click(delete_image)
 
     /* ############ SLICK ############ */
-
     $('.slick-test').slick({
         infinite: true,
         dots: true,
@@ -603,6 +609,72 @@ function load_article() {
         e.preventDefault();
         ajoutComment();
     })
+
+    /* ############ FINE-UPLOADER ############ */
+
+    var uploader = new qq.FineUploader({
+        element: document.getElementById("uploader"),
+        debug: true,
+        autoUpload: false,
+        request: {
+            endpoint: "Endpoint.php"
+        },
+        deleteFile: {
+            enabled: true,
+            endpoint: "Endpoint.php"
+        },
+        chunking: {
+            enabled: false,
+        },
+        resume: {
+            enabled: true
+        },
+        retry: {
+            enableAuto: false,
+            showButton: true
+        },
+        callbacks: {
+            onError: function (id, name, errorReason, xhr) {
+                console.log("Error")
+                console.log(errorReason)
+                console.log(xhr)
+            },
+            onComplete: function (id, name, responseJSON, xhr) {
+                //console.log("success")
+                //console.log(name)
+                //console.log(responseJSON)
+                //console.log(xhr)
+
+                var path = "" + responseJSON.uuid + "/" + responseJSON.uploadName + ","
+                //console.log(path)
+                var a = $('#uploader').attr("data-upload")
+                if (a == undefined) {
+                    a = ""
+                }
+                //console.log(a)
+                $('#uploader').attr("data-upload", a + path)
+
+
+                // Append to the slicker
+                var html = '<div>'
+                html += '<img src="../../uploads/' + path.slice(0, -1) + '" alt="image">'
+                html += '</div>'
+
+                $('.slick-test').slick('slickAdd', html)
+            },
+
+        },
+        thumbnails: {
+            placeholders: {
+                waitingPath: '../../lib/fine-uploader/placeholders/waiting-generic.png',
+                notAvailablePath: '../../lib/fine-uploader/placeholders/not_available-generic.png'
+            }
+        },
+    })
+
+    qq(document.getElementById("trigger-upload")).attach("click", function () {
+        uploader.uploadStoredFiles();
+    });
 }
 
 function ajoutComment() {
@@ -839,42 +911,6 @@ function contenteditableActivation() {
         }
     })
 
-}
-
-// Handle image upload
-function getfile() {
-    var x = document.getElementById('hiddenfile');
-    var txt = "";
-
-    x.click();
-
-    // Display
-    if ('files' in x) {
-        if (x.files.length == 0) {
-            txt = "Select one or more files.";
-        } else {
-            for (var i = 0; i < x.files.length; i++) {
-
-                var file = x.files[i];
-                txt += "<br><strong>" + (i + 1) + ". " + file.type + "</strong><br>";
-
-                if ('name' in file) {
-                    txt += "name: " + file.name + "<br>";
-                }
-                if ('size' in file) {
-                    txt += "size: " + file.size + " bytes <br>";
-                }
-            }
-        }
-    } else {
-        if (x.value == "") {
-            txt += "Select one or more files.";
-        } else {
-            txt += "The files property is not supported by your browser!";
-            txt += "<br>The path of the selected file: " + x.value; // If the browser does not support the files property, it will return the path of the selected file instead.
-        }
-    }
-    document.getElementById("demo").innerHTML = txt;
 }
 
 function showToastr(options) {

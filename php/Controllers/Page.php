@@ -16,31 +16,7 @@ $Page = new Page();
 require_once('../Models/File.php');
 $File = new File();
 
-require_once("Upload.php");
-require_once("Security.php");
-
-
-// FILES
-function up() {
-    
-    $config['upload_path'] = '../../uploads';
-    $config['allowed_types'] = '*';
-    
-    $temp = explode(".", $_FILES["image"]["name"]);
-    $newfilename = round(microtime(true)) . '.' . end($temp);
-    
-    $config['file_name'] = $newfilename;
-    
-    $upload = new Upload($config);
-    
-    if ($upload->do_upload('image')) {
-        return $upload->file_name;
-    } else {
-        return false;
-    }
-    
-}
-// transform an input
+// ransform an input
 function transform ($msg) {
     $nl2br = nl2br($msg);
     $html = htmlspecialchars($nl2br);
@@ -71,21 +47,11 @@ $deleted_images = $decoded['deleted_images'];
 foreach($deleted_images as $id) {
     $File->deleteId($id);
 }
-
-
-
-if(isset($_FILES['image'])){
-    $f = up();
-
-    $file = $f ? $f : null;
-    if ( $file) {
-        // Add in the database
-        //create file
-        $id_gallery = $menu->getGallery($id_menu);
-        $File->addFile($id_gallery[0],$file);
-    }
+$added_images = $decoded['added_images'];
+foreach($added_images as $file ) {
+    $id_gallery = $menu->getGallery($id_menu);
+    $File->addFile($id_gallery[0],$file);
 }
-
 
 //echo $title;
 //echo $_SESSION['id'];

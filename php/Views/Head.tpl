@@ -31,6 +31,7 @@
     <link rel="stylesheet" type="text/css" href="{$root_url}lib/toastr/build/toastr.min.css">
     <link rel="stylesheet" type="text/css" href="{$root_url}lib/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="{$root_url}lib/slick/slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="{$root_url}lib/fine-uploader/fine-uploader-new.css"/>
     
     <!--My css-->
     <link rel="stylesheet" type="text/css" href="{$root_url}css/component.css">

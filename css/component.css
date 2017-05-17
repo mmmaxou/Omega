@@ -44,13 +44,31 @@
     transition: all 400ms ease;
     cursor: pointer;
 }
-
 .btn-main:hover {
     background-color: white !important;
     color: #3f5fa7;
     color: var(--color-main);
     box-shadow: inset 0px 0px 0px 5px #3f5fa7;
     box-shadow: inset 0px 0px 0px 5px var(--color-main);
+}
+
+.btn-inverted,
+.btn-inverted:active,
+.btn-inverted:focus,
+.btn-inverted:focus:active,
+.btn-inverted:visited {
+    background-color: white !important;
+    color: #3f5fa7;
+    color: var(--color-main);
+    font-weight: 700;
+    transition: all 400ms ease;
+    cursor: pointer;
+}
+.btn-inverted:hover {
+    background-color: #3f5fa7 !important;
+    background-color: var(--color-main) !important;
+    color: white;
+    box-shadow: inset 0px 0px 0px 5px white;
 }
 
 .edit-button i {
@@ -402,15 +420,20 @@ textarea {
     background-color: #f78a8a;
 }
 
-
-
-
 @media (max-width: 720px) {
     .slick-test {
         padding: 0px;
         margin: 0 15px;
     }
 }
+
+
+/* UPLOADER */
+
+#uploader .buttons.container-fluid{
+    padding: 0;
+}
+
 
 
 /* LOGIN */
