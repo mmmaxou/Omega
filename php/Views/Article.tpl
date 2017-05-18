@@ -10,7 +10,7 @@
                 <!-- Admin Only-->
                 <div class="connected" {if !$connected} style="display:none;" {/if}>
 
-                    <span class="pull-right edit-button">
+                <span class="pull-right edit-button">
                 <a id="edit-article" class="btn-main">
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                 </a>
@@ -83,7 +83,6 @@
             <!-- Bottom article -->
             <div class="article-bottom changes" style="display:none;">
                 <div class="hr"></div>
-                <!--                <button type="button" class="btn btn-default btn-close" data-dismiss="modal">Cancel</button>-->
                 <a class="btn btn-default btn-close" href="Index.php?module=article&id={$pageId}">Cancel</a>
                 <button type="button" class="btn btn-default btn-main save" data-dismiss="modal">Save changes</button>
             </div>
@@ -99,56 +98,39 @@
         <div class="panel-group">
             <div class="panel panel-default">
                 <div class="panel-body" id="comments">
-                    <div class="comment">
+                  <!--If data found-->
+                    {if $comments|@count == 0}
+                    <!--Nothing-->
+                    <div id="emptyComment">                        
+                    No Comments added yet.            
+                    </div>
+                    <!--Else : show the data-->
+                    {else} 
+                   {foreach $comments as $comment}
+                   <div class="comment" data-id="{$comment.id}">
                         <p class="comment-body">
-                            Ubi illum mandaremus e proident enim tempor. Ab an exquisitaque, ad ne aute amet anim. Cupidatat dolore aliquip pariatur ad senserit veniam consequat.
+                            {$comment.content}
                         </p>
                         <div class="comment-infos">
-                            <span class="author">Dudule</span>
-                            <span class="date">07/03/2017</span>
+                            <span class="author">{$comment.login}</span>
+                            <span class="date">{$comment.date}</span>
+                            <a class="pull-right comment-delete" href="">
+                                delete <i class="fa fa-trash" aria-hidden="true"></i>
+                            </a>
                         </div>
                     </div>
-                    <div class="comment">
-                        <p class="comment-body">
-                            Ubi illum mandaremus e proident enim tempor. Ab an exquisitaque, ad ne aute amet anim. Cupidatat dolore aliquip pariatur ad senserit veniam consequat.
-                        </p>
-                        <div class="comment-infos">
-                            <span class="author">Dudule</span>
-                            <span class="date">07/03/2017</span>
-                        </div>
-
-                    </div>
-                    <div class="comment">
-                        <p class="comment-body">
-                            summis adipisicing quid doctrina tractavissent exercitation imitarentur voluptatibus ipsum tractavissent exercitation graviterque coniunctione familiaritatem tamen possumus fabulas commodo lorem offendit ubi summis concursionibus nostrud consectetur laborum hic qui elit legam quae transferrem se a elit anim et ab distinguantur exercitation
-                        </p>
-                        <div class="comment-infos">
-                            <span class="author">Dudule</span>
-                            <span class="date">07/03/2017</span>
-                        </div>
-                    </div>
-                    <div class="comment">
-                        <p class="comment-body">
-                            illustriora imitarentur a familiaritatem consectetur dolore concursionibus tamen praesentibus fabulas culpa voluptate illustriora anim eiusmod consequat laborum malis quamquam fugiat expetendis eiusmod laborum ita illustriora incididunt proident
-                        </p>
-                        <div class="comment-infos">
-                            <span class="author">Dudule</span>
-                            <span class="date">07/03/2017</span>
-                        </div>
-                    </div>
+                   {/foreach} {/if}
                 </div>
             </div>
+            
+            
+            
             <form id="comm" class="form-horizontal">
+                <input id="commData" name="data" type="hidden">
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="name">Name:</label>
+                    <label class="control-label col-sm-2" for="articleContent">Comment:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="name" placeholder="Enter name">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="comment">Comment:</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="comment" placeholder="Enter comment">
+                        <input type="text" class="form-control" id="articleContent" name="articleContent" placeholder="Enter comment">
                     </div>
                 </div>
                 <div class="form-group">

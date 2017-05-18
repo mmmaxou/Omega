@@ -24,6 +24,8 @@ require_once('../Models/Gallery.php');
 $Gallery = new Gallery();
 require_once('../Models/File.php');
 $File = new File();
+require_once('../Models/Comment.php');
+$Comment = new Comment();
 
 
 // Base components
@@ -107,6 +109,8 @@ if ($_GET['module'] == "article" && isset($_GET['id'])) {
     $date = new DateTime($page_data['date']);
     $date = $date->format('d M Y G:i');
     
+    $comments = $Comment->getCommentsId($id);
+    
     if (!isset($_GET['partial'])) {
         $Page->incrementView($id);
         $view++;
@@ -123,6 +127,7 @@ if ($_GET['module'] == "article" && isset($_GET['id'])) {
     $smarty->assign("images", $images);
     $smarty->assign("view",$view);
     $smarty->assign("date",$date);
+    $smarty->assign("comments", $comments);
     
     
     if ($_GET['partial'] == "1") {
@@ -202,8 +207,8 @@ if ($_GET['module'] == "research" && isset($_GET['query'])) {
     $results = $Page->searchQuery($q);
     for ($i=0; $i < sizeof($results); $i++) {
         $results[$i]['content'] = html_entity_decode($results[$i]['content']);
-        $results[$i]['content'] = str_replace($q, "<span class='underlined'>".$q."</span>", $results[$i]['content']);
-        $results[$i]['title'] = str_replace($q, "<span class='underlined'>".$q."</span>", $results[$i]['title']);
+        $results[$i]['content'] = str_ireplace($q, "<span class='underlined'>".$q."</span>", $results[$i]['content']);
+        $results[$i]['title'] = str_ireplace($q, "<span class='underlined'>".$q."</span>", $results[$i]['title']);
     }
     
     $smarty->assign("query", $q);

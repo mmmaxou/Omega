@@ -25,7 +25,7 @@
         </div>
         <!-- / 2 Columns -->
 
-        {include file="./Pager.tpl"}
+<!--        include file="./Pager.tpl"-->
     </div>
 
 

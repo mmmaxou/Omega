@@ -538,7 +538,7 @@ function load_article() {
         var description = $('#description textarea').val()
 
         var added_images = $('#uploader').attr("data-upload")
-        if ( added_images ) {
+        if (added_images) {
             added_images = added_images.slice(0, -1).split(",")
         }
 
@@ -584,6 +584,89 @@ function load_article() {
     }
     $('.delete').click(delete_image)
 
+    /* ######### SEND COMMENT ######### */
+
+    $('#comm').submit(function (e) {
+        e.preventDefault()
+
+        var data = $(this).serialize() + "&id=" + $_GET('id');
+        if(!$('#articleContent').val()) {
+            toastr["error"]("Your comment is empty");
+            return
+        }
+
+        $.ajax({
+            url: 'Comment.php',
+            type: 'POST',
+            data: data,
+            dataType: 'text',
+            success: function (res, statut) {
+                console.log(res)
+                res = JSON.parse(res)
+                if (res.toastr) {
+                    showToastr(res.toastr)
+                }
+                if (res.success) {
+                    console.log(res.comment)
+                    
+                    $('#emptyComment').remove()
+
+                    var html = "<div class='comment' data-id="+res.comment.id+">"
+                    html += "<p class='comment-body'>"
+                    html += res.comment.content
+                    html += "</p>"
+                    html += "<div class='comment-infos'>"
+                    html += "<span class='author'>"+res.comment.user+"</span>"
+                    html += "<span class='date'>"+res.comment.date+"</span>"
+                    html += "<a class='pull-right comment-delete' href=''>"
+                    html += "delete <i class='fa fa-trash' aria-hidden='true'></i>"
+                    html += "</a>"
+                    html += "</div>"
+                    html += "</div>"
+                    
+                    $('#comments').append(html);
+                    $('#articleContent').val("")    
+                    $('.comment-delete').click(deleteComment)
+
+                }
+            },
+        })
+
+        console.log(data)
+    })
+    
+    function deleteComment (e) {
+        e.preventDefault()
+        var comment = $(this).parent().parent()
+        var id = comment.attr("data-id")
+         $.ajax({
+            url: 'DeleteComment.php',
+            type: 'POST',
+            data: "id="+id,
+            dataType: 'text',
+            success: function (res, statut) {
+                console.log(res)
+                res = JSON.parse(res)
+                console.log(res)
+                if (res.toastr) {
+                    showToastr(res.toastr)
+                }
+                if (res.success) {
+                    comment.remove()
+                    if (  $('#comments').children().length == 0 ) {
+                        $('#comments').append('<div id="emptyComment">No Comments added yet.</div>')
+                    }
+                }
+            },
+        })
+        
+        
+        
+    }
+    
+    $('.comment-delete').click(deleteComment)
+
+
     /* ############ SLICK ############ */
     $('.slick-test').slick({
         infinite: true,
@@ -605,314 +688,292 @@ function load_article() {
   ]
     });
 
-    $("#comm").submit(function (e) {
-        e.preventDefault();
-        ajoutComment();
-    })
-
     /* ############ FINE-UPLOADER ############ */
 
     var uploader = new qq.FineUploader({
-        element: document.getElementById("uploader"),
-        debug: true,
-        autoUpload: false,
-        request: {
-            endpoint: "Endpoint.php"
-        },
-        deleteFile: {
-            enabled: true,
-            endpoint: "Endpoint.php"
-        },
-        chunking: {
-            enabled: false,
-        },
-        resume: {
-            enabled: true
-        },
-        retry: {
-            enableAuto: false,
-            showButton: true
-        },
-        callbacks: {
-            onError: function (id, name, errorReason, xhr) {
-                console.log("Error")
-                console.log(errorReason)
-                console.log(xhr)
-            },
-            onComplete: function (id, name, responseJSON, xhr) {
-                //console.log("success")
-                //console.log(name)
-                //console.log(responseJSON)
-                //console.log(xhr)
+            element: document.getElementById('uploader'),
+                debug: true,
+                autoUpload: false,
+                request: {
+                    endpoint: "Endpoint.php"
+                },
+                deleteFile: {
+                    enabled: true,
+                    endpoint: "Endpoint.php"
+                },
+                chunking: {
+                    enabled: false,
+                },
+                resume: {
+                    enabled: true
+                },
+                retry: {
+                    enableAuto: false,
+                    showButton: true
+                },
+                callbacks: {
+                    onError: function (id, name, errorReason, xhr) {
+                        console.log("Error")
+                        console.log(errorReason)
+                        console.log(xhr)
+                    },
+                    onComplete: function (id, name, responseJSON, xhr) {
+                        //console.log("success")
+                        //console.log(name)
+                        //console.log(responseJSON)
+                        //console.log(xhr)
 
-                var path = "" + responseJSON.uuid + "/" + responseJSON.uploadName + ","
-                //console.log(path)
-                var a = $('#uploader').attr("data-upload")
-                if (a == undefined) {
-                    a = ""
-                }
-                //console.log(a)
-                $('#uploader').attr("data-upload", a + path)
+                        var path = "" + responseJSON.uuid + "/" + responseJSON.uploadName + ","
+                        //console.log(path)
+                        var a = $('#uploader').attr("data-upload")
+                        if (a == undefined) {
+                            a = ""
+                        }
+                        //console.log(a)
+                        $('#uploader').attr("data-upload", a + path)
 
 
-                // Append to the slicker
-                var html = '<div>'
-                html += '<img src="../../uploads/' + path.slice(0, -1) + '" alt="image">'
-                html += '</div>'
+                        // Append to the slicker
+                        var html = '<div>'
+                        html += '<img src="../../uploads/' + path.slice(0, -1) + '" alt="image">'
+                        html += '</div>'
 
-                $('.slick-test').slick('slickAdd', html)
-            },
+                        $('.slick-test').slick('slickAdd', html)
+                    },
 
-        },
-        thumbnails: {
-            placeholders: {
-                waitingPath: '../../lib/fine-uploader/placeholders/waiting-generic.png',
-                notAvailablePath: '../../lib/fine-uploader/placeholders/not_available-generic.png'
+                },
+                thumbnails: {
+                    placeholders: {
+                        waitingPath: '../../lib/fine-uploader/placeholders/waiting-generic.png',
+                        notAvailablePath: '../../lib/fine-uploader/placeholders/not_available-generic.png'
+                    }
+                },
+            })
+
+        qq(document.getElementById("trigger-upload")).attach("click", function () {
+            uploader.uploadStoredFiles();
+        });
+    }
+
+    function getMenuOffset() {
+        return $('.content .navbar')[0].offsetTop;
+    }
+
+    function getMenuFixed(h) {
+        if (window.scrollY > h) {
+            $('.content .navbar').addClass('navbar-fixed-top')
+            $('#back-to-top').fadeIn()
+            $('body').css('margin-top', $('.content .navbar').height())
+        } else {
+            $('.content .navbar').removeClass('navbar-fixed-top')
+            $('#back-to-top').hide()
+            $('body').css('margin-top', 0)
+        }
+    }
+
+    function getMaxHeightCol2() {
+        var pagerOffset = $('footer').offset().top - 100
+        var windowHeight = $(window).height()
+        var windowScroll = window.scrollY
+
+        var isAnimating = $('.col2').hasClass('animating')
+        var isUnstick = $('.col2').hasClass('unstick')
+        if (windowScroll > pagerOffset - windowHeight) {
+            if (isUnstick || isAnimating) {
+                return
             }
-        },
-    })
-
-    qq(document.getElementById("trigger-upload")).attach("click", function () {
-        uploader.uploadStoredFiles();
-    });
-}
-
-function ajoutComment() {
-    var name = document.getElementById('name').value;
-    var comment = document.getElementById('comment').value;
-    var date = new Date();
-    var day = date.getDate();
-    var month = date.getMonth() + 1;
-    var year = date.getFullYear();
-    var textnode = document.createTextNode(comment); // Create a text node
-    var textnode2 = document.createTextNode(name); // Create a text node
-    var textnode3 = document.createTextNode(day + '/' + month + '/' + year); // Create a text node
-    var node = document.createElement("DIV"); // Create a <li> node
-    var node4 = document.createElement("SPAN"); // Create a <li> node
-    var node5 = document.createElement("SPAN"); // Create a <li> node
-    var node2 = document.createElement("P"); // Create a <li> node
-    var node3 = document.createElement("DIV"); // Create a <li> node
-    node4.classList.add("author");
-    node4.appendChild(textnode2);
-    node5.classList.add("date");
-    node5.appendChild(textnode3);
-    node3.appendChild(node4); // Append the text to <li>
-    node3.appendChild(node5); // Append the text to <li>
-    node2.classList.add("comment-body")
-    node2.appendChild(textnode);
-    node3.classList.add("comment-infos");
-    node3.appendChild(node4);
-    node3.appendChild(node5);
-    node.classList.add("comment");
-    node.appendChild(node2); // Append the text to <li>
-    node.appendChild(node3); // Append the text to <li>
-    document.getElementById("comments").appendChild(node);
-}
-
-function getMenuOffset() {
-    return $('.content .navbar')[0].offsetTop;
-}
-
-function getMenuFixed(h) {
-    if (window.scrollY > h) {
-        $('.content .navbar').addClass('navbar-fixed-top')
-        $('#back-to-top').fadeIn()
-        $('body').css('margin-top', $('.content .navbar').height())
-    } else {
-        $('.content .navbar').removeClass('navbar-fixed-top')
-        $('#back-to-top').hide()
-        $('body').css('margin-top', 0)
+            $('.col2').addClass('animating')
+            //        animateScrollBottom('.col2', function () {
+            //            $('.col2').addClass('unstick')
+            //            $('.col2').removeClass('animating')
+            //        })
+        } else {
+            if (!isUnstick || isAnimating) {
+                return
+            }
+            $('.col2').addClass('animating')
+            $('.col2').removeClass('unstick').animate({
+                scrollTop: $(this).height()
+            }, 0)
+            $('.col2').removeClass('animating')
+        }
     }
-}
 
-function getMaxHeightCol2() {
-    var pagerOffset = $('footer').offset().top - 100
-    var windowHeight = $(window).height()
-    var windowScroll = window.scrollY
+    function resizeImg() {
+        resizeHot()
+        if ($(window).width() > 1200) return
+        $('.wrapper-img').each(function () {
+            $(this).css('height', $(this).width() / 2)
+        })
+    }
 
-    var isAnimating = $('.col2').hasClass('animating')
-    var isUnstick = $('.col2').hasClass('unstick')
-    if (windowScroll > pagerOffset - windowHeight) {
-        if (isUnstick || isAnimating) {
-            return
-        }
-        $('.col2').addClass('animating')
-        //        animateScrollBottom('.col2', function () {
-        //            $('.col2').addClass('unstick')
-        //            $('.col2').removeClass('animating')
-        //        })
-    } else {
-        if (!isUnstick || isAnimating) {
-            return
-        }
-        $('.col2').addClass('animating')
-        $('.col2').removeClass('unstick').animate({
+    function resizeHot() {
+        $('#hot .wrapper-img').each(function () {
+            $(this).css('height', $(this).width() / 2)
+        })
+    }
+    var timeout
+
+    function animateScrollTop(selector, callback) {
+        $(selector).animate({
+            scrollTop: 0
+        }, {
+            duration: 600,
+            done: function () {
+                //            clearTimeout(timeout)
+                //            timeout = setTimeout(function () {
+                callback()
+                //            }, 400)
+            }
+        })
+    }
+
+    function animateScrollBottom(selector, callback) {
+        $(selector).animate({
             scrollTop: $(this).height()
-        }, 0)
-        $('.col2').removeClass('animating')
+        }, {
+            duration: 600,
+            done: function () {
+                //            clearTimeout(timeout)
+                //            timeout = setTimeout(function () {
+                callback()
+                //            }, 400)
+            }
+        })
     }
-}
 
-function resizeImg() {
-    resizeHot()
-    if ($(window).width() > 1200) return
-    $('.wrapper-img').each(function () {
-        $(this).css('height', $(this).width() / 2)
-    })
-}
+    function addSubMenu(elem, event) {
+        event.preventDefault()
 
-function resizeHot() {
-    $('#hot .wrapper-img').each(function () {
-        $(this).css('height', $(this).width() / 2)
-    })
-}
-var timeout
+        var html = '<p>' +
+            '<span class="added" contenteditable="true">New</span>' +
+            '<a href="#">' +
+            '<i class="fa fa-trash" aria-hidden="true"></i>' +
+            '</a>' +
+            '</p>';
 
-function animateScrollTop(selector, callback) {
-    $(selector).animate({
-        scrollTop: 0
-    }, {
-        duration: 600,
-        done: function () {
-            //            clearTimeout(timeout)
-            //            timeout = setTimeout(function () {
-            callback()
-            //            }, 400)
+        elem.parent()
+            .before(html)
+
+        elem.parent()
+            .prev()
+            .children("a")
+            .click(function (event) {
+                deleteSubMenu($(this), event)
+            })
+
+
+    }
+
+    function deleteBigMenu(elem, event) {
+        event.preventDefault()
+
+        if (elem.children().hasClass("fa-trash")) {
+            elem.children()
+                .removeClass("fa-trash")
+                .addClass("fa-undo")
+                .parent()
+                .prev()
+                .removeClass("modified")
+                .addClass("deleted")
+                .attr("contenteditable", "false")
+                .parent()
+                .siblings(".sub")
+                .children(".add")
+                .fadeOut()
+                .siblings("p")
+                .each(function () {
+                    $(this)
+                        .children("a")
+                        .click()
+                        .hide()
+                })
+        } else {
+            elem.children()
+                .addClass("fa-trash")
+                .removeClass("fa-undo")
+                .parent()
+                .prev()
+                .removeClass("deleted")
+                .attr("contenteditable", "true")
+                .blur()
+                .parent()
+                .siblings(".sub")
+                .children(".add")
+                .fadeIn()
+                .siblings("p")
+                .each(function () {
+                    $(this)
+                        .children("a")
+                        .show()
+                        .click()
+                })
+
         }
-    })
-}
+    }
 
-function animateScrollBottom(selector, callback) {
-    $(selector).animate({
-        scrollTop: $(this).height()
-    }, {
-        duration: 600,
-        done: function () {
-            //            clearTimeout(timeout)
-            //            timeout = setTimeout(function () {
-            callback()
-            //            }, 400)
+    function deleteSubMenu(elem, event) {
+        event.preventDefault()
+        if (elem.children().hasClass("fa-trash")) {
+            elem.children()
+                .removeClass("fa-trash")
+                .addClass("fa-undo")
+                .parent()
+                .prev()
+                .removeClass("modified")
+                .addClass("deleted")
+                .attr("contenteditable", "false")
+        } else if (!elem
+            .parents(".sub")
+            .prev()
+            .children("span")
+            .hasClass("deleted")
+        ) {
+            elem.children()
+                .removeClass("fa-undo")
+                .addClass("fa-trash")
+                .parent()
+                .prev()
+                .removeClass("deleted")
+                .attr("contenteditable", "true")
+                .blur()
         }
-    })
-}
+    }
+    // Content edition
 
-function addSubMenu(elem, event) {
-    event.preventDefault()
+    function contenteditableActivation() {
 
-    var html = '<p>' +
-        '<span class="added" contenteditable="true">New</span>' +
-        '<a href="#">' +
-        '<i class="fa fa-trash" aria-hidden="true"></i>' +
-        '</a>' +
-        '</p>';
-
-    elem.parent()
-        .before(html)
-
-    elem.parent()
-        .prev()
-        .children("a")
-        .click(function (event) {
-            deleteSubMenu($(this), event)
+        $('[contenteditable="true"]').each(function () {
+            var content = $(this).text()
+            $(this).attr('data-content', content)
+        })
+        $('[contenteditable="true"]').on('keyup keypress blur change', function () {
+            var base = $(this).attr('data-content')
+            var text = $(this).text()
+            if (text != base) {
+                $(this).addClass("modified")
+            } else {
+                $(this).removeClass("modified")
+            }
         })
 
-
-}
-
-function deleteBigMenu(elem, event) {
-    event.preventDefault()
-
-    if (elem.children().hasClass("fa-trash")) {
-        elem.children()
-            .removeClass("fa-trash")
-            .addClass("fa-undo")
-            .parent()
-            .prev()
-            .removeClass("modified")
-            .addClass("deleted")
-            .attr("contenteditable", "false")
-            .parent()
-            .siblings(".sub")
-            .children(".add")
-            .fadeOut()
-            .siblings("p")
-            .each(function () {
-                $(this)
-                    .children("a")
-                    .click()
-                    .hide()
-            })
-    } else {
-        elem.children()
-            .addClass("fa-trash")
-            .removeClass("fa-undo")
-            .parent()
-            .prev()
-            .removeClass("deleted")
-            .attr("contenteditable", "true")
-            .blur()
-            .parent()
-            .siblings(".sub")
-            .children(".add")
-            .fadeIn()
-            .siblings("p")
-            .each(function () {
-                $(this)
-                    .children("a")
-                    .show()
-                    .click()
-            })
-
     }
-}
 
-function deleteSubMenu(elem, event) {
-    event.preventDefault()
-    if (elem.children().hasClass("fa-trash")) {
-        elem.children()
-            .removeClass("fa-trash")
-            .addClass("fa-undo")
-            .parent()
-            .prev()
-            .removeClass("modified")
-            .addClass("deleted")
-            .attr("contenteditable", "false")
-    } else if (!elem
-        .parents(".sub")
-        .prev()
-        .children("span")
-        .hasClass("deleted")
-    ) {
-        elem.children()
-            .removeClass("fa-undo")
-            .addClass("fa-trash")
-            .parent()
-            .prev()
-            .removeClass("deleted")
-            .attr("contenteditable", "true")
-            .blur()
+    function showToastr(options) {
+        toastr[options.type](options.message);
     }
-}
-// Content edition
 
-function contenteditableActivation() {
+    function $_GET(param) {
+        var vars = {};
+        window.location.href.replace(location.hash, '').replace(
+            /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+            function (m, key, value) { // callback
+                vars[key] = value !== undefined ? value : '';
+            }
+        );
 
-    $('[contenteditable="true"]').each(function () {
-        var content = $(this).text()
-        $(this).attr('data-content', content)
-    })
-    $('[contenteditable="true"]').on('keyup keypress blur change', function () {
-        var base = $(this).attr('data-content')
-        var text = $(this).text()
-        if (text != base) {
-            $(this).addClass("modified")
-        } else {
-            $(this).removeClass("modified")
+        if (param) {
+            return vars[param] ? vars[param] : null;
         }
-    })
-
-}
-
-function showToastr(options) {
-    toastr[options.type](options.message);
-}
+        return vars;
+    }

@@ -250,6 +250,10 @@
     content: ' - The '
 }
 
+.comment-delete {
+    padding: 0 10px;
+    cursor: pointer;
+}
 
 /*Hot*/
 
