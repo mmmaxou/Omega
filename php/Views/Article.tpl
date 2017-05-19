@@ -10,7 +10,7 @@
                 <!-- Admin Only-->
                 <div class="connected" {if !$connected} style="display:none;" {/if}>
 
-                <span class="pull-right edit-button">
+                    <span class="pull-right edit-button">
                 <a id="edit-article" class="btn-main">
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                 </a>
@@ -75,8 +75,14 @@
                 <div class="hr"></div>
                 <span class="color-on-hover"><i class="fa fa-calendar" aria-hidden="true"></i> {$date}</span>
                 <span class="color-on-hover"><i class="fa fa-eye" aria-hidden="true"></i> {$view}</span>
-                <span class="color-on-hover"><i class="fa fa-folder-o" aria-hidden="true"></i> category</span>
+                <span class="color-on-hover">
+                    <i class="fa fa-folder-o" aria-hidden="true"></i>
+                    <div class="my-slider">
+                        {$keywords}
+                    </div>
+                </span>
             </div>
+
             <!-- / Bottom article -->
 
 
@@ -98,16 +104,15 @@
         <div class="panel-group">
             <div class="panel panel-default">
                 <div class="panel-body" id="comments">
-                  <!--If data found-->
+                    <!--If data found-->
                     {if $comments|@count == 0}
                     <!--Nothing-->
-                    <div id="emptyComment">                        
-                    No Comments added yet.            
+                    <div id="emptyComment">
+                        No Comments added yet.
                     </div>
                     <!--Else : show the data-->
-                    {else} 
-                   {foreach $comments as $comment}
-                   <div class="comment" data-id="{$comment.id}">
+                    {else} {foreach $comments as $comment}
+                    <div class="comment" data-id="{$comment.id}">
                         <p class="comment-body">
                             {$comment.content}
                         </p>
@@ -119,12 +124,12 @@
                             </a>
                         </div>
                     </div>
-                   {/foreach} {/if}
+                    {/foreach} {/if}
                 </div>
             </div>
-            
-            
-            
+
+
+
             <form id="comm" class="form-horizontal">
                 <input id="commData" name="data" type="hidden">
                 <div class="form-group">

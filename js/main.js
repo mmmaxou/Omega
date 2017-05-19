@@ -77,6 +77,66 @@ function load_general() {
         })
 
     })
+
+    // Slide the categories
+    $('.my-slider').each(function () {
+        if ($(this).attr('data-enabled')) {
+            return
+        }
+        var slider = $(this)
+        //Enable only once
+        $(this).attr('data-enabled', "true")
+
+        // Gather the array
+        var tags = $(this).text()
+        tags = $.trim(tags)
+        tags = tags.split(",")
+        console.log(tags)
+
+        // Empty the slider
+        $(this).empty()
+
+        // Fill with the new elements twice
+        tags.forEach(function (elt) {
+            slider.append('<div>#' + elt + '</div>')
+        })
+        tags.forEach(function (elt) {
+            slider.append('<div>#' + elt + '</div>')
+        })
+        tags.forEach(function (elt) {
+            slider.append('<div>#' + elt + '</div>')
+        })
+
+        $(this).slick({
+            infinite: true,
+            dots: false,
+            autoplay: true,
+            autoplaySpeed: 0,
+            arrows: false,
+            cssEase: "linear",
+            speed: 1500,
+            centerMode: true,
+            slidesToShow: 1,
+            touchMove: false,
+            swipe: false,
+            draggable: false,
+            waitForAnimate: false,
+            //        slidesToScroll: 3,
+            variableWidth: true,
+            responsive: [
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                    }
+    }
+  ]
+        });
+
+    })
+
+
 }
 
 function load_layout() {
@@ -590,7 +650,7 @@ function load_article() {
         e.preventDefault()
 
         var data = $(this).serialize() + "&id=" + $_GET('id');
-        if(!$('#articleContent').val()) {
+        if (!$('#articleContent').val()) {
             toastr["error"]("Your comment is empty");
             return
         }
@@ -608,24 +668,24 @@ function load_article() {
                 }
                 if (res.success) {
                     console.log(res.comment)
-                    
+
                     $('#emptyComment').remove()
 
-                    var html = "<div class='comment' data-id="+res.comment.id+">"
+                    var html = "<div class='comment' data-id=" + res.comment.id + ">"
                     html += "<p class='comment-body'>"
                     html += res.comment.content
                     html += "</p>"
                     html += "<div class='comment-infos'>"
-                    html += "<span class='author'>"+res.comment.user+"</span>"
-                    html += "<span class='date'>"+res.comment.date+"</span>"
+                    html += "<span class='author'>" + res.comment.user + "</span>"
+                    html += "<span class='date'>" + res.comment.date + "</span>"
                     html += "<a class='pull-right comment-delete' href=''>"
                     html += "delete <i class='fa fa-trash' aria-hidden='true'></i>"
                     html += "</a>"
                     html += "</div>"
                     html += "</div>"
-                    
+
                     $('#comments').append(html);
-                    $('#articleContent').val("")    
+                    $('#articleContent').val("")
                     $('.comment-delete').click(deleteComment)
 
                 }
@@ -634,15 +694,15 @@ function load_article() {
 
         console.log(data)
     })
-    
-    function deleteComment (e) {
+
+    function deleteComment(e) {
         e.preventDefault()
         var comment = $(this).parent().parent()
         var id = comment.attr("data-id")
-         $.ajax({
+        $.ajax({
             url: 'DeleteComment.php',
             type: 'POST',
-            data: "id="+id,
+            data: "id=" + id,
             dataType: 'text',
             success: function (res, statut) {
                 console.log(res)
@@ -653,17 +713,17 @@ function load_article() {
                 }
                 if (res.success) {
                     comment.remove()
-                    if (  $('#comments').children().length == 0 ) {
+                    if ($('#comments').children().length == 0) {
                         $('#comments').append('<div id="emptyComment">No Comments added yet.</div>')
                     }
                 }
             },
         })
-        
-        
-        
+
+
+
     }
-    
+
     $('.comment-delete').click(deleteComment)
 
 
@@ -691,289 +751,289 @@ function load_article() {
     /* ############ FINE-UPLOADER ############ */
 
     var uploader = new qq.FineUploader({
-            element: document.getElementById('uploader'),
-                debug: true,
-                autoUpload: false,
-                request: {
-                    endpoint: "Endpoint.php"
-                },
-                deleteFile: {
-                    enabled: true,
-                    endpoint: "Endpoint.php"
-                },
-                chunking: {
-                    enabled: false,
-                },
-                resume: {
-                    enabled: true
-                },
-                retry: {
-                    enableAuto: false,
-                    showButton: true
-                },
-                callbacks: {
-                    onError: function (id, name, errorReason, xhr) {
-                        console.log("Error")
-                        console.log(errorReason)
-                        console.log(xhr)
-                    },
-                    onComplete: function (id, name, responseJSON, xhr) {
-                        //console.log("success")
-                        //console.log(name)
-                        //console.log(responseJSON)
-                        //console.log(xhr)
+        element: document.getElementById('uploader'),
+        debug: true,
+        autoUpload: false,
+        request: {
+            endpoint: "Endpoint.php"
+        },
+        deleteFile: {
+            enabled: true,
+            endpoint: "Endpoint.php"
+        },
+        chunking: {
+            enabled: false,
+        },
+        resume: {
+            enabled: true
+        },
+        retry: {
+            enableAuto: false,
+            showButton: true
+        },
+        callbacks: {
+            onError: function (id, name, errorReason, xhr) {
+                console.log("Error")
+                console.log(errorReason)
+                console.log(xhr)
+            },
+            onComplete: function (id, name, responseJSON, xhr) {
+                //console.log("success")
+                //console.log(name)
+                //console.log(responseJSON)
+                //console.log(xhr)
 
-                        var path = "" + responseJSON.uuid + "/" + responseJSON.uploadName + ","
-                        //console.log(path)
-                        var a = $('#uploader').attr("data-upload")
-                        if (a == undefined) {
-                            a = ""
-                        }
-                        //console.log(a)
-                        $('#uploader').attr("data-upload", a + path)
+                var path = "" + responseJSON.uuid + "/" + responseJSON.uploadName + ","
+                //console.log(path)
+                var a = $('#uploader').attr("data-upload")
+                if (a == undefined) {
+                    a = ""
+                }
+                //console.log(a)
+                $('#uploader').attr("data-upload", a + path)
 
 
-                        // Append to the slicker
-                        var html = '<div>'
-                        html += '<img src="../../uploads/' + path.slice(0, -1) + '" alt="image">'
-                        html += '</div>'
+                // Append to the slicker
+                var html = '<div>'
+                html += '<img src="../../uploads/' + path.slice(0, -1) + '" alt="image">'
+                html += '</div>'
 
-                        $('.slick-test').slick('slickAdd', html)
-                    },
+                $('.slick-test').slick('slickAdd', html)
+            },
 
-                },
-                thumbnails: {
-                    placeholders: {
-                        waitingPath: '../../lib/fine-uploader/placeholders/waiting-generic.png',
-                        notAvailablePath: '../../lib/fine-uploader/placeholders/not_available-generic.png'
-                    }
-                },
-            })
+        },
+        thumbnails: {
+            placeholders: {
+                waitingPath: '../../lib/fine-uploader/placeholders/waiting-generic.png',
+                notAvailablePath: '../../lib/fine-uploader/placeholders/not_available-generic.png'
+            }
+        },
+    })
 
-        qq(document.getElementById("trigger-upload")).attach("click", function () {
-            uploader.uploadStoredFiles();
-        });
+    qq(document.getElementById("trigger-upload")).attach("click", function () {
+        uploader.uploadStoredFiles();
+    });
+}
+
+function getMenuOffset() {
+    return $('.content .navbar')[0].offsetTop;
+}
+
+function getMenuFixed(h) {
+    if (window.scrollY > h) {
+        $('.content .navbar').addClass('navbar-fixed-top')
+        $('#back-to-top').fadeIn()
+        $('body').css('margin-top', $('.content .navbar').height())
+    } else {
+        $('.content .navbar').removeClass('navbar-fixed-top')
+        $('#back-to-top').hide()
+        $('body').css('margin-top', 0)
     }
+}
 
-    function getMenuOffset() {
-        return $('.content .navbar')[0].offsetTop;
-    }
+function getMaxHeightCol2() {
+    var pagerOffset = $('footer').offset().top - 100
+    var windowHeight = $(window).height()
+    var windowScroll = window.scrollY
 
-    function getMenuFixed(h) {
-        if (window.scrollY > h) {
-            $('.content .navbar').addClass('navbar-fixed-top')
-            $('#back-to-top').fadeIn()
-            $('body').css('margin-top', $('.content .navbar').height())
-        } else {
-            $('.content .navbar').removeClass('navbar-fixed-top')
-            $('#back-to-top').hide()
-            $('body').css('margin-top', 0)
+    var isAnimating = $('.col2').hasClass('animating')
+    var isUnstick = $('.col2').hasClass('unstick')
+    if (windowScroll > pagerOffset - windowHeight) {
+        if (isUnstick || isAnimating) {
+            return
         }
-    }
-
-    function getMaxHeightCol2() {
-        var pagerOffset = $('footer').offset().top - 100
-        var windowHeight = $(window).height()
-        var windowScroll = window.scrollY
-
-        var isAnimating = $('.col2').hasClass('animating')
-        var isUnstick = $('.col2').hasClass('unstick')
-        if (windowScroll > pagerOffset - windowHeight) {
-            if (isUnstick || isAnimating) {
-                return
-            }
-            $('.col2').addClass('animating')
-            //        animateScrollBottom('.col2', function () {
-            //            $('.col2').addClass('unstick')
-            //            $('.col2').removeClass('animating')
-            //        })
-        } else {
-            if (!isUnstick || isAnimating) {
-                return
-            }
-            $('.col2').addClass('animating')
-            $('.col2').removeClass('unstick').animate({
-                scrollTop: $(this).height()
-            }, 0)
-            $('.col2').removeClass('animating')
+        $('.col2').addClass('animating')
+        //        animateScrollBottom('.col2', function () {
+        //            $('.col2').addClass('unstick')
+        //            $('.col2').removeClass('animating')
+        //        })
+    } else {
+        if (!isUnstick || isAnimating) {
+            return
         }
-    }
-
-    function resizeImg() {
-        resizeHot()
-        if ($(window).width() > 1200) return
-        $('.wrapper-img').each(function () {
-            $(this).css('height', $(this).width() / 2)
-        })
-    }
-
-    function resizeHot() {
-        $('#hot .wrapper-img').each(function () {
-            $(this).css('height', $(this).width() / 2)
-        })
-    }
-    var timeout
-
-    function animateScrollTop(selector, callback) {
-        $(selector).animate({
-            scrollTop: 0
-        }, {
-            duration: 600,
-            done: function () {
-                //            clearTimeout(timeout)
-                //            timeout = setTimeout(function () {
-                callback()
-                //            }, 400)
-            }
-        })
-    }
-
-    function animateScrollBottom(selector, callback) {
-        $(selector).animate({
+        $('.col2').addClass('animating')
+        $('.col2').removeClass('unstick').animate({
             scrollTop: $(this).height()
-        }, {
-            duration: 600,
-            done: function () {
-                //            clearTimeout(timeout)
-                //            timeout = setTimeout(function () {
-                callback()
-                //            }, 400)
-            }
-        })
+        }, 0)
+        $('.col2').removeClass('animating')
     }
+}
 
-    function addSubMenu(elem, event) {
-        event.preventDefault()
+function resizeImg() {
+    resizeHot()
+    if ($(window).width() > 1200) return
+    $('.wrapper-img').each(function () {
+        $(this).css('height', $(this).width() / 2)
+    })
+}
 
-        var html = '<p>' +
-            '<span class="added" contenteditable="true">New</span>' +
-            '<a href="#">' +
-            '<i class="fa fa-trash" aria-hidden="true"></i>' +
-            '</a>' +
-            '</p>';
+function resizeHot() {
+    $('#hot .wrapper-img').each(function () {
+        $(this).css('height', $(this).width() / 2)
+    })
+}
+var timeout
 
-        elem.parent()
-            .before(html)
+function animateScrollTop(selector, callback) {
+    $(selector).animate({
+        scrollTop: 0
+    }, {
+        duration: 600,
+        done: function () {
+            //            clearTimeout(timeout)
+            //            timeout = setTimeout(function () {
+            callback()
+            //            }, 400)
+        }
+    })
+}
 
-        elem.parent()
+function animateScrollBottom(selector, callback) {
+    $(selector).animate({
+        scrollTop: $(this).height()
+    }, {
+        duration: 600,
+        done: function () {
+            //            clearTimeout(timeout)
+            //            timeout = setTimeout(function () {
+            callback()
+            //            }, 400)
+        }
+    })
+}
+
+function addSubMenu(elem, event) {
+    event.preventDefault()
+
+    var html = '<p>' +
+        '<span class="added" contenteditable="true">New</span>' +
+        '<a href="#">' +
+        '<i class="fa fa-trash" aria-hidden="true"></i>' +
+        '</a>' +
+        '</p>';
+
+    elem.parent()
+        .before(html)
+
+    elem.parent()
+        .prev()
+        .children("a")
+        .click(function (event) {
+            deleteSubMenu($(this), event)
+        })
+
+
+}
+
+function deleteBigMenu(elem, event) {
+    event.preventDefault()
+
+    if (elem.children().hasClass("fa-trash")) {
+        elem.children()
+            .removeClass("fa-trash")
+            .addClass("fa-undo")
+            .parent()
             .prev()
-            .children("a")
-            .click(function (event) {
-                deleteSubMenu($(this), event)
+            .removeClass("modified")
+            .addClass("deleted")
+            .attr("contenteditable", "false")
+            .parent()
+            .siblings(".sub")
+            .children(".add")
+            .fadeOut()
+            .siblings("p")
+            .each(function () {
+                $(this)
+                    .children("a")
+                    .click()
+                    .hide()
+            })
+    } else {
+        elem.children()
+            .addClass("fa-trash")
+            .removeClass("fa-undo")
+            .parent()
+            .prev()
+            .removeClass("deleted")
+            .attr("contenteditable", "true")
+            .blur()
+            .parent()
+            .siblings(".sub")
+            .children(".add")
+            .fadeIn()
+            .siblings("p")
+            .each(function () {
+                $(this)
+                    .children("a")
+                    .show()
+                    .click()
             })
 
-
     }
+}
 
-    function deleteBigMenu(elem, event) {
-        event.preventDefault()
-
-        if (elem.children().hasClass("fa-trash")) {
-            elem.children()
-                .removeClass("fa-trash")
-                .addClass("fa-undo")
-                .parent()
-                .prev()
-                .removeClass("modified")
-                .addClass("deleted")
-                .attr("contenteditable", "false")
-                .parent()
-                .siblings(".sub")
-                .children(".add")
-                .fadeOut()
-                .siblings("p")
-                .each(function () {
-                    $(this)
-                        .children("a")
-                        .click()
-                        .hide()
-                })
-        } else {
-            elem.children()
-                .addClass("fa-trash")
-                .removeClass("fa-undo")
-                .parent()
-                .prev()
-                .removeClass("deleted")
-                .attr("contenteditable", "true")
-                .blur()
-                .parent()
-                .siblings(".sub")
-                .children(".add")
-                .fadeIn()
-                .siblings("p")
-                .each(function () {
-                    $(this)
-                        .children("a")
-                        .show()
-                        .click()
-                })
-
-        }
-    }
-
-    function deleteSubMenu(elem, event) {
-        event.preventDefault()
-        if (elem.children().hasClass("fa-trash")) {
-            elem.children()
-                .removeClass("fa-trash")
-                .addClass("fa-undo")
-                .parent()
-                .prev()
-                .removeClass("modified")
-                .addClass("deleted")
-                .attr("contenteditable", "false")
-        } else if (!elem
-            .parents(".sub")
+function deleteSubMenu(elem, event) {
+    event.preventDefault()
+    if (elem.children().hasClass("fa-trash")) {
+        elem.children()
+            .removeClass("fa-trash")
+            .addClass("fa-undo")
+            .parent()
             .prev()
-            .children("span")
-            .hasClass("deleted")
-        ) {
-            elem.children()
-                .removeClass("fa-undo")
-                .addClass("fa-trash")
-                .parent()
-                .prev()
-                .removeClass("deleted")
-                .attr("contenteditable", "true")
-                .blur()
+            .removeClass("modified")
+            .addClass("deleted")
+            .attr("contenteditable", "false")
+    } else if (!elem
+        .parents(".sub")
+        .prev()
+        .children("span")
+        .hasClass("deleted")
+    ) {
+        elem.children()
+            .removeClass("fa-undo")
+            .addClass("fa-trash")
+            .parent()
+            .prev()
+            .removeClass("deleted")
+            .attr("contenteditable", "true")
+            .blur()
+    }
+}
+// Content edition
+
+function contenteditableActivation() {
+
+    $('[contenteditable="true"]').each(function () {
+        var content = $(this).text()
+        $(this).attr('data-content', content)
+    })
+    $('[contenteditable="true"]').on('keyup keypress blur change', function () {
+        var base = $(this).attr('data-content')
+        var text = $(this).text()
+        if (text != base) {
+            $(this).addClass("modified")
+        } else {
+            $(this).removeClass("modified")
         }
-    }
-    // Content edition
+    })
 
-    function contenteditableActivation() {
+}
 
-        $('[contenteditable="true"]').each(function () {
-            var content = $(this).text()
-            $(this).attr('data-content', content)
-        })
-        $('[contenteditable="true"]').on('keyup keypress blur change', function () {
-            var base = $(this).attr('data-content')
-            var text = $(this).text()
-            if (text != base) {
-                $(this).addClass("modified")
-            } else {
-                $(this).removeClass("modified")
-            }
-        })
+function showToastr(options) {
+    toastr[options.type](options.message);
+}
 
-    }
-
-    function showToastr(options) {
-        toastr[options.type](options.message);
-    }
-
-    function $_GET(param) {
-        var vars = {};
-        window.location.href.replace(location.hash, '').replace(
-            /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
-            function (m, key, value) { // callback
-                vars[key] = value !== undefined ? value : '';
-            }
-        );
-
-        if (param) {
-            return vars[param] ? vars[param] : null;
+function $_GET(param) {
+    var vars = {};
+    window.location.href.replace(location.hash, '').replace(
+        /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+        function (m, key, value) { // callback
+            vars[key] = value !== undefined ? value : '';
         }
-        return vars;
+    );
+
+    if (param) {
+        return vars[param] ? vars[param] : null;
     }
+    return vars;
+}
