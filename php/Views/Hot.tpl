@@ -3,48 +3,19 @@
 
         <div class="font-title">Hot articles</div>
         <div class="row">
-
+            
+            {foreach $hot as $hot_item}
             <div class="col-xs-12 col-sm-6 col-md-12">
-                <a href="article.html">
-                    <div class="hot-picture wrapper-img" data-src="http://lorempixel.com/400/200/">
+                <a href="/article/{$hot_item.id}">
+                    <div class="hot-picture wrapper-img" data-src="{$root_url}uploads/{$hot_item.image}">
 
                         <div class="overlay overlay-black"></div>
-                        <div class="hot-caption">This article</div>
+                        <div class="hot-caption">{$hot_item.title}</div>
 
                     </div>
                 </a>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-12">
-                <a href="article.html">
-                    <div class="hot-picture wrapper-img" data-src="http://lorempixel.com/400/200/">
-
-                        <div class="overlay overlay-black"></div>
-                        <div class="hot-caption">An other one</div>
-
-                    </div>
-                </a>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-12">
-                <a href="article.html">
-                    <div class="hot-picture wrapper-img" data-src="http://lorempixel.com/400/200/">
-
-                        <div class="overlay overlay-black"></div>
-                        <div class="hot-caption">It is an article</div>
-
-                    </div>
-                </a>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-12">
-                <a href="article.html">
-                    <div class="hot-picture wrapper-img" data-src="http://lorempixel.com/400/200/">
-
-                        <div class="overlay overlay-black"></div>
-                        <div class="hot-caption">This article</div>
-
-                    </div>
-                </a>
-            </div>
-
+            {/foreach}
         </div>
     </div>
 </div>

@@ -24,6 +24,7 @@ echo "
 ?>
 <div class="container">
    
+   
     <div class='wrapperConnexion'>
         <form action='../traitement/connexion.php' method='POST' >
            <table id="formConnexion">
@@ -55,6 +56,7 @@ echo "
             
         </form>
     </div>
+
 
     <div class='wrapperConnexion'>
         <form action='../traitement/creercompte.php' method='POST' >

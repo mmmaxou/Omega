@@ -65,7 +65,7 @@
                         
                         <li class="add ">
                             <a href="#">
-                                <i class="fa fa-plus-circle " aria-hidden="true "></i>
+                                <i class="fa fa-plus-circle " aria-hidden="true"></i>
                             </a>
                         </li>
                     </ul>
@@ -84,7 +84,7 @@
             </div>
 
             <!-- FOOTER -->
-            <form class="modal-footer" method="post" action="Menu.php">
+            <form class="modal-footer" method="post" action="/php/Controllers/Menu.php">
                 <input id="data" name="data" type="hidden">
                 <button type="button" class="btn btn-default btn-close" data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-default btn-main save" data-dismiss="modal">Save changes</button>

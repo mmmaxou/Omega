@@ -24,6 +24,9 @@
 
 .element .element-content {
     padding: 15px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 .element-lister li {
@@ -57,9 +60,11 @@
 }
 
 .article-text {
-    font-size: var(--font-small);
-    font-size: 1em;
+    font-size: var(--font-tiny);
+    font-size: 0.7em;
     text-align: justify;
+    max-height: 250px;
+    overflow: hidden;
 }
 
 .article-bottom {
@@ -78,8 +83,33 @@
     justify-content: flex-end;
 }
 
+.article-bottom .slider-wrapper {
+    width: 33%;
+}
+.article-bottom .slider-wrapper .slick-slide {
+    margin: 0 15px;
+}
+@media (max-width: 720px) {
+    .article-bottom .slider-wrapper {
+        width: 100%;
+    } 
+    .article-bottom .slider-wrapper .slick-slide {
+        margin-top: 15px;
+    }
+}
+
 .article-title [contenteditable] {
     display: inline-block;
+}
+
+.article-title .connected {
+    display: inline;
+}
+
+.textarea-form {
+    width: 100%;
+    min-height: 200px;
+    padding: 25px;
 }
 
 @media (min-width: 1200px) {
@@ -167,14 +197,17 @@
 
 .result-content {
     height: 100%;
-    text-align: justify;
+    text-align: left;
+    display: inline-block;
+    width: 100%;
+    max-height: 500px;
+    overflow: hidden;
 }
 
-.result-content>* {
+.result-content>.wrapper-img {
+    width: 40%;
     float: left;
-    height: 100%;
-    width: 49%;
-    margin-left: 1%;
+    margin: 0 15px -15px 0;
 }
 
 
@@ -232,6 +265,10 @@
     content: ' - The '
 }
 
+.comment-delete {
+    padding: 0 10px;
+    cursor: pointer;
+}
 
 /*Hot*/
 
@@ -280,6 +317,10 @@
 
 
 /* NAVBAR */
+
+#connexion-btn .connected p{
+    width: auto;
+}
 
 .navbar-default .navbar-nav>li>a.btn-main {
     color: white;

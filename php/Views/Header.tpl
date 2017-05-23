@@ -6,17 +6,24 @@
 
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <a class="navbar-brand" href="Index.php">{$title} | {if $connected}Connected{else}Not connected{/if}</a>
+                <a class="navbar-brand" href="Index.php">{$title}</a>
                 <div id="connexion-btn" class="pull-right">
                     <a class="btn btn-main" data-toggle="collapse" data-target="#connexion-dropdown">
-                    {if $connected}
-                        <p>{$login}</p><!--
+                    
+                    <!-- Admin Only-->                
+                    <div class="connected" {if !$connected} style="display:none;" {/if}>
+                        <p id="username">{$login}</p><!--
                         --><i class="fa fa-times" aria-hidden="true"></i>
-                    {else}
+                    </div>    
+                    <!-- / Admin Only-->
+                      
+                    <!-- Disconnect Only-->                
+                    <div class="disconnected" {if $connected} style="display:none;" {/if}>
                         <i class="fa fa-sign-in" aria-hidden="true"></i><!--
                         --><p>Log in</p><!--
                         --><i class="fa fa-times" aria-hidden="true"></i>
-                    {/if}
+                    </div>    
+                    <!-- / Disconnect Only-->
                     </a>
                 </div>
             </div>
@@ -28,58 +35,89 @@
     <!-- / Navbar 1-->
 
     <div class="collapse" id="connexion-dropdown">
-        
-        {if $connected}
-            <a href="Disconnect.php" style="cursor:pointer;" class="btn btn-main btn-block">Disconnect</a>
-        {else}
-        <ul class="nav nav-pills nav-justified">
-            <li role="presentation" data-toggle="subscribe" class="active"><a href="#">Subscribe</a></li>
-            <li role="presentation" data-toggle="connect"><a href="#">Connect</a></li>
-        </ul>
-        <form class="active" id="subscribe" action="Subscribe.php" method="post">
 
-            <div class="hr"></div>
+        <div class="connected" {if !$connected} style="display:none;" {/if}>
+            <a href="#change" data-toggle="collapse" class="btn btn-default btn-block">Change Password</a>
+            <!--Form for changing password-->
+            <div id="change" class="collapse">
+                <form action="Change.php" class="active" method="post">
 
-            <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user-o" aria-hidden="true"></i></span>
-                <input type="text" class="form-control" placeholder="Login" name='login' aria-describedby="basic-addon1">
+                    <div class="hr"></div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon7"><i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" placeholder="Old password" name='old' aria-describedby="basic-addon7">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon8"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                        <input type="password" class="form-control" placeholder="New password" name='password' aria-describedby="basic-addon8">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon9"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                        <input type="password" class="form-control" placeholder="Confirm New password" name='confirm' aria-describedby="basic-addon9">
+                    </div>
+
+                    <div class="hr"></div>
+                    <input class="btn btn-main btn-block" type='submit' value='Change' style="cursor:pointer;">
+
+                    <div class="hr"></div>
+                </form>
             </div>
-            <div class="input-group">
-                <span class="input-group-addon" id="basic-addon2"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
-                <input type="text" class="form-control" placeholder="Email" name='email' aria-describedby="basic-addon2">
-            </div>
-            <div class="input-group">
-                <span class="input-group-addon" id="basic-addon3"><i class="fa fa-lock" aria-hidden="true"></i></span>
-                <input type="password" class="form-control" placeholder="Password" name='password' aria-describedby="basic-addon3">
-            </div>
-            <div class="input-group">
-                <span class="input-group-addon" id="basic-addon4"><i class="fa fa-lock" aria-hidden="true"></i></span>
-                <input type="password" class="form-control" placeholder="Verification" name='confirm' aria-describedby="basic-addon4">
-            </div>
+            <!--Form for changing password-->
+            <a id="disconnect" href="Disconnect.php" style="cursor:pointer;" class="btn btn-main btn-block">Disconnect</a>
+        </div>
 
-            <div class="hr"></div>
-            <input class="btn btn-main btn-block" type='submit' value='Subscribe' style="cursor:pointer;">
+        <div class="disconnected" {if $connected} style="display:none;" {/if}>
 
-        </form>
-        <form id="connect" action="Login.php" method="post">
+            <ul class="nav nav-pills nav-justified">
+                <li role="presentation" data-toggle="subscribe"><a href="#">Subscribe</a></li>
+                <li role="presentation" data-toggle="connect" class="active"><a href="#">Connect</a></li>
+            </ul>
+            <form id="subscribe" class="active" action="Subscribe.php" method="post">
 
-            <div class="hr"></div>
+                <div class="hr"></div>
 
-            <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user-o" aria-hidden="true"></i></span>
-                <input type="text" class="form-control" placeholder="Login" name='login' aria-describedby="basic-addon1">
-            </div>
-            <div class="input-group">
-                <span class="input-group-addon" id="basic-addon3"><i class="fa fa-lock" aria-hidden="true"></i></span>
-                <input type="password" class="form-control" placeholder="Password" name='password' aria-describedby="basic-addon3">
-            </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user-o" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" placeholder="Login" name='login' aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon2"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" placeholder="Email" name='email' aria-describedby="basic-addon2">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon3"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                    <input type="password" class="form-control" placeholder="Password" name='password' aria-describedby="basic-addon3">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon4"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                    <input type="password" class="form-control" placeholder="Verification" name='confirm' aria-describedby="basic-addon4">
+                </div>
+
+                <div class="hr"></div>
+                <input class="btn btn-main btn-block" type='submit' value='Subscribe' style="cursor:pointer;">
+
+            </form>
+            <form id="connect" action="Login.php" method="post">
+
+                <div class="hr"></div>
+
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon5"><i class="fa fa-user-o" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" placeholder="Login" name='login' aria-describedby="basic-addon5">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon6"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                    <input type="password" class="form-control" placeholder="Password" name='password' aria-describedby="basic-addon6">
+                </div>
 
 
-            <div class="hr"></div>
-            <input class="btn btn-main btn-block" type='submit' value='Connect' style="cursor:pointer;">
+                <div class="hr"></div>
+                <input class="btn btn-main btn-block" type='submit' value='Connect' style="cursor:pointer;">
 
-        </form>
-        {/if}
+            </form>
+
+        </div>
     </div>
 
     <!-- Banner -->
@@ -98,12 +136,12 @@
             <!--Search Bar-->
             <div class="row search-bar">
                 <div class="col-xs-12 col-sm-offset-2 col-sm-8">
-                    <form action="Index.tpl?module=research" class="fit">
-
-                        <input type="text" class="fit-large btn" placeholder="Search something to begin.">
-                        <a href="Index.tpl?module=research" class="btn btn-search">
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                        </a>
+                    <form action="/search" method="GET" id="research-bar" class="fit">
+                        <input type="hidden" name="module" value="research">
+                        <input type="text" class="fit-large btn" name="query" id="query" placeholder="Search something to begin.">
+                        <button type="submit" class="btn btn-search">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
 
                     </form>
                 </div>

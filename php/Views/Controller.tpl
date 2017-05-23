@@ -11,7 +11,7 @@
         <div class="row">
 
             <!-- Left column -->
-            <div class="col-xs-12 col-md-9 col1">
+            <div class="col-xs-12 col-md-9 col1" id="partial">
                 {include file="$file"}
             </div>
             <!-- / Left column -->
@@ -25,7 +25,7 @@
         </div>
         <!-- / 2 Columns -->
 
-        {include file="./Pager.tpl"}
+<!--        include file="./Pager.tpl"-->
     </div>
 
 

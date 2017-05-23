@@ -10,7 +10,11 @@ class Connexion
 {
     public function myPDO()
     {
-        return new PDO('mysql:host=mysql.hostinger.fr;dbname=u462001126_maxel;charset=utf8', 'u462001126_maxel', 'tototiti');
+        // Hostinger
+//        return new PDO('mysql:host=mysql.hostinger.fr;dbname=u462001126_maxel;charset=utf8', 'u462001126_maxel', 'tototiti');
+        
+        // Hostinger
+        return new PDO('mysql:host=mysql5;dbname=domurat_t2;charset=utf8', 'domurat_t2', 'Omega');
     }
 }
 

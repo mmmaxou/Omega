@@ -6,32 +6,39 @@ session_start();
  * Date: 09/05/2017
  * Time: 12:10
  */
+
 require_once ('../Models/Menu.php');
 $menu = new Menu();
 
 require_once ('../Models/Page.php');
 $page = new Page();
 
+require_once ('../Models/Gallery.php');
+$gallery = new Gallery();
 
-
-function dump ($data) {
-    echo '<pre>';
-    var_dump($data);
-    echo '<pre>';
-}
-//dump($_POST);
 
 $decoded = json_decode($_POST["data"], true);
 
+$url = "";
 foreach ($decoded['added'] as $add) {
     $nl2br1 = nl2br($add['name']);
-    $nl2br2 = nl2br($add['parent_menu_id']);
     $name = htmlspecialchars($nl2br1);
-    $parent = htmlspecialchars($nl2br2);
-    $page_id = $page->sendDBpage($add['name'],null,null);
-    $menu->sendDBmenu($name, $parent, $page_id[0] , $_SESSION['id']);
-}
+    // date
+    date_default_timezone_set('UTC');
+    $date = date("Y-m-d H:i:s");    
+    
+    $page_id = $page->sendDBpage($add['name'],null,null,null,$date);
+    $gallery_id = $gallery->addGallery($add['name']);
+    
 
+    
+    $menu->sendDBmenu($name, $add['parent_menu_id'], $page_id[0] , $_SESSION['id'],$gallery_id[0]);
+    
+    if ($add['parent_menu_id'] != null) {
+        $menu->setMenuParent($add['parent_menu_id']);
+    }
+    $new_page_id = $page_id[0];
+}
 
 foreach ($decoded['modified'] as $up) {
     $nl2br1 = nl2br($up['id']);
@@ -49,5 +56,9 @@ foreach ($decoded['deleted'] as $del) {
     $page->deleteBDpage($page_id[0]);
 
 }
-
-header('Location:Index.php');
+if ( $new_page_id != "") {
+header('Location:/article/'.$new_page_id);
+}
+else {
+header('Location:/');
+}

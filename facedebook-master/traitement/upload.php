@@ -10,7 +10,7 @@ if(isset($_FILES['imageStatut'])){
         header("Location:".$_SERVER['HTTP_REFERER']);
     }
     $dossierUpload = '../imgUploaded';
-    $uploadSuccess = move_uploaded_file($_FILES['imageStatut']['tmp_name']);
+    $uploadSuccess = move_uploaded_file($_FILES['imageStatut']['tmp_name'],)
 }
 
 

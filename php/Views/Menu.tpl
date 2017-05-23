@@ -1,9 +1,3 @@
-<!--
-<pre>
-    {$menuWithChildren|@var_dump}
-</pre>
--->
-
 <!--Navbar 2-->
 <nav class="navbar navbar-default element">
     <div class="container-fluid">
@@ -29,7 +23,9 @@
 
                 <li><a href="Index.php?module=article&id={$menuItem.page_id}">{$menuItem.name}</a></li>
 
-                {/foreach} {foreach $menuWithChildren as $dropdown}
+                {/foreach}
+                <!--End first loop-->
+                {foreach $menuWithChildren as $dropdown}
 
                 <li class="dropdown">
 
@@ -52,17 +48,19 @@
             </ul>
 
 
-            {if $connected}
-            <!--Admin-->
-            <ul class="admin-only nav navbar-nav navbar-right">
-                <li>
-                    <a href="" class="btn-main" data-toggle="modal" data-target="#menu-main">
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                    </a>
-                </li>
-            </ul>
-            <!--Fin Admin-->
-            {/if}
+
+            <!-- Admin Only-->
+            <div class="connected" {if !$connected} style="display:none;" {/if}>
+                <ul class="admin-only nav navbar-nav navbar-right">
+                    <li>
+                        <a href="" class="btn-main" data-toggle="modal" data-target="#menu-main">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- / Admin Only-->
+
         </div>
         <!-- /.navbar-collapse -->
     </div>
