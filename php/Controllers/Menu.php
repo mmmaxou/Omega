@@ -37,7 +37,7 @@ foreach ($decoded['added'] as $add) {
     if ($add['parent_menu_id'] != null) {
         $menu->setMenuParent($add['parent_menu_id']);
     }
-    $url = "module=article&id=$page_id[0]";
+    $new_page_id = $page_id[0];
 }
 
 foreach ($decoded['modified'] as $up) {
@@ -56,9 +56,9 @@ foreach ($decoded['deleted'] as $del) {
     $page->deleteBDpage($page_id[0]);
 
 }
-if ( $url != "") {
-header('Location:Index.php?'.$url);
+if ( $new_page_id != "") {
+header('Location:/article/'.$new_page_id);
 }
 else {
-header('Location:Index.php');
+header('Location:/');
 }

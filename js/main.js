@@ -48,27 +48,53 @@ function load_general() {
     // Change the partial    
     $('a[href]').click(function (e) {
         e.preventDefault()
-        //        console.log($(this))
+        // console.log($(this))
         var href = $(this).attr("href")
+        // There is no internal link
         if (!href || href == "" || href == "#") {
             return
         }
+        
+        
+        // remove the index
         href = href.replace("Index.php", "").replace("?", "")
-        var data = href + "&partial=1"
-        //        console.log(data)
-
+        // Index redirection without module
+        if (href == "") {
+            var data = "module=index&partial=1"
+        } else {
+            var data = href + "&partial=1"
+        }
+        console.log(data)
+        
+        // Change the url
+        var href_get = "?"+href // Useful for my function get
+        var module = $_GET("module", href_get)
+        var new_url;
+        if ( module == "article" ) {
+            new_url = "/article/" + $_GET("id", href_get)
+        } else if ( module == "research" ) {
+            new_url = "/research/" + $_GET("query", href_get)            
+        } else if ( module == "index" || href ==  ""){
+            new_url = "/"
+        } else {
+            return
+        }
+        
+        console.log(new_url)
+        
+        
         $.ajax({
-            url: 'Index.php',
+            url: '/php/Controllers/Index.php',
             type: 'GET',
             data: data,
             dataType: 'text',
             success: function (res, statut) {
-                //                console.log(res)
+                //console.log(res)
                 $("#partial").empty().append(res);
                 window.history.pushState({
                     "html": res,
                     "pageTitle": "Omega"
-                }, "", "Index.php?" + href)
+                }, "", new_url)
 
                 load_general()
                 load_article()
@@ -114,28 +140,18 @@ function load_general() {
             autoplaySpeed: 0,
             arrows: false,
             cssEase: "linear",
-            speed: 1500,
+            speed: 3000,
             centerMode: true,
             slidesToShow: 1,
             touchMove: false,
             swipe: false,
             draggable: false,
             waitForAnimate: false,
-            //        slidesToScroll: 3,
+            slidesToScroll: 1,
             variableWidth: true,
-            responsive: [
-                {
-                    breakpoint: 600,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1,
-                    }
-    }
-  ]
         });
 
     })
-
 
 }
 
@@ -219,7 +235,7 @@ function load_layout() {
         e.preventDefault()
         var data = $(this).serialize()
         $.ajax({
-            url: 'Login.php',
+            url: '/php/Controllers/Login.php',
             type: 'POST',
             data: data,
             dataType: 'text',
@@ -240,7 +256,7 @@ function load_layout() {
         e.preventDefault()
         var data = null;
         $.ajax({
-            url: 'Disconnect.php',
+            url: '/php/Controllers/Disconnect.php',
             type: 'POST',
             data: data,
             dataType: 'text',
@@ -260,7 +276,7 @@ function load_layout() {
         e.preventDefault()
         var data = $(this).serialize()
         $.ajax({
-            url: 'Subscribe.php',
+            url: '/php/Controllers/Subscribe.php',
             type: 'POST',
             data: data,
             dataType: 'text',
@@ -280,7 +296,7 @@ function load_layout() {
         e.preventDefault()
         var data = $(this).serialize()
         $.ajax({
-            url: 'Change.php',
+            url: '/php/Controllers/Change.php',
             type: 'POST',
             data: data,
             dataType: 'text',
@@ -308,6 +324,40 @@ function load_layout() {
         $(".connected").hide()
         $(".disconnected").fadeIn()
     }
+
+
+    /* ######### REWRITE FORM ######### */
+    $('#research-bar').submit(function (e) {
+        e.preventDefault()
+        var query = $('#query').val()
+        var href = $(this).serialize()
+        var data = href + "&partial=1"
+        console.log(data)
+
+        $.ajax({
+            url: '/php/Controllers/Index.php',
+            type: 'GET',
+            data: data,
+            dataType: 'text',
+            success: function (res, statut) {
+                console.log(res)
+                $("#partial").empty().append(res);
+                window.history.pushState({
+                    "html": res,
+                    "pageTitle": "Omega"
+                }, "", "/research/" + query)
+
+                load_general()
+                load_article()
+            },
+        })
+
+
+    })
+
+
+
+
 
 
 
@@ -621,7 +671,7 @@ function load_article() {
             added_images: added_images,
             deleted_images: deleted_images,
         }
-        $("#data").val(JSON.stringify(data))
+        $("#data_article").val(JSON.stringify(data))
         console.log($('#data').val())
 
         $('#form-article').submit()
@@ -649,14 +699,15 @@ function load_article() {
     $('#comm').submit(function (e) {
         e.preventDefault()
 
-        var data = $(this).serialize() + "&id=" + $_GET('id');
+        var page_id = $('#article').attr('data-id')
+        var data = $(this).serialize() + "&id=" + page_id;
         if (!$('#articleContent').val()) {
             toastr["error"]("Your comment is empty");
             return
         }
 
         $.ajax({
-            url: 'Comment.php',
+            url: '/php/Controllers/Comment.php',
             type: 'POST',
             data: data,
             dataType: 'text',
@@ -700,7 +751,7 @@ function load_article() {
         var comment = $(this).parent().parent()
         var id = comment.attr("data-id")
         $.ajax({
-            url: 'DeleteComment.php',
+            url: '/php/Controllers/DeleteComment.php',
             type: 'POST',
             data: "id=" + id,
             dataType: 'text',
@@ -733,8 +784,9 @@ function load_article() {
         dots: true,
         autoplay: true,
         autoplaySpeed: 5000,
+        speed: 3000,
         slidesToShow: 1,
-        slidesToScroll: 3,
+        slidesToScroll: 1,
         centerMode: true,
         variableWidth: true,
         responsive: [
@@ -1023,14 +1075,24 @@ function showToastr(options) {
     toastr[options.type](options.message);
 }
 
-function $_GET(param) {
+function $_GET(param, string) {
     var vars = {};
-    window.location.href.replace(location.hash, '').replace(
-        /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
-        function (m, key, value) { // callback
-            vars[key] = value !== undefined ? value : '';
-        }
-    );
+
+    if (!string) {
+        window.location.href.replace(location.hash, '').replace(
+            /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+            function (m, key, value) { // callback
+                vars[key] = value !== undefined ? value : '';
+            }
+        );
+    } else {
+        string.replace(
+            /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+            function (m, key, value) { // callback
+                vars[key] = value !== undefined ? value : '';
+            }
+        );
+    }
 
     if (param) {
         return vars[param] ? vars[param] : null;

@@ -136,9 +136,9 @@
             <!--Search Bar-->
             <div class="row search-bar">
                 <div class="col-xs-12 col-sm-offset-2 col-sm-8">
-                    <form action="Index.php" method="GET" class="fit">
+                    <form action="/search" method="GET" id="research-bar" class="fit">
                         <input type="hidden" name="module" value="research">
-                        <input type="text" class="fit-large btn" name="query" placeholder="Search something to begin.">
+                        <input type="text" class="fit-large btn" name="query" id="query" placeholder="Search something to begin.">
                         <button type="submit" class="btn btn-search">
                         <i class="fa fa-search" aria-hidden="true"></i>
                         </button>

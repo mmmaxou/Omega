@@ -83,6 +83,21 @@
     justify-content: flex-end;
 }
 
+.article-bottom .slider-wrapper {
+    width: 33%;
+}
+.article-bottom .slider-wrapper .slick-slide {
+    margin: 0 15px;
+}
+@media (max-width: 720px) {
+    .article-bottom .slider-wrapper {
+        width: 100%;
+    } 
+    .article-bottom .slider-wrapper .slick-slide {
+        margin-top: 15px;
+    }
+}
+
 .article-title [contenteditable] {
     display: inline-block;
 }
@@ -302,6 +317,10 @@
 
 
 /* NAVBAR */
+
+#connexion-btn .connected p{
+    width: auto;
+}
 
 .navbar-default .navbar-nav>li>a.btn-main {
     color: white;

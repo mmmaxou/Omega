@@ -5,8 +5,8 @@
 
 {foreach $menuNoChildren as $article}
 
-<div id="articles" class="col-xs-12">
-    <div class="article article-small element" id="article">
+<div class="col-xs-12">
+    <div class="article article-small element">
         <div class="wrapper-img" data-src="../../uploads/{$article.image}"></div>
         <div class="element-content">
             <!-- Article title -->
@@ -40,8 +40,8 @@
 <!--Nested Foreach-->
 {foreach $dropdown as $article} {if $article@first} {else}
 
-<div id="articles" class="col-xs-12">
-    <div class="article article-small element" id="article">
+<div class="col-xs-12">
+    <div class="article article-small element">
         <div class="wrapper-img" data-src="../../uploads/{$article.image}"></div>
         <div class="element-content">
             <!-- Article title -->

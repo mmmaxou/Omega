@@ -1,14 +1,14 @@
 <!-- Article Content -->
 <div class="element">
     <div class="row">
-        <div class="element-content">
+        <div class="element-content" id="article" data-id="{$pageId}">
             <!-- Article title -->
             <div class="article-title font-title" id="article-title">
                 <span>{$title_article}</span>
 
 
                 <!-- Admin Only-->
-                <div class="connected" {if !$connected} style="display:none;" {/if}>
+                <div class="connected" {if !$connected && $is_author} style="display:none;" {/if}>
 
                     <span class="pull-right edit-button">
                 <a id="edit-article" class="btn-main">
@@ -36,12 +36,12 @@
 
             <!-- Admin Only-->
             <div class="connected" {if !$connected} style="display:none;" {/if}>
-                <form id="form-article" method="post" action="Page.php?id={$pageId}" enctype='multipart/form-data'>
+                <form id="form-article" method="post" action="/php/Controllers/Page.php?id={$pageId}" enctype='multipart/form-data'>
                     <div id="text-article">
                         {$content}
                     </div>
                     <p id='demo'></p>
-                    <input id="data" name="data" type="hidden">
+                    <input id="data_article" name="data" type="hidden">
                 </form>
             </div>
             <!-- / Admin Only-->
@@ -75,8 +75,7 @@
                 <div class="hr"></div>
                 <span class="color-on-hover"><i class="fa fa-calendar" aria-hidden="true"></i> {$date}</span>
                 <span class="color-on-hover"><i class="fa fa-eye" aria-hidden="true"></i> {$view}</span>
-                <span class="color-on-hover">
-                    <i class="fa fa-folder-o" aria-hidden="true"></i>
+                <span class="color-on-hover slider-wrapper">
                     <div class="my-slider">
                         {$keywords}
                     </div>

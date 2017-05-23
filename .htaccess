@@ -1,0 +1,25 @@
+#----------------------------------------------------------
+# Directory : /
+#----------------------------------------------------------
+
+
+# The server need to follow the Symbolic Links : 
+Options +FollowSymlinks
+
+# URL eewriting engine module activation : 
+RewriteEngine on
+RewriteBase /
+
+
+#--------------------------------------------------
+# Rewrite rules : 
+#--------------------------------------------------
+
+RewriteRule ^article/(.*)$  /php/Controllers/Index.php?module=article&id=$1
+RewriteRule ^research/(.*)$  /php/Controllers/Index.php?module=research&query=$1 [L]
+
+#--------------------------------------------------
+# Default Directory : 
+#--------------------------------------------------
+
+DirectoryIndex /php/Controllers/Index.php

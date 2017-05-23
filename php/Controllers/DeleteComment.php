@@ -23,7 +23,7 @@ if($comment_user_id == $user_id ) {
     $res = array(
         'toastr' => array (
             "type" => "error",
-            "message" => "Error",
+            "message" => "You can't delete the comments of an other user.",
             ),
         "success" => false,
     );

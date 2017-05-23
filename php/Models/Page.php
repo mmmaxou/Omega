@@ -88,6 +88,22 @@ class Page{
         
         return $query->fetchAll();        
     }
+    
+    public function getHotArticles($number) {
+        $bdd = new Connexion();
+        $pdo = $bdd->myPDO();
+        
+        $query = $pdo->prepare(
+        "SELECT *
+        FROM t_page        
+        ORDER BY t_page.view DESC
+        LIMIT ". (int)$number. "
+        ");
+        
+        $query->execute();
+        return $query->fetchAll();
+        
+    }
 }
 
 ?>

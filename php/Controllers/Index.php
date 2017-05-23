@@ -79,6 +79,24 @@ for ( $i=0; $i < sizeof($menuWithChildren); $i++) {
 $smarty->assign("menuNoChildren", $menuNoChildren);
 $smarty->assign("menuWithChildren", $menuWithChildren);
 
+
+// GATHER IMAGES
+$images = $File->getOneImage();
+
+
+// Get the hot articles
+$hot = $Page->getHotArticles(4);
+for ( $i=0; $i < sizeof($hot); $i++) {
+    $hot_menu = $Menu->getMenuPageID($hot[$i]['id']);
+    $gallery_id = $hot_menu[0]['gallery_id'];
+    foreach($images as $image) {
+        if ($image['gallery_id'] == $gallery_id) {
+            $hot[$i]['image'] = $image['label'];
+        }
+    }
+}
+$smarty->assign("hot", $hot);
+
 // Session data
 if(isset($_SESSION['id'])) {
 	// We are connected, we send data to the page
@@ -130,13 +148,20 @@ if ($_GET['module'] == "article" && isset($_GET['id'])) {
     $smarty->assign("comments", $comments);
     
     
+    // Check for the write to edit
+    if ( $Menu->checkWriter($_SESSION['id'],$id ) ) {
+        $smarty->assign("is_author", true);
+    }else{
+        $smarty->assign("is_author", false);
+    }
+    
+    
     if ($_GET['partial'] == "1") {
         $smarty->display('../Views/Article.tpl');
     }
 }
 if ($_GET['module'] == "index" || !isset($_GET['module'])) {
     
-    $images = $File->getOneImage();
     $pages = $Page->gatherPageData();
     
     // Gather all data for each excerpt
@@ -213,9 +238,9 @@ if ($_GET['module'] == "research" && isset($_GET['query'])) {
     
     $smarty->assign("query", $q);
     $smarty->assign("results", $results);
-//    if ($_GET['partial'] == "1") {
-//        $smarty->display('../Views/Research.tpl');
-//    }
+    if ($_GET['partial'] == "1") {
+        $smarty->display('../Views/Research.tpl');
+    }
 }
 
 if (empty($_GET['partial'])) {

@@ -56,4 +56,4 @@ foreach($added_images as $file ) {
 //echo $title;
 //echo $_SESSION['id'];
 $menu->updateBDmenu($id_menu[0],$title,$_SESSION['id']);
-header('Location:Index.php?module=article&id='.$_GET['id']);
+header('Location:/article/'.$_GET['id']);
