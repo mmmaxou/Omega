@@ -118,6 +118,8 @@ class Menu
         return $req->fetch();
     }
 
+
+
     public function getNbMenuPere($id){
         $bdd = new Connexion();
         $pdo = $bdd->myPDO();
@@ -126,6 +128,7 @@ class Menu
         return $req->fetchAll();
     }
 
+
     public function getMenuID($id){
         $bdd = new Connexion();
         $pdo = $bdd->myPDO();
@@ -133,14 +136,7 @@ class Menu
         $req->execute(array($id));
         return $req->fetchAll();
     }
-    
-    public function getMenuPageID($id){
-        $bdd = new Connexion();
-        $pdo = $bdd->myPDO();
-        $req = $pdo->prepare('SELECT * from t_menu where page_id = ?');
-        $req->execute(array($id));
-        return $req->fetchAll();
-    }
+
 
     public function setDisplay($id,$nb){
         $bdd = new Connexion();
@@ -160,4 +156,21 @@ class Menu
         return $req->fetchAll();
     }
 
+    public function checkWriter($user_id,$page_id){
+        $bdd = new Connexion();
+        $pdo = $bdd->myPDO();
+        $req = $pdo->prepare('SELECT create_user_id from t_menu join t_page where t_menu.page_id = t_page.id and  page_id  = ?');
+        $req->execute(array($page_id));
+        $userUp = $req->fetchAll();
+        return $user_id != $userUp[0];
+    }
+
+    public function checkWriterMenu($user_id,$menu_id){
+        $bdd = new Connexion();
+        $pdo = $bdd->myPDO();
+        $req = $pdo->prepare('SELECT create_user_id from t_menu where id  = ?');
+        $req->execute(array($menu_id));
+        $userUp = $req->fetchAll();
+        return $user_id == $userUp[0][0];
+    }
 }
