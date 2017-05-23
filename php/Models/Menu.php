@@ -96,7 +96,6 @@ class Menu
         return $myArray;
     }
     
-    
     public function getMenu()
     {
         $bdd = new Connexion();
