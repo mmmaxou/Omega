@@ -136,6 +136,14 @@ class Menu
         return $req->fetchAll();
     }
 
+    public function getMenuPageID($id){
+        $bdd = new Connexion();
+        $pdo = $bdd->myPDO();
+        $req = $pdo->prepare('SELECT * from t_menu where page_id  = ?');
+        $req->execute(array($id));
+        return $req->fetchAll();
+    }
+
 
     public function setDisplay($id,$nb){
         $bdd = new Connexion();
