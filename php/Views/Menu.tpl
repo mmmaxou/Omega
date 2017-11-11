@@ -1,7 +1,6 @@
 <!--Navbar 2-->
 <nav class="navbar navbar-default element">
     <div class="container-fluid">
-
         <!-- Display Header Name -->
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -13,8 +12,6 @@
                 </button>
             <a class="navbar-brand" href="Index.php">{$title}</a>
         </div>
-
-
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div id="dropdown-content" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -50,7 +47,7 @@
 
 
             <!-- Admin Only-->
-            <div class="connected" {if !$connected} style="display:none;" {/if}>
+            <div class="connected superUser" {if !$superUser} style="display:none;" {/if}>
                 <ul class="admin-only nav navbar-nav navbar-right">
                     <li>
                         <a href="" class="btn-main" data-toggle="modal" data-target="#menu-main">

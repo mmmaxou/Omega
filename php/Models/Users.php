@@ -38,7 +38,7 @@ class Users
                 ));
 
 
-                $req = $pdo->prepare( "SELECT * FROM t_user WHERE login= 'toto'");
+                $req = $pdo->prepare( "SELECT * FROM t_user WHERE login= :login");
                 $req->execute(array(
                     'login' => $login
                 ));
@@ -98,6 +98,11 @@ class Users
                 session_start();
                 $_SESSION['id'] = $line['id'];
                 $_SESSION['login'] = $line['login'];
+              if( $_SESSION['id'] == 10) {
+                $superUser = true;
+              } else {
+                $superUser = false;
+              }
 //                header('Location:Index.php');
                 $res = array(
                     'toastr' => array (
@@ -105,6 +110,7 @@ class Users
                         "message" => "Connected",
                     ),
                     "username" => $_SESSION['login'],
+                    "superUser" => $superUser,
                     "success" => true,
                 );
                 return $res;

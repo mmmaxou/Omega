@@ -57,8 +57,8 @@ foreach ($decoded['deleted'] as $del) {
 
 }
 if ( $new_page_id != "") {
-header('Location:/article/'.$new_page_id);
+header('Location:/Omega/article/'.$new_page_id);
 }
 else {
-header('Location:/');
+header('Location:/Omega/');
 }

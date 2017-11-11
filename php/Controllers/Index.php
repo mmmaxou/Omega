@@ -1,9 +1,31 @@
 <?php
 session_start();
+header('Access-Control-Allow-Origin: *');
+
+/*
+#################################################
+## Configuration of the global variables name. ##
+#################################################
+*/
+
+// The title of the website
+$website_title = "Omega";
+// Control the rotation of the first letter of the logo
+// To disable the rotation, set the variable to false
+$logo_rotation = true;
+// If the rotation is disabled, the website title is displayed.
+$logo_first_letter = "O";
+$logo_static_text = "mega";
+
+
+
+
 
 
 /*
-Basic controller for testing the Smarty framework
+###########################
+## Fonctions and display ##
+###########################
 */
 
 // Helpers
@@ -29,8 +51,16 @@ $Comment = new Comment();
 
 
 // Base components
-$smarty->assign("title", "Omega");
-$smarty->assign("root_url", "../../");
+$smarty->assign("title", $website_title);
+
+if ($logo_rotation) {
+    $smarty->assign("logo_first_letter", $logo_first_letter);
+    $smarty->assign("logo_static_text", $logo_static_text);
+} else {
+    $smarty->assign("logo_first_letter", "");
+    $smarty->assign("logo_static_text", $website_title);
+}
+$smarty->assign("root_url", "");
 
 // Find the module to load
 switch ($_GET["module"]) {
@@ -48,6 +78,7 @@ switch ($_GET["module"]) {
         break;
 }
 $smarty->assign("file", $file);
+
 // DB data for the menu
 $menuWithChildren = [];
 $menuNoChildren = [];
@@ -98,13 +129,21 @@ for ( $i=0; $i < sizeof($hot); $i++) {
 $smarty->assign("hot", $hot);
 
 // Session data
+$superUser = false;
 if(isset($_SESSION['id'])) {
 	// We are connected, we send data to the page
     $smarty->assign("connected", true);
     $smarty->assign("login", $_SESSION['login']);
+  
+  // Look for the super user
+  // Admin ID => 10
+  if ( $_SESSION['id'] == 10 || $_SESSION['id']) {
+     $superUser = true;
+  }
 }
+$smarty->assign('superUser', $superUser);
 
-// Article data
+// Load different datas from the database depending on the module loaded.
 if ($_GET['module'] == "article" && isset($_GET['id'])) {
     $id = $_GET ['id'];
     $page_data = $Page->gatherPageDataId($id);
@@ -243,6 +282,7 @@ if ($_GET['module'] == "research" && isset($_GET['query'])) {
     }
 }
 
+// Display of the global layout
 if (empty($_GET['partial'])) {
     $smarty->display('../Views/Controller.tpl');
 }

@@ -105,8 +105,8 @@ class Menu
         $reponse = $pdo->query('SELECT * FROM t_menu');
         //$reponse = $pdo->query('select parent_menu_id from t_menu WHERE parent_menu_id is not NULL');
         return $reponse->fetchAll();
-
     }
+  
     public function getGallery($my_menu_id){
         $bdd = new Connexion();
         $pdo=$bdd->myPDO();
@@ -117,8 +117,6 @@ class Menu
         return $req->fetch();
     }
 
-
-
     public function getNbMenuPere($id){
         $bdd = new Connexion();
         $pdo = $bdd->myPDO();
@@ -126,7 +124,6 @@ class Menu
         $req->execute(array($id));
         return $req->fetchAll();
     }
-
 
     public function getMenuID($id){
         $bdd = new Connexion();

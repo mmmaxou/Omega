@@ -10,7 +10,7 @@ $comment_id = $_POST['id'];
 $comment_user_id = $Comment->ownerCommentId($comment_id);
 $comment_user_id = $comment_user_id['user_id'];
 
-if($comment_user_id == $user_id ) {
+if($comment_user_id == $user_id || $user_id == 10) {
     $Comment->deleteCommentId($comment_id);
     $res = array(
         'toastr' => array (

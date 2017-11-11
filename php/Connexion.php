@@ -8,24 +8,20 @@
 
 class Connexion
 {
+    public $host = "mysql.hostinger.fr";
+//    public $host = "localhost";
+    public $dbname = "u271338863_omega";
+//    public $login = "domurat_t2";
+    public $login = "u271338863_max";
+//    public $login = "root";
+    public $password = "password";
+//    public $password = "Omega";
+    
     public function myPDO()
     {
-        // Hostinger
-//        return new PDO('mysql:host=mysql.hostinger.fr;dbname=u462001126_maxel;charset=utf8', 'u462001126_maxel', 'tototiti');
-        
-        // Hostinger
-        return new PDO('mysql:host=mysql5;dbname=domurat_t2;charset=utf8', 'domurat_t2', 'Omega');
+        return new PDO('mysql:host='.$this->host.';dbname='.$this->dbname.';charset=utf8', $this->login, $this->password);
     }
 }
-
-//try {
-//    $pdo = new PDO('mysql:host=mysql.hostinger.fr;dbname=u462001126_maxel;charset=utf8', 'u462001126_maxel', 'tototiti');
-//    
-//} catch (Exception $e) {
-//    
-//    die('Erreur : ' . $e->getMessage());
-//    
-//}
 
 
 ?>
